@@ -3,6 +3,7 @@ import Image from "next/image";
 import { DMFont, pathWay } from "@/components/body";
 import { createGlobalStyle } from "styled-components";
 import styled from "styled-components";
+import Button from "@/components/button";
 export default function Home() {
   return (
     <main className="min-h-screen px-[1.25em] lg:px-[112px]   ">
@@ -176,7 +177,7 @@ export default function Home() {
           </div>
         </article>
 
-        <div className="py-[4.5rem] flex ">
+        <div className="py-[4.5rem] px-[5px] lg:px-0 flex ">
           <div
             className="flex lg:w-[90%] ml-auto h-[350px] rounded-md lg:h-[380px] place-items-center"
             style={{
@@ -187,6 +188,43 @@ export default function Home() {
               className="object-center w-full"
               src="/landingstocks.png"
               alt="landing page candle"
+            />
+          </div>
+        </div>
+      </section>
+      {/* Product */}
+      <section className="px-2 mt-[128px] flex justify-between flex-col lg:flex-row-reverse gap-6  ">
+        <div className="flex lg:w-1/3 w-[90%] m-auto  gap-2 flex-col lg:items-start items-center">
+          <span>Product</span>
+          <h2
+            className={`${DMFont.className} text-center whitespace-nowrap text-[1.5rem] font-[500] lg:text-[1.9rem] `}
+          >
+            Access wide range of stocks
+          </h2>
+          <div>
+            <p className="text-center lg:text-left text-[.9rem]  ">
+              Stocks are the cornerstone of modern investing, offering you the
+              opportunity to own a piece of some of the world's most influential
+              companies. At [Your Trading Platform], we make stock trading
+              accessible, intuitive, and rewarding. Access a wide range of
+              stocks from various sectors and markets, including technology,
+              healthcare, finance, and more. Invest in companies you believe in
+              and see your portfolio grow. Stay updated with live stock prices,
+              charts, and news. Make informed decisions with access to real-time
+              market information.
+            </p>
+          </div>
+          <Button text="Start Trading" customClassName=" hidden lg:block  bg-btn_orange" />
+        </div>
+        <div className="relative lg:w-3/4">
+          <div className="w-full lg:hidden h-[350px] relative">
+            <Image className="" layout="fill" src="/Content.jpg" />
+          </div>
+          <div className="w-full h-[650px] hidden lg:block relative">
+            <Image
+              className="ml-[-120px]"
+              layout="fill"
+              src="/desktopProduct.png"
             />
           </div>
         </div>
