@@ -13,7 +13,7 @@ export default function Home() {
           <span>Check out the new dashboard -? </span>
         </div>
         <h1
-          className={`${DMFont.className} lg:w-[60%] w-[90%]  leading-[2rem] lg:leading-[4.5rem] text-[2em] text-center lg:text-[3em] `}
+          className={`${DMFont.className} lg:w-[60%] w-[90%]  leading-[2rem] lg:leading-[4.5rem] text-[2em] text-center lg:text-[2.5rem] `}
         >
           Navigate the dynamic world of financial markets.
         </h1>
@@ -49,7 +49,9 @@ export default function Home() {
         <img src="/overplay.jpg" alt="overlay" />
       </section>
       {/* Total  */}
-      <section className={` flex px-[1.25em] lg:px-[112px] flex-col mt-10  gap-4 text-center`}>
+      <section
+        className={` flex px-[1.25em] lg:px-[112px] flex-col mt-10  gap-4 text-center`}
+      >
         <h2
           className={`${DMFont.className} text-[1.5rem] m-auto leading-8 font-[500] lg:text-[1.9rem] `}
         >
@@ -234,62 +236,61 @@ export default function Home() {
       </section>
 
       {/* Advisor */}
-      <section className="px-[1.3rem] lg:px-[112px]" >
-      <div className="bg-[#002616]   lg:min-h-[70vh] gap-5 lg:gap-0 mt-28 rounded-3xl  pt-8 pb-0 lg:pl-16  lg:pt-10 flex flex-col lg:flex-row justify-start  lg:justify-between">
-        <div className="flex  items-center lg:items-start justify-center gap-5 flex-col">
-          <h2
-            className={`${DMFont.className} w-[85%] lg:w-auto text-center text-[1.5rem] text-white lg:text-[1.9rem] `}
-          >
-            Start your amazing journey
-          </h2>
-          <span className=" w-[70%] text-[.9rem] lg:text-[1rem] lg:w-auto text-center lg:text-left  text-[#FFEDD4]">
-            {" "}
-            Don't worry, Advisor is there to guide you!{" "}
-          </span>
-          <div className=" flex gap-3 mt-5 text-white">
-            <div className="border w-fit cursor-pointer px-[10px] py-[5px]  rounded-lg flex gap-2 border-white">
-              <img
-                className=" w-[15px] lg:w-[30px]"
-                src="/apple.svg"
-                alt="apple logo"
-              />
-              <span className="flex text-[.8rem] whitespace-nowrap flex-col">
-                Download on the{" "}
-                <strong className=" lg:text-[1rem]">App Store</strong>
-              </span>
-            </div>
-            <div className="border cursor-pointer w-fit px-[10px] py-[5px] rounded-lg  flex gap-2 border-white">
-              <img
-                className=" w-[15px] lg:w-[30px]"
-                src="/Subtract.svg"
-                alt="android logo"
-              />
-              <span className="flex text-[.8rem]  flex-col">
-                GET IT ON{" "}
-                <strong className="lg:text-[1rem]">Google Play</strong>
-              </span>
+      <section className="px-[1.3rem] lg:px-[112px]">
+        <div className="bg-[#002616]   lg:min-h-[70vh] gap-5 lg:gap-0 mt-28 rounded-3xl  pt-8 pb-0 lg:pl-16  lg:pt-10 flex flex-col lg:flex-row justify-start  lg:justify-between">
+          <div className="flex  items-center lg:items-start justify-center gap-5 flex-col">
+            <h2
+              className={`${DMFont.className} w-[85%] lg:w-auto text-center text-[1.5rem] text-white lg:text-[1.9rem] `}
+            >
+              Start your amazing journey
+            </h2>
+            <span className=" w-[70%] text-[.9rem] lg:text-[1rem] lg:w-auto text-center lg:text-left  text-[#FFEDD4]">
+              {" "}
+              Don't worry, Advisor is there to guide you!{" "}
+            </span>
+            <div className=" flex gap-3 mt-5 text-white">
+              <div className="border w-fit cursor-pointer px-[10px] py-[5px]  rounded-lg flex gap-2 border-white">
+                <img
+                  className=" w-[15px] lg:w-[30px]"
+                  src="/apple.svg"
+                  alt="apple logo"
+                />
+                <span className="flex text-[.8rem] whitespace-nowrap flex-col">
+                  Download on the{" "}
+                  <strong className=" lg:text-[1rem]">App Store</strong>
+                </span>
+              </div>
+              <div className="border cursor-pointer w-fit px-[10px] py-[5px] rounded-lg  flex gap-2 border-white">
+                <img
+                  className=" w-[15px] lg:w-[30px]"
+                  src="/Subtract.svg"
+                  alt="android logo"
+                />
+                <span className="flex text-[.8rem]  flex-col">
+                  GET IT ON{" "}
+                  <strong className="lg:text-[1rem]">Google Play</strong>
+                </span>
+              </div>
             </div>
           </div>
+          <div className=" w-full max-w-[305px] mx-auto lg:m-0 lg:max-w-[50%] h-[300px] lg:h-auto relative ">
+            <Image
+              className="hidden lg:block"
+              src="/phone-chats.png"
+              layout="fill"
+              alt="advisor guide"
+            />
+            <Image
+              className="block lg:hidden"
+              src="/phonemockupmobile.png"
+              layout="fill"
+              alt="advisor guide"
+            />
+          </div>
         </div>
-        <div className=" w-full max-w-[305px] mx-auto lg:m-0 lg:max-w-[50%] h-[300px] lg:h-auto relative ">
-          <Image
-            className="hidden lg:block"
-            src="/phone-chats.png"
-            layout="fill"
-            alt="advisor guide"
-          />
-          <Image
-            className="block lg:hidden"
-            src="/phonemockupmobile.png"
-            layout="fill"
-            alt="advisor guide"
-          />
-        </div>
-      </div>
       </section>
       {/* Blog Posts */}
-      <section className="mt-12 pt-10 pb-[100px] lg:px-[112px] flex flex-col gap-14 lg:bg-transparent bg-fade_green_landing" >
-
+      <section className="mt-12 pt-10 pb-[100px] lg:px-[112px] flex flex-col gap-14 lg:bg-transparent bg-fade_green_landing">
         <div className="flex flex-col  lg:flex-row lg:justify-between gap-7 items-center lg:items-start">
           <div className="flex flex-col gap-4 lg:items-start items-center">
             <span> Learn</span>{" "}
@@ -306,46 +307,142 @@ export default function Home() {
           <Button text="View all posts" />
         </div>
 
-<div  className="flex flex-col lg:flex-row gap-7 lg:justify-between lg:gap-0" >
-        {Array.from({ length: 3 }).map((item) => {
-          return (
-            <div className=" w-4/5 lg:w-[30%] m-auto lg:m-0 shadow-custom1 flex flex-col gap-4 bg-white p-5">
-              <div className="relative  h-[220px]">
-                <Image layout="fill" src="/blogImg.png" alt="blog image" />
-              </div>
-              <div className="flex gap-5  flex-col">
-                <div className="flex flex-col gap-3">
-                  <span className="text-dark_green_90 text-[.9rem] font-[600]">
-                    {" "}
-                    Investment Strategies
-                  </span>
-                  <div className="flex justify-between">
-                    <h3 className={`${DMFont.className} text-[1.25rem]`}>
+        <div className="flex flex-col lg:flex-row gap-7 lg:justify-between lg:gap-0">
+          {Array.from({ length: 3 }).map((item) => {
+            return (
+              <div className=" w-4/5 lg:w-[30%] m-auto lg:m-0 shadow-custom1 flex flex-col gap-4 bg-white p-5">
+                <div className="relative  h-[220px]">
+                  <Image layout="fill" src="/blogImg.png" alt="blog image" />
+                </div>
+                <div className="flex gap-5  flex-col">
+                  <div className="flex flex-col gap-3">
+                    <span className="text-dark_green_90 text-[.9rem] font-[600]">
                       {" "}
-                      The Art of Portfolio Diversification{" "}
-                    </h3>
-                    <img src="/arrowblogicon.svg" alt="arrow icon" />
+                      Investment Strategies
+                    </span>
+                    <div className="flex justify-between">
+                      <h3 className={`${DMFont.className} text-[1.25rem]`}>
+                        {" "}
+                        The Art of Portfolio Diversification{" "}
+                      </h3>
+                      <img src="/arrowblogicon.svg" alt="arrow icon" />
+                    </div>
+                    <p className="text-[.9rem]">
+                      Diversification is a cornerstone of successful investing.
+                      Discover why it's important, various...
+                    </p>
                   </div>
-                  <p className="text-[.9rem]" >
-                    Diversification is a cornerstone of successful investing.
-                    Discover why it's important, various...
-                  </p>
-                </div>
-                <div className="flex gap-2">
-                  <img
-                    className="w-[50px]"
-                    src="/blogposter.png"
-                    alt="blogposter img"
-                  />
-                  <div className="flex text-[.9rem] flex-col gap-1 ">
-                    <span className="font-[600]" > Ibrahim AbdulKareem </span>
-                    <span>18 Oct 2022</span>
+                  <div className="flex gap-2">
+                    <img
+                      className="w-[50px]"
+                      src="/blogposter.png"
+                      alt="blogposter img"
+                    />
+                    <div className="flex text-[.9rem] flex-col gap-1 ">
+                      <span className="font-[600]"> Ibrahim AbdulKareem </span>
+                      <span>18 Oct 2022</span>
+                    </div>
                   </div>
                 </div>
               </div>
+            );
+          })}
+        </div>
+      </section>
+      {/* FAQs */}
+      <section className="px-[1.3rem] flex flex-col lg:flex-row lg:justify-between pt-14 gap-5 lg:px-[112px]">
+        <div>
+          <div className="flex flex-col gap-4 lg:items-start items-center">
+            <span> Support</span>{" "}
+            <h2
+              className={`${DMFont.className} w-[85%] lg:w-auto lg:text-left  text-center text-[1.5rem] lg:text-[1.9rem] `}
+            >
+              FAQs.
+            </h2>
+            <p className="text-center lg:text-left lg:w-[70%] lg:mr-auto lg:ml-0 w-4/5 m-auto ">
+              Everything you need to know about us and our market. Can’t find
+              the answer you’re looking for? Please chat to our friendly team.{" "}
+            </p>
+          </div>
+        </div>
+
+        <div className="flex lg:w-full  flex-col gap-7 px-3">
+          {Array.from({ length: 5 }).map((item) => {
+            return (
+              <div className="flex justify-between">
+                <span>What markets can i trade on ?</span>
+                <span>
+                  {" "}
+                  <img src="/plus-circle.svg" alt="plus circle icon" />{" "}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+      {/* Still have questions */}
+      <section className=" lg:px-[112px] mt-[100px] px-8">
+        <div className="flex flex-col max-w-[400px] lg:max-w-full  m-auto rounded-3xl gap-8 px-11 py-8 items-center bg-fade_green_landing">
+          <Image
+            src="/Avatargroup.png"
+            width={150}
+            height={50}
+            alt="avatar group"
+          />
+          <span className={`${DMFont.className} text-[1.25rem]  font-[600]`}>
+            Still have questions?{" "}
+          </span>
+          <p className="text-center">
+            Can’t find the answer you’re looking for? Please chat to our
+            friendly team.
+          </p>
+          <Button customClassName="bg-dark_green_90" text="Get in Touch" />
+        </div>
+      </section>
+      {/* Subscribe */}
+      <section className=" lg:px-[112px] mt-[100px] px-[1.3rem]">
+        <div className="flex flex-col min-h-[50vh] lg:flex-row ">
+          <div>
+            <h2
+              className={`${DMFont.className} w-[85%] lg:w-auto lg:text-left  text-center text-[1.5rem] lg:text-[1.9rem] `}
+            >
+              {" "}
+              Join 2000+ Subscribers
+            </h2>
+            <p className="text-center lg:text-left">
+              We’re still building. Subscribe for updates. No spam, we promise!
+            </p>
+            <div className="flex flex-col">
+              <div className="flex gap-4 flex-col">
+                <input
+                  type="email"
+                  className="border rounded-lg p-2"
+                  placeholder="Enter your email"
+                />
+                <Button
+                  customClassName="order-3 bg-btn_orange"
+                  text="Subscribe"
+                />
+              </div>
+              <span className="order-2">
+                We care about your data in our privacy policy.
+              </span>
             </div>
-          );
-        })}
+          </div>
+          <div className="relative h-[60vh] ">
+            <Image
+              className="hidden lg:block"
+              layout="fill"
+              src="/deskmyphone.png"
+              alt="subscribe phone"
+            />
+            <Image
+              className="block lg:hidden"
+              layout="fill"
+              src="/mobile-subscribe.png"
+              alt="subscribe phone markup"
+            />
+          </div>
         </div>
       </section>
     </main>
