@@ -16,7 +16,7 @@ export default function Home() {
         >
           Navigate the dynamic world of financial markets.
         </h1>
-        <p className="text-[.85em] w-[95%] lg:w-1/2 lg:text-[1em] text-center">
+        <p className="text-[.9rem] w-[95%] lg:w-1/2 lg:text-[1em] text-center">
           {" "}
           Our mission is to empower you with the tools and knowledge to take
           control of your financial future success should be within reach for
@@ -56,14 +56,14 @@ export default function Home() {
           Total value of trades/ <br /> transactions
         </h2>
         <p
-          className={`${pathWay.className} text-[.85rem]  lg:max-w-[55%] m-auto lg:text-[1rem]`}
+          className={`${pathWay.className} text-[.9rem]  lg:max-w-[55%] m-auto lg:text-[1rem]`}
         >
           BGL Securities Limited drives the retail (and wholesale) stock broking
           strategy of the BGL Group.
         </p>
         <div className=" p-[1.26rem] lg:p-16 rounded-lg mt-2 mb-[20px] gap-4 bg-[#E1F4F4]">
           <div className=" lg:w-4/5 flex items-center justify-between  m-auto">
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-2 lg:gap-8">
               <span
                 className={`text-dark_green_90 ${DMFont.className} leading-[1.5rem] font-[700] lg:text-[3.75rem] text-[1.4rem]`}
               >
@@ -73,7 +73,7 @@ export default function Home() {
                 Of years of Experience
               </span>
             </div>
-            <div className="flex flex-col gap-8 ">
+            <div className="flex flex-col gap-2 lg:gap-8 ">
               <span
                 className={`text-dark_green_90 ${DMFont.className} leading-[1.5rem] font-[700] lg:text-[3.75rem] text-[1.4rem]`}
               >
@@ -83,7 +83,7 @@ export default function Home() {
                 Billions of transactions
               </span>
             </div>
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-2 lg:gap-8">
               <span
                 className={`text-dark_green_90 ${DMFont.className} leading-[1.5rem] font-[700] lg:text-[3.75rem] text-[1.4rem]`}
               >
