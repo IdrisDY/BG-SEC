@@ -16,7 +16,7 @@ export default function Home() {
         >
           Navigate the dynamic world of financial markets.
         </h1>
-        <p className="text-[1em] w-[415px] lg:w-1/2 lg:text-[1.25em] text-center">
+        <p className="text-[.85em] w-[95%] lg:w-1/2 lg:text-[1.25em] text-center">
           {" "}
           Our mission is to empower you with the tools and knowledge to take
           control of your financial future success should be within reach for
