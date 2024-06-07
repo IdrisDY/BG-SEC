@@ -23,7 +23,7 @@ const BodyWrapper = ({ children, className }) => {
     <>
       <GlobalStyle />
       <body className={pathWay.className}>
-        <Header />
+        {/* <Header /> */}
         {children}
         <Footer />
       </body>

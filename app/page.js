@@ -16,7 +16,7 @@ export default function Home() {
         >
           Navigate the dynamic world of financial markets.
         </h1>
-        <p className="text-[.7em] lg:w-1/2 w-[90%] lg:text-[1.25em] text-center">
+        <p className="text-[1em] lg:w-1/2 w-[90%] lg:text-[1.25em] text-center">
           {" "}
           Our mission is to empower you with the tools and knowledge to take
           control of your financial future success should be within reach for
@@ -56,7 +56,7 @@ export default function Home() {
           Total value of trades/transactions
         </h2>
         <p
-          className={`${pathWay.className} text-[.7rem]  max-w-[90%] m-auto lg:text-[1rem]`}
+          className={`${pathWay.className} text-[1rem]  max-w-[90%] m-auto lg:text-[1rem]`}
         >
           BGL Securities Limited drives the retail (and wholesale) stock broking
           strategy of the BGL Group.
