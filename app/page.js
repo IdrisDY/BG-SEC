@@ -234,7 +234,7 @@ export default function Home() {
       </section>
 
       {/* Advisor */}
-      <section className="bg-[#002616] min-h-[70vh] gap-5 lg:gap-0 mt-28 rounded-3xl px-4 py-8 lg:pl-16  lg:pt-10 flex flex-col lg:flex-row justify-between">
+      <section className="bg-[#002616] lg:min-h-[70vh] gap-5 lg:gap-0 mt-28 rounded-3xl px-4 pt-8 pb-0 lg:pl-16  lg:pt-10 flex flex-col lg:flex-row justify-start  lg:justify-between">
         <div className="flex  items-center lg:items-start justify-center gap-5 flex-col">
           <h2
             className={`${DMFont.className} w-[80%] lg:w-auto text-center text-[1.5rem] text-white lg:text-[1.9rem] `}
@@ -270,7 +270,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className=" w-full max-w-[305px] m-auto lg:m-0 lg:max-w-[50%] h-[280px] lg:h-auto relative ">
+        <div className=" w-full max-w-[305px] mx-auto lg:m-0 lg:max-w-[50%] h-[280px] lg:h-auto relative ">
           <Image className="hidden lg:block" src="/phone-chats.png" layout="fill" alt="advisor guide" />
           <Image className="block lg:hidden" src="/phonemockupmobile.png" layout="fill" alt="advisor guide" />
         </div>
