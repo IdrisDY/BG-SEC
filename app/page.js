@@ -177,7 +177,7 @@ export default function Home() {
           </div>
         </article>
 
-        <div className="py-[4.5rem] px-[5px] lg:px-0 flex ">
+        <div className=" lg:py-[4.5rem]  px-[5px] lg:px-0 flex ">
           <div
             className="flex lg:w-[90%] ml-auto h-[350px] rounded-md lg:h-[380px] place-items-center"
             style={{
@@ -193,7 +193,7 @@ export default function Home() {
         </div>
       </section>
       {/* Product */}
-      <section className="px-2 mt-[128px] flex justify-between flex-col lg:flex-row-reverse ">
+      <section className="px-2 mt-[85px] lg:mt-[128px] flex justify-between flex-col lg:flex-row-reverse ">
         <div className="flex lg:w-2/5 w-[90%] m-auto lg:m-0  gap-2 flex-col lg:items-start items-center">
           <span>Product</span>
           <h2
@@ -271,9 +271,72 @@ export default function Home() {
           </div>
         </div>
         <div className=" w-full max-w-[305px] mx-auto lg:m-0 lg:max-w-[50%] h-[300px] lg:h-auto relative ">
-          <Image className="hidden lg:block" src="/phone-chats.png" layout="fill" alt="advisor guide" />
-          <Image className="block lg:hidden" src="/phonemockupmobile.png" layout="fill" alt="advisor guide" />
+          <Image
+            className="hidden lg:block"
+            src="/phone-chats.png"
+            layout="fill"
+            alt="advisor guide"
+          />
+          <Image
+            className="block lg:hidden"
+            src="/phonemockupmobile.png"
+            layout="fill"
+            alt="advisor guide"
+          />
         </div>
+      </section>
+
+      {/* Blog Posts */}
+      <section>
+        <div className="flex flex-col gap-4 items-center">
+          <div className="flex flex-col gap-4 items-center">
+            <span> Learn</span>{" "}
+            <h2
+              className={`${DMFont.className} w-[85%] lg:w-auto text-center text-[1.5rem] lg:text-[1.9rem] `}
+            >
+              Latest blog posts.
+            </h2>
+            <p className="text-center">
+              Our blog is authored by a team of financial experts, market
+              analysts, and traders
+            </p>
+          </div>
+          <Button text="View all posts" />
+        </div>
+
+        {Array.from({ length: 3 }).map((item) => {
+          return (
+            <div className="p-5">
+              <div className="relative  h-[200px]">
+                <Image layout="fill" src="/blogImg.png" alt="blog image" />
+              </div>
+              <div className="flex gap-5  flex-col">
+                <div className="flex flex-col gap-3" >
+                  <span className="text-dark_green_90 font-[600]" > Investment Strategies</span>
+                  <div className="flex justify-between">
+                    <h3 className={`${DMFont.className} text-[1.25rem]`} > The Art of Portfolio Diversification </h3>
+                    <img src="/arrowblogicon.svg" alt="arrow icon" />
+                  </div>
+                  <p>
+                    Diversification is a cornerstone of successful investing.
+                    Discover why it's important, various...
+                  </p>
+                </div>
+                <div className="flex gap-2">
+                  <img
+                    className="w-[50px]"
+                    src="/blogposter.png"
+                    alt="blogposter img"
+                  />
+                  <div className="flex flex-col gap-1 ">
+                    <span> Ibrahim AbdulKareem </span>
+                    <span>18 Oct 2022</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </section>
     </main>
   );
