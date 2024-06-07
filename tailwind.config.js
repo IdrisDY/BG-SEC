@@ -17,7 +17,12 @@ module.exports = {
         'font_black':'#131414',
         'footer_bg':'#02150D',
         'green_60' : '#96CCCC',
+        'fade_green_landing':'#EAF8F8',
         'dark_green_90':'#045634'
+      }
+      ,
+      boxShadow:{
+        custom1:'0px 12px 16px -4px #10182814'
       }
     },
   },

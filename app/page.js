@@ -6,8 +6,8 @@ import styled from "styled-components";
 import Button from "@/components/button";
 export default function Home() {
   return (
-    <main className="min-h-screen px-[1.25em] lg:px-[112px]   ">
-      <HeroSection className="flex flex-col gap-2 items-center">
+    <main className="min-h-screen ">
+      <HeroSection className="flex flex-col px-[1.25em] lg:px-[112px] gap-2 items-center">
         <div className="rounded-lg w-fit gap-1 text-[.7em] lg:text-[1em] py-2 px-1 border">
           <span className="rounded-lg border p-1">New feature</span>
           <span>Check out the new dashboard -? </span>
@@ -45,11 +45,11 @@ export default function Home() {
         </div>
       </HeroSection>
       {/* overplay */}
-      <section className=" w-[90%]  lg:w-[60%] m-auto">
+      <section className=" w-[90%]   lg:w-[60%] m-auto">
         <img src="/overplay.jpg" alt="overlay" />
       </section>
-      {/*  */}
-      <section className={` flex flex-col mt-10  gap-4 text-center`}>
+      {/* Total  */}
+      <section className={` flex px-[1.25em] lg:px-[112px] flex-col mt-10  gap-4 text-center`}>
         <h2
           className={`${DMFont.className} text-[1.5rem] m-auto leading-8 font-[500] lg:text-[1.9rem] `}
         >
@@ -98,7 +98,7 @@ export default function Home() {
         </div>
       </section>
       {/* About Us */}
-      <section className="flex flex-col lg:gap-10 lg:grid grid-cols-2 ">
+      <section className="flex flex-col px-[1.25em] lg:px-[112px] lg:gap-10 lg:grid grid-cols-2 ">
         <article className="hidden lg:flex flex-col ">
           <span>About Us</span>
           <h2
@@ -193,7 +193,7 @@ export default function Home() {
         </div>
       </section>
       {/* Product */}
-      <section className="px-2 mt-[85px] lg:mt-[128px] flex justify-between flex-col lg:flex-row-reverse ">
+      <section className=" mt-[85px] lg:mt-[128px] px-[1.3em] lg:px-[112px]  flex justify-between flex-col lg:flex-row-reverse ">
         <div className="flex lg:w-2/5 w-[90%] m-auto lg:m-0  gap-2 flex-col lg:items-start items-center">
           <span>Product</span>
           <h2
@@ -234,7 +234,8 @@ export default function Home() {
       </section>
 
       {/* Advisor */}
-      <section className="bg-[#002616] lg:min-h-[70vh] gap-5 lg:gap-0 mt-28 rounded-3xl px-4 pt-8 pb-0 lg:pl-16  lg:pt-10 flex flex-col lg:flex-row justify-start  lg:justify-between">
+      <section className="px-[1.3rem] lg:px-[112px]" >
+      <div className="bg-[#002616]   lg:min-h-[70vh] gap-5 lg:gap-0 mt-28 rounded-3xl  pt-8 pb-0 lg:pl-16  lg:pt-10 flex flex-col lg:flex-row justify-start  lg:justify-between">
         <div className="flex  items-center lg:items-start justify-center gap-5 flex-col">
           <h2
             className={`${DMFont.className} w-[85%] lg:w-auto text-center text-[1.5rem] text-white lg:text-[1.9rem] `}
@@ -284,19 +285,20 @@ export default function Home() {
             alt="advisor guide"
           />
         </div>
+      </div>
       </section>
-
       {/* Blog Posts */}
-      <section>
-        <div className="flex flex-col gap-4 items-center">
-          <div className="flex flex-col gap-4 items-center">
+      <section className="mt-12 pt-10 pb-[100px] lg:px-[112px] flex flex-col gap-14 lg:bg-transparent bg-fade_green_landing" >
+
+        <div className="flex flex-col  lg:flex-row lg:justify-between gap-7 items-center lg:items-start">
+          <div className="flex flex-col gap-4 lg:items-start items-center">
             <span> Learn</span>{" "}
             <h2
-              className={`${DMFont.className} w-[85%] lg:w-auto text-center text-[1.5rem] lg:text-[1.9rem] `}
+              className={`${DMFont.className} w-[85%] lg:w-auto lg:text-left  text-center text-[1.5rem] lg:text-[1.9rem] `}
             >
               Latest blog posts.
             </h2>
-            <p className="text-center">
+            <p className="text-center lg:text-left lg:w-[90%] lg:mr-auto lg:ml-0 w-4/5 m-auto ">
               Our blog is authored by a team of financial experts, market
               analysts, and traders
             </p>
@@ -304,20 +306,27 @@ export default function Home() {
           <Button text="View all posts" />
         </div>
 
+<div  className="flex flex-col lg:flex-row gap-7 lg:justify-between lg:gap-0" >
         {Array.from({ length: 3 }).map((item) => {
           return (
-            <div className="p-5">
-              <div className="relative  h-[200px]">
+            <div className=" w-4/5 lg:w-[30%] m-auto lg:m-0 shadow-custom1 flex flex-col gap-4 bg-white p-5">
+              <div className="relative  h-[180px]">
                 <Image layout="fill" src="/blogImg.png" alt="blog image" />
               </div>
               <div className="flex gap-5  flex-col">
-                <div className="flex flex-col gap-3" >
-                  <span className="text-dark_green_90 font-[600]" > Investment Strategies</span>
+                <div className="flex flex-col gap-3">
+                  <span className="text-dark_green_90 text-[.9rem] font-[600]">
+                    {" "}
+                    Investment Strategies
+                  </span>
                   <div className="flex justify-between">
-                    <h3 className={`${DMFont.className} text-[1.25rem]`} > The Art of Portfolio Diversification </h3>
+                    <h3 className={`${DMFont.className} text-[1.25rem]`}>
+                      {" "}
+                      The Art of Portfolio Diversification{" "}
+                    </h3>
                     <img src="/arrowblogicon.svg" alt="arrow icon" />
                   </div>
-                  <p>
+                  <p className="text-[.9rem]" >
                     Diversification is a cornerstone of successful investing.
                     Discover why it's important, various...
                   </p>
@@ -328,8 +337,8 @@ export default function Home() {
                     src="/blogposter.png"
                     alt="blogposter img"
                   />
-                  <div className="flex flex-col gap-1 ">
-                    <span> Ibrahim AbdulKareem </span>
+                  <div className="flex text-[.9rem] flex-col gap-1 ">
+                    <span className="font-[600]" > Ibrahim AbdulKareem </span>
                     <span>18 Oct 2022</span>
                   </div>
                 </div>
@@ -337,6 +346,7 @@ export default function Home() {
             </div>
           );
         })}
+        </div>
       </section>
     </main>
   );
