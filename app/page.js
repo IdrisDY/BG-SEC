@@ -310,7 +310,7 @@ export default function Home() {
         {Array.from({ length: 3 }).map((item) => {
           return (
             <div className=" w-4/5 lg:w-[30%] m-auto lg:m-0 shadow-custom1 flex flex-col gap-4 bg-white p-5">
-              <div className="relative  h-[180px]">
+              <div className="relative  h-[220px]">
                 <Image layout="fill" src="/blogImg.png" alt="blog image" />
               </div>
               <div className="flex gap-5  flex-col">
