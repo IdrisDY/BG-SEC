@@ -97,7 +97,7 @@ export default function Home() {
         </div>
       </section>
       {/* About Us */}
-      <section className="flex lg:grid grid-cols-2 ">
+      <section className="flex flex-col  lg:grid grid-cols-2 ">
         <article className="hidden lg:flex flex-col ">
           <span>About Us</span>
           <h2
@@ -125,6 +125,48 @@ export default function Home() {
             stakeholders...Read more
           </p>
         </article>
+
+        <article className="flex flex-col lg:hidden gap-10 items-center">
+          <div>
+            <h2
+              className={`${DMFont.className} leading-10 text-center  text-[1.5rem]`}
+            >
+              Your success is our success{" "}
+            </h2>
+            <p className="text-center">
+              {" "}
+              BGL Securities Limited is the securities trading platform of BGL.
+              It also doubles as the vehicle for distributing all public offers.
+              The company has the following licenses:
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-12">
+            {[
+              {
+                title: "Broker/Dealer with the Securities",
+                p: "Registered as Broker/Dealer with the Securities and Exchange Commission.",
+              },
+              {
+                title: "Issuing House with the Securities",
+                p: "Registered as an Issuing House with the Securities and Exchange Commission.",
+              },
+              {
+                title: "Dealing member",
+                p: "Registered as dealing member of the Nigerian Stock Exchange.",
+              },
+            ].map((item) => {
+              return (
+                <div className="flex flex-col gap-5 items-center" key={item.title}>
+                  <img src="/landingfeature.svg" alt="feature icon" />
+                  <h3 className={`${DMFont.className}`}>{item.title}</h3>
+                  <p className="text-center">{item.p}</p>
+                </div>
+              );
+            })}
+          </div>
+        </article>
+
         <div>
           <img
             className="object-cover w-full"
