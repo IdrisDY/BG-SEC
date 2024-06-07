@@ -157,10 +157,13 @@ export default function Home() {
               },
             ].map((item) => {
               return (
-                <div className="flex flex-col gap-5 items-center" key={item.title}>
+                <div
+                  className="flex px-[30px] flex-col gap-5 items-center"
+                  key={item.title}
+                >
                   <img src="/landingfeature.svg" alt="feature icon" />
                   <h3 className={`${DMFont.className}`}>{item.title}</h3>
-                  <p className="text-center">{item.p}</p>
+                  <p className="text-center text-[.9rem] ">{item.p}</p>
                 </div>
               );
             })}
