@@ -61,7 +61,7 @@ export default function Home() {
           BGL Securities Limited drives the retail (and wholesale) stock broking
           strategy of the BGL Group.
         </p>
-        <div className=" p-[1.26rem] lg:p-16 rounded-lg mt-2 gap-4 bg-[#E1F4F4]">
+        <div className=" p-[1.26rem] lg:p-16 rounded-lg mt-2 mb-[20px] gap-4 bg-[#E1F4F4]">
           <div className=" lg:w-4/5 flex items-center justify-between  m-auto">
             <div className="flex flex-col gap-2">
               <span
@@ -133,7 +133,7 @@ export default function Home() {
             >
               Your success is our success{" "}
             </h2>
-            <p className="text-center">
+            <p className=" text-[.9rem] m-auto max-w-[90%] text-center">
               {" "}
               BGL Securities Limited is the securities trading platform of BGL.
               It also doubles as the vehicle for distributing all public offers.
@@ -158,7 +158,7 @@ export default function Home() {
             ].map((item) => {
               return (
                 <div
-                  className="flex px-[30px] flex-col gap-5 items-center"
+                  className="flex px-[20px] flex-col gap-5 items-center"
                   key={item.title}
                 >
                   <img src="/landingfeature.svg" alt="feature icon" />
