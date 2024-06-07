@@ -237,11 +237,11 @@ export default function Home() {
       <section className="bg-[#002616] lg:min-h-[70vh] gap-5 lg:gap-0 mt-28 rounded-3xl px-4 pt-8 pb-0 lg:pl-16  lg:pt-10 flex flex-col lg:flex-row justify-start  lg:justify-between">
         <div className="flex  items-center lg:items-start justify-center gap-5 flex-col">
           <h2
-            className={`${DMFont.className} w-[80%] lg:w-auto text-center text-[1.5rem] text-white lg:text-[1.9rem] `}
+            className={`${DMFont.className} w-[85%] lg:w-auto text-center text-[1.5rem] text-white lg:text-[1.9rem] `}
           >
             Start your amazing journey
           </h2>
-          <span className=" w-3/5 text-[.9rem] lg:text-[1rem] lg:w-auto text-center lg:text-left  text-[#FFEDD4]">
+          <span className=" w-[70%] text-[.9rem] lg:text-[1rem] lg:w-auto text-center lg:text-left  text-[#FFEDD4]">
             {" "}
             Don't worry, Advisor is there to guide you!{" "}
           </span>
@@ -252,9 +252,9 @@ export default function Home() {
                 src="/apple.svg"
                 alt="apple logo"
               />
-              <span className="flex text-[.5rem] whitespace-nowrap flex-col">
+              <span className="flex text-[.8rem] whitespace-nowrap flex-col">
                 Download on the{" "}
-                <strong className=" lg:text-[.8rem]">App Store</strong>
+                <strong className=" lg:text-[1rem]">App Store</strong>
               </span>
             </div>
             <div className="border cursor-pointer w-fit px-[10px] py-[5px] rounded-lg  flex gap-2 border-white">
@@ -263,14 +263,14 @@ export default function Home() {
                 src="/Subtract.svg"
                 alt="android logo"
               />
-              <span className="flex text-[.5rem]  flex-col">
+              <span className="flex text-[.8rem]  flex-col">
                 GET IT ON{" "}
-                <strong className="lg:text-[.8rem]">Google Play</strong>
+                <strong className="lg:text-[1rem]">Google Play</strong>
               </span>
             </div>
           </div>
         </div>
-        <div className=" w-full max-w-[305px] mx-auto lg:m-0 lg:max-w-[50%] h-[280px] lg:h-auto relative ">
+        <div className=" w-full max-w-[305px] mx-auto lg:m-0 lg:max-w-[50%] h-[300px] lg:h-auto relative ">
           <Image className="hidden lg:block" src="/phone-chats.png" layout="fill" alt="advisor guide" />
           <Image className="block lg:hidden" src="/phonemockupmobile.png" layout="fill" alt="advisor guide" />
         </div>
