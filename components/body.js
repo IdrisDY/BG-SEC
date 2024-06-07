@@ -5,7 +5,7 @@ import { DM_Sans, Pathway_Extreme } from "next/font/google";
 import { createGlobalStyle, useTheme } from "styled-components";
 
 export const DMFont = DM_Sans({ weight: ["700"], subsets: ["latin"] });
-const pathWay = Pathway_Extreme({ subsets: ["latin"] });
+export const pathWay = Pathway_Extreme({ subsets: ["latin"] });
 
 const BodyWrapper = ({ children, className }) => {
   const GlobalStyle = createGlobalStyle`

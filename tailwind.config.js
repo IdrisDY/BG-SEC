@@ -16,7 +16,8 @@ module.exports = {
         'btn_orange':'#DA8E23',
         'font_black':'#131414',
         'footer_bg':'#02150D',
-        'green_60' : '#96CCCC'
+        'green_60' : '#96CCCC',
+        'dark_green_90':'#045634'
       }
     },
   },
