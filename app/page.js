@@ -50,46 +50,46 @@ export default function Home() {
       {/*  */}
       <section className={` flex flex-col gap-4 text-center`}>
         <h2
-          className={`${DMFont.className} text-[1.5rem] w-3/5 m-auto leading-8 font-[500] lg:text-[2.25rem] `}
+          className={`${DMFont.className} text-[1.5rem] m-auto leading-8 font-[500] lg:text-[2.25rem] `}
         >
           {" "}
-          Total value of trades/transactions
+          Total value of trades/ <br /> transactions
         </h2>
         <p
-          className={`${pathWay.className} text-[1rem]  max-w-[90%] m-auto lg:text-[1rem]`}
+          className={`${pathWay.className} text-[.85rem]  max-w-[90%] m-auto lg:text-[1rem]`}
         >
           BGL Securities Limited drives the retail (and wholesale) stock broking
           strategy of the BGL Group.
         </p>
-        <div className=" p-[1.26rem] lg:p-16 rounded-lg mt-10  bg-[#E1F4F4]">
+        <div className=" p-[1.26rem] lg:p-16 rounded-lg mt-2 gap-4 bg-[#E1F4F4]">
           <div className=" lg:w-4/5 flex items-center justify-between  m-auto">
             <div className="flex flex-col gap-2">
               <span
-                className={`text-dark_green_90 ${DMFont.className} font-[700] lg:text-[3.75rem] text-[1.25em]`}
+                className={`text-dark_green_90 ${DMFont.className} leading-[1.5rem] font-[700] lg:text-[3.75rem] text-[1.4rem]`}
               >
                 5+
               </span>
-              <span className="text-[.5rem]  lg:text-[1rem]  ">
+              <span className="text-[.65rem]  lg:text-[1rem]  ">
                 Of years of Experience
               </span>
             </div>
             <div className="flex flex-col gap-2">
               <span
-                className={`text-dark_green_90 ${DMFont.className} font-[700] lg:text-[3.75rem] text-[1.25em]`}
+                className={`text-dark_green_90 ${DMFont.className} leading-[1.5rem] font-[700] lg:text-[3.75rem] text-[1.4rem]`}
               >
                 $2.5+
               </span>
-              <span className="text-[.5rem] lg:text-[1rem]">
+              <span className="text-[.65rem] lg:text-[1rem]">
                 Billions of transactions
               </span>
             </div>
             <div className="flex flex-col gap-2">
               <span
-                className={`text-dark_green_90 ${DMFont.className} font-[700] lg:text-[3.75rem] text-[1.25em]`}
+                className={`text-dark_green_90 ${DMFont.className} leading-[1.5rem] font-[700] lg:text-[3.75rem] text-[1.4rem]`}
               >
                 2k+
               </span>
-              <span className="text-[.5rem] lg:text-[1rem]">
+              <span className="text-[.65rem] lg:text-[1rem]">
                 Customers so far
               </span>
             </div>
