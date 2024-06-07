@@ -193,8 +193,8 @@ export default function Home() {
         </div>
       </section>
       {/* Product */}
-      <section className="px-2 mt-[128px] flex justify-between flex-col lg:flex-row-reverse gap-6  ">
-        <div className="flex lg:w-1/3 w-[90%] m-auto  gap-2 flex-col lg:items-start items-center">
+      <section className="px-2 mt-[128px] flex justify-between flex-col lg:flex-row-reverse ">
+        <div className="flex lg:w-2/5 w-[90%] m-auto lg:m-0  gap-2 flex-col lg:items-start items-center">
           <span>Product</span>
           <h2
             className={`${DMFont.className} text-center whitespace-nowrap text-[1.5rem] font-[500] lg:text-[1.9rem] `}
@@ -214,7 +214,10 @@ export default function Home() {
               market information.
             </p>
           </div>
-          <Button text="Start Trading" customClassName=" hidden lg:block  bg-btn_orange" />
+          <Button
+            text="Start Trading"
+            customClassName=" hidden lg:block  bg-btn_orange"
+          />
         </div>
         <div className="relative lg:w-3/4">
           <div className="w-full lg:hidden h-[350px] relative">
@@ -227,6 +230,49 @@ export default function Home() {
               src="/desktopProduct.png"
             />
           </div>
+        </div>
+      </section>
+
+      {/* Advisor */}
+      <section className="bg-[#002616] min-h-[70vh] gap-5 lg:gap-0 mt-28 rounded-3xl px-4 py-8 lg:pl-16  lg:pt-10 flex flex-col lg:flex-row justify-between">
+        <div className="flex  items-center lg:items-start justify-center gap-5 flex-col">
+          <h2
+            className={`${DMFont.className} w-[80%] lg:w-auto text-center text-[1.5rem] text-white lg:text-[1.9rem] `}
+          >
+            Start your amazing journey
+          </h2>
+          <span className=" w-3/5 text-[.9rem] lg:text-[1rem] lg:w-auto text-center lg:text-left  text-[#FFEDD4]">
+            {" "}
+            Don't worry, Advisor is there to guide you!{" "}
+          </span>
+          <div className=" flex gap-3 mt-5 text-white">
+            <div className="border w-fit cursor-pointer px-[10px] py-[5px]  rounded-lg flex gap-2 border-white">
+              <img
+                className=" w-[15px] lg:w-[30px]"
+                src="/apple.svg"
+                alt="apple logo"
+              />
+              <span className="flex text-[.5rem] whitespace-nowrap flex-col">
+                Download on the{" "}
+                <strong className=" lg:text-[.8rem]">App Store</strong>
+              </span>
+            </div>
+            <div className="border cursor-pointer w-fit px-[10px] py-[5px] rounded-lg  flex gap-2 border-white">
+              <img
+                className=" w-[15px] lg:w-[30px]"
+                src="/Subtract.svg"
+                alt="android logo"
+              />
+              <span className="flex text-[.5rem]  flex-col">
+                GET IT ON{" "}
+                <strong className="lg:text-[.8rem]">Google Play</strong>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className=" w-full max-w-[305px] m-auto lg:m-0 lg:max-w-[50%] h-[280px] lg:h-auto relative ">
+          <Image className="hidden lg:block" src="/phone-chats.png" layout="fill" alt="advisor guide" />
+          <Image className="block lg:hidden" src="/phonemockupmobile.png" layout="fill" alt="advisor guide" />
         </div>
       </section>
     </main>
