@@ -102,7 +102,7 @@ export default function Home() {
       {/* About Us */}
       <section className="flex flex-col px-[1.25em] lg:px-[112px] lg:gap-10 lg:grid grid-cols-2 ">
         <article className="hidden lg:flex flex-col ">
-          <span>About Us</span>
+          <span className="text-[.8em]">About Us</span>
           <h2
             className={`${DMFont.className} whitespace-nowrap text-[1.5rem] font-[500] lg:text-[1.9rem] `}
           >
@@ -172,7 +172,7 @@ export default function Home() {
                 >
                   <img src="/landingfeature.svg" alt="feature icon" />
                   <h3 className={`${DMFont.className}`}>{item.title}</h3>
-                  <p className="text-center text-[.9rem] ">{item.p}</p>
+                  <p className="text-center text-[1rem] ">{item.p}</p>
                 </div>
               );
             })}
@@ -195,16 +195,16 @@ export default function Home() {
         </div>
       </section>
       {/* Product */}
-      <section className=" mt-[85px] lg:mt-[128px] px-[1.3em] lg:px-[112px]  flex justify-between flex-col lg:flex-row-reverse ">
+      <section className=" mt-[85px] lg:mt-[128px] px-[1.3em] lg:px-[112px] gap-7 flex justify-between flex-col lg:flex-row-reverse ">
         <div className="flex lg:w-2/5 w-[90%] m-auto lg:m-0  gap-2 flex-col lg:items-start items-center">
-          <span>Product</span>
+          <span className="text-[.8em]">Product</span>
           <h2
             className={`${DMFont.className} text-center whitespace-nowrap text-[1.5rem] font-[500] lg:text-[1.9rem] `}
           >
             Access wide range of stocks
           </h2>
           <div>
-            <p className="text-center lg:text-left text-[.9rem]  ">
+            <p className="text-center lg:text-left text-[1rem]  ">
               Stocks are the cornerstone of modern investing, offering you the
               opportunity to own a piece of some of the world's most influential
               companies. At [Your Trading Platform], we make stock trading
@@ -293,7 +293,7 @@ export default function Home() {
       <section className="mt-12 pt-10 pb-[100px] lg:px-[112px] flex flex-col gap-14 lg:bg-transparent bg-fade_green_landing">
         <div className="flex flex-col  lg:flex-row lg:justify-between gap-7 items-center lg:items-start">
           <div className="flex flex-col gap-4 lg:items-start items-center">
-            <span> Learn</span>{" "}
+            <span className="text-[.8em]"> Learn</span>{" "}
             <h2
               className={`${DMFont.className} w-[85%] lg:w-auto lg:text-left  text-center text-[1.5rem] lg:text-[1.9rem] `}
             >
@@ -353,7 +353,7 @@ export default function Home() {
       <section className="px-[1.3rem] flex flex-col lg:flex-row lg:justify-between pt-14 gap-5 lg:px-[112px]">
         <div>
           <div className="flex flex-col gap-4 lg:items-start items-center">
-            <span> Support</span>{" "}
+            <span className="text-[.8em]"> Support</span>{" "}
             <h2
               className={`${DMFont.className} w-[85%] lg:w-auto lg:text-left  text-center text-[1.5rem] lg:text-[1.9rem] `}
             >
@@ -407,7 +407,7 @@ export default function Home() {
         <div className="flex flex-col justify-between gap-11  min-h-[50vh] lg:flex-row ">
           <div className=" flex  px-[1.3rem] justify-center flex-col gap-5  lg:w-2/5  ">
             <h2
-              className={`${DMFont.className}  w-[85%] lg:w-auto lg:text-left whitespace-nowrap  text-center text-[1.5rem] lg:text-[2.25rem] `}
+              className={`${DMFont.className}  w-[85%] m-auto lg:m-0 lg:w-auto lg:text-left whitespace-nowrap  text-center text-[1.5rem] lg:text-[2.25rem] `}
             >
               {" "}
               Join 2000+ Subscribers

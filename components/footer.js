@@ -24,12 +24,12 @@ const Footer = () => {
 
               <span className="text-2xl font-bold "> B G L</span>
             </div>
-            <p className="lg: m-auto text-center w-1/2 font-[400] text-[.9rem] lg:text-[1rem] lg:m-0 lg:text-left text-[#E1F4F4] leading-[24px] ">
+            <p className="lg: m-auto text-center w-1/2 font-[400] text-[1rem] lg:text-[1rem] lg:m-0 lg:text-left text-[#E1F4F4] leading-[24px] ">
               BGL securities Ltd has earned a sterling reputation in the market
               place having participated in landmark block trades and also acted
               as stockbroker to the issue for many public offers.
             </p>
-            <ul className="flex flex-col lg:flex-row items-center  lg:items-start lg: text-[.9rem] lg:text-[1rem] text-green_60 gap-8">
+            <ul className="flex flex-col lg:flex-row items-center  lg:items-start lg: text-[1rem] lg:text-[1rem] text-green_60 gap-8">
               <li className="cursor-pointer underline ">About Us</li>
               <li className="cursor-pointer underline ">FAQs</li>
               <li className="cursor-pointer underline ">Trading Markets</li>
