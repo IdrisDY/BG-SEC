@@ -100,7 +100,7 @@ export default function Home() {
         </div>
       </section>
       {/* About Us */}
-      <section className="flex flex-col px-[1.25em] lg:px-[112px] lg:gap-10 lg:grid grid-cols-2 ">
+      <section className="flex flex-col px-[1.25em] gap-5 lg:px-[112px] lg:gap-10 lg:grid grid-cols-2 ">
         <article className="hidden lg:flex flex-col ">
           <span className="text-[.8em]">About Us</span>
           <h2
