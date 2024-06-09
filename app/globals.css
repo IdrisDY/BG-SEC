@@ -18,9 +18,26 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
+.side-gradient-bg {
+  position: absolute;
+  overflow: hidden;
+  right: 0px;
+  border-radius: 50%;
+  height: 200vh;
+  filter: blur(50px);
 
-body {
 }
+.dark-gradient-bg {
+  position: absolute;
+  overflow: hidden;
+  left: -150px;
+  top: 0px;
+  rotate: 30deg;
+  border-radius: 20%;
+  height: 100vh;
+  filter: blur(100px);
+}
+
 
 @layer utilities {
   .text-balance {

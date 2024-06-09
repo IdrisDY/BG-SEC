@@ -19,6 +19,7 @@ module.exports = {
         green_60: "#96CCCC",
         fade_green_landing: "#EAF8F8",
         dark_green_90: "#045634",
+        hero_section_bg:'#EFF9F9',
         outline_orange: "#FD891C",
       },
       boxShadow: {

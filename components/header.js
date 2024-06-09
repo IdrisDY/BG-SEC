@@ -9,14 +9,18 @@ const Header = () => {
   const { text, toggleTheme } = useContext(ToggleThemeContext);
   console.log(theme, toggleTheme, "yeah im there like mad");
   return (
-    <header className="top-0  w-full ">
+    <header className={`top-0  ${theme.mode === 'dark'?'bg':'bg-hero_section_bg'} w-full `}>
+
+<marquee behavior="scroll" height='40px' style={{color:'white'}} bgColor={'linear-gradient(90deg, #D01313 0%, #8D1D0C 30.5%, #BE3206 56%, #A52222 100%)'}  direction="left">
+New stock called BOA has just been released.| Dangote stock has increased with +0.5. | Stanbic IBTC +2.4</marquee>
+
       <nav className="flex px-[1.25rem] h-[70px] lg:px-[112px]  m-auto justify-between items-center">
         <div className="w-[58%] lg:w-1/5 flex items-center " >
           <img src={`${theme.mode === 'dark'?"/logo.svg":'bgl_logo_light.svg'}`} alt="logo" />
         </div>
 
         <div className="hidden lg:flex h-full items-center ">
-          <ul className="flex h-full justify-center items-center gap-8">
+          <ul className="flex h-full text-[.9rem] justify-center items-center gap-8">
             <li>About Us</li>
             <li>Product</li>
             <li> FAQs</li>

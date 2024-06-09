@@ -22,7 +22,7 @@ const BodyWrapper = ({ children, className }) => {
   return (
     <>
       <GlobalStyle />
-      <body className={pathWay.className}>
+      <body className={`${pathWay.className} overflow-x-hidden ` }>
         <Header />
         {children}
         <Footer />

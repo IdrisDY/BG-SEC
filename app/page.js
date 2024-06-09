@@ -9,12 +9,23 @@ export default function Home() {
   return (
     <main className={`min-h-screen`}>
       <HeroSection
-        className={`flex flex-col relative px-[1.25em] mt-20 lg:px-[112px] gap-2 items-center`}
+        className={`flex ${
+          theme.mode === "dark" ? "bg gradient " : "bg-hero_section_bg"
+        } flex-col min-h-[110vh] relative px-[1.25em] pt-24 lg:px-[112px] gap-2 items-center`}
       >
+        {theme.mode === "dark" && (
+          <div className="absolute dark-gradient-bg w-3/5 ">
+            <Image
+              layout="fill"
+              src="/darkmodegradient.png"
+              alt="dark mode gradient"
+            />
+          </div>
+        )}{" "}
         <div
           className={`rounded-lg ${
             theme.mode === "dark" ? " border-outline_orange" : ""
-          } flex absolute top-[-34px] w-fit gap-3 text-[.7em] lg:text-[.8em] py-[4px] px-1 border`}
+          } flex absolute top-[34px] lg:top-[60px] w-fit gap-3 text-[.7em] lg:text-[.8em] py-[4px] px-1 border`}
         >
           <span
             className={` ${
@@ -39,7 +50,6 @@ export default function Home() {
           control of your financial future success should be within reach for
           everyone.
         </p>
-
         <div className={`hidden gap-3 mt-10 lg:flex`}>
           <div
             className={`border w-full ${
@@ -67,15 +77,92 @@ export default function Home() {
             </span>
           </div>
         </div>
+        <div
+          className={` absolute   bottom-[70px]  ${
+            theme.mode === "dark" ? "z-[-1]" : ""
+          } w-full h-[20vh] `}
+        >
+          <div className="flex   justify-between">
+            <div className="w-1/2 mt-[135px]">
+              <img
+                className=" w-1/2 h-[50px] lg:h-[100px]"
+                src={
+                  theme.mode === "dark"
+                    ? "/dbandimg/dLeftband1.png"
+                    : "/lbandimg/Leftband1.png"
+                }
+                alt="left band 1"
+              />
+              <img
+                className="h-[50px] w-[15%] lg:w-auto lg:h-[100px] lg:rotate-0 rotate-[4deg] mt-[-12px] lg:mt-[-30px]  "
+                src={
+                  theme.mode === "dark"
+                    ? "/dbandimg/dLeftband2.png"
+                    : "/lbandimg/Leftband2.png"
+                }
+                alt="left band 1"
+              />
+            </div>
+
+            <div className="flex mt-[40px]  w-1/2 flex-col items-end">
+              <img
+                className="h-[50px] lg:h-[100px] rotate-[2deg] w-[60%] "
+                src={
+                  theme.mode === "dark"
+                    ? "/dbandimg/dRightband1.png"
+                    : "/lbandimg/Rightband1.png"
+                }
+                alt="Right band 1"
+              />
+              <img
+                className="h-[50px] lg:h-[100px] w-full mt-[-24px] lg:mt-[-41px]"
+                src={
+                  theme.mode === "dark"
+                    ? "/dbandimg/dRightband2.png"
+                    : "/lbandimg/Rightband2.png"
+                }
+                alt="left band 1"
+              />
+              <img
+                className=" h-[50px] lg:h-[100px] rotate-[4deg] lg:rotate-[-1deg]  w-[15%] lg:w-[30%] mt-[-41px] lg:mt-[-80.8px]"
+                src={
+                  theme.mode === "dark"
+                    ? "/dbandimg/dRightband3.png"
+                    : "/lbandimg/Rightband3.png"
+                }
+                alt="left band 1"
+              />
+            </div>
+          </div>
+        </div>
       </HeroSection>
       {/* overplay */}
-      <section className={`w-[90%] lg:w-[60%] m-auto`}>
-        <img src="/overplay.jpg" alt="overlay" />
+      <section
+        className={` ${
+          theme.mode === "dark" ? "bg" : ""
+        } mt-[-135px] flex items-center relative overflow-hidden `}
+      >
+        <div
+          className={` flex relative w-[90%] h-[50vh] lg:h-[70vh] items-center lg:w-3/5 m-auto justify-center `}
+        >
+          <Image layout="fill" src="/vidplayer.png" alt="overlay" />
+        </div>
+        {theme.mode === "dark" && (
+          <div className="absolute side-gradient-bg w-3/5 ">
+            <Image
+              layout="fill"
+              src="/totalsidegradient.png"
+              alt="dark mode gradient"
+            />
+          </div>
+        )}{" "}
+
       </section>
       {/* Total  */}
       <section
-        className={`flex px-[1.25em] lg:px-[112px] flex-col mt-10 gap-4 text-center`}
+        className={`flex px-[1.25em] relative lg:px-[112px] flex-col mt-10 gap-4 text-center`}
       >
+
         <h2
           className={`${DMFont.className} text-[1.5rem] m-auto leading-8 font-[500] lg:text-[1.9rem]`}
         >
@@ -462,61 +549,71 @@ export default function Home() {
         </div>
       </section>
       {/* FAQs */}
-      <section className={`px-[1.3rem] ${
+      <section
+        className={`px-[1.3rem] ${
           theme.mode === "dark" ? "bg-[#222425]" : ""
-        } flex flex-col lg:flex-row lg:justify-between pt-14 gap-5 lg:px-[112px]`}>
-  <div>
-    <div className={`flex flex-col gap-4 lg:items-start items-center`}>
-      <span className={`text-[.8em]`}> Support</span>
-      <h2
-        className={`${DMFont.className} w-[85%] lg:w-auto lg:text-left text-center text-[1.5rem] lg:text-[1.9rem]`}
+        } flex flex-col lg:flex-row lg:justify-between pt-14 gap-5 lg:px-[112px]`}
       >
-        FAQs.
-      </h2>
-      <p className={`text-center lg:text-left lg:w-[70%] lg:mr-auto lg:ml-0 w-4/5 m-auto`}>
-        Everything you need to know about us and our market. Can’t find the answer you’re looking for? Please chat to our friendly team.
-      </p>
-    </div>
-  </div>
-
-  <div className={`flex lg:w-full flex-col gap-7 px-3`}>
-    {Array.from({ length: 5 }).map((item) => {
-      return (
-        <div className={`flex justify-between`}>
-          <span>What markets can I trade on?</span>
-          <span>
-            <img src="/plus-circle.svg" alt="plus circle icon" />
-          </span>
+        <div>
+          <div className={`flex flex-col gap-4 lg:items-start items-center`}>
+            <span className={`text-[.8em]`}> Support</span>
+            <h2
+              className={`${DMFont.className} w-[85%] lg:w-auto lg:text-left text-center text-[1.5rem] lg:text-[1.9rem]`}
+            >
+              FAQs.
+            </h2>
+            <p
+              className={`text-center lg:text-left lg:w-[70%] lg:mr-auto lg:ml-0 w-4/5 m-auto`}
+            >
+              Everything you need to know about us and our market. Can’t find
+              the answer you’re looking for? Please chat to our friendly team.
+            </p>
+          </div>
         </div>
-      );
-    })}
-  </div>
-</section>
+
+        <div className={`flex lg:w-full flex-col gap-7 px-3`}>
+          {Array.from({ length: 5 }).map((item) => {
+            return (
+              <div className={`flex justify-between`}>
+                <span>What markets can I trade on?</span>
+                <span>
+                  <img src="/plus-circle.svg" alt="plus circle icon" />
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      </section>
       {/* Still have questions */}
-      <section className={`lg:px-[112px] ${
+      <section
+        className={`lg:px-[112px] ${
           theme.mode === "dark" ? "bg-[#1C1F1F]" : ""
-        }  py-[100px] px-8`}>
-  <div className={`flex flex-col max-w-[400px] lg:max-w-full m-auto rounded-3xl gap-8 px-11 py-8 items-center ${
-          theme.mode === "dark" ? "bg-font_black" : "bg-fade_green_landing"
-        } `}>
-    <Image
-      src="/Avatargroup.png"
-      width={150}
-      height={50}
-      alt="avatar group"
-    />
-    <span className={`${DMFont.className} text-[1.25rem] font-[600]`}>
-      Still have questions?{" "}
-    </span>
-    <p className={`text-center`}>
-      Can’t find the answer you’re looking for? Please chat to our friendly team.
-    </p>
-    <Button
-      customClassName={`bg-dark_green_90 lg:bg-btn_orange`}
-      text="Get in Touch"
-    />
-  </div>
-</section>
+        }  py-[100px] px-8`}
+      >
+        <div
+          className={`flex flex-col max-w-[400px] lg:max-w-full m-auto rounded-3xl gap-8 px-11 py-8 items-center ${
+            theme.mode === "dark" ? "bg-font_black" : "bg-fade_green_landing"
+          } `}
+        >
+          <Image
+            src="/Avatargroup.png"
+            width={150}
+            height={50}
+            alt="avatar group"
+          />
+          <span className={`${DMFont.className} text-[1.25rem] font-[600]`}>
+            Still have questions?{" "}
+          </span>
+          <p className={`text-center`}>
+            Can’t find the answer you’re looking for? Please chat to our
+            friendly team.
+          </p>
+          <Button
+            customClassName={`bg-dark_green_90 lg:bg-btn_orange`}
+            text="Get in Touch"
+          />
+        </div>
+      </section>
       {/* Subscribe */}
       <section className="lg:px-[112px] mt-[160px] ">
         <div className="flex flex-col justify-between gap-11  min-h-[50vh] lg:flex-row ">
