@@ -59,7 +59,7 @@ export default function Home() {
           Total value of trades/ <br /> transactions
         </h2>
         <p
-          className={`${pathWay.className} text-[.6rem] w-3/5  lg:max-w-[55%] m-auto lg:text-[1rem]`}
+          className={`${pathWay.className} text-[.7rem] w-[90%] text-center  lg:max-w-[55%] m-auto lg:text-[1rem]`}
         >
           BGL Securities Limited drives the retail (and wholesale) stock broking
           strategy of the BGL Group.
