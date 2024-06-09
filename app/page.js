@@ -11,7 +11,7 @@ export default function Home() {
       <HeroSection
         className={`flex ${
           theme.mode === "dark" ? "bg gradient " : "bg-hero_section_bg"
-        } flex-col min-h-[110vh] relative px-[1.25em] pt-24 lg:px-[112px] gap-2 items-center`}
+        } flex-col h-[70vh] lg:min-h-[110vh] relative px-[1.25em] pt-24 lg:px-[112px] gap-2 items-center`}
       >
         {theme.mode === "dark" && (
           <div className="absolute dark-gradient-bg w-3/5 ">
@@ -228,7 +228,6 @@ export default function Home() {
         </div>
       </section>
       {/* About Us */}
-      {/* About Us */}
       <section
         className={`flex flex-col px-[1.25em] gap-5 lg:px-[112px] lg:gap-10 lg:grid grid-cols-2`}
       >
@@ -273,7 +272,7 @@ export default function Home() {
             >
               Your success is our success{" "}
             </h2>
-            <p className={`text-[1rem] m-auto max-w-[95%] text-center`}>
+            <p className={` text-[.94rem] lg:text-[1rem] m-auto max-w-[95%] text-center`}>
               {" "}
               BGL Securities Limited is the securities trading platform of BGL.
               It also doubles as the vehicle for distributing all public offers.
@@ -303,7 +302,7 @@ export default function Home() {
                 >
                   <img src="/landingfeature.svg" alt="feature icon" />
                   <h3 className={`${DMFont.className}`}>{item.title}</h3>
-                  <p className={`text-center text-[1rem]`}>{item.p}</p>
+                  <p className={`text-center text-[.94rem] lg:text-[1rem]`}>{item.p}</p>
                 </div>
               );
             })}
@@ -334,7 +333,7 @@ export default function Home() {
             Access wide range of stocks
           </h2>
           <div>
-            <p className="text-center lg:text-left text-[1rem]  ">
+            <p className="text-center lg:text-left text-[.94rem] lg:text-[1rem]  ">
               Stocks are the cornerstone of modern investing, offering you the
               opportunity to own a piece of some of the world's most influential
               companies. At [Your Trading Platform], we make stock trading
@@ -389,7 +388,7 @@ export default function Home() {
               Start your amazing journey
             </h2>
             <span
-              className={`w-[70%] text-[.9rem] lg:text-[1rem] lg:w-auto text-center lg:text-left text-[#FFEDD4]`}
+              className={`w-[70%] text-[.94rem] lg:text-[1rem] lg:w-auto text-center lg:text-left text-[#FFEDD4]`}
             >
               {" "}
               Don't worry, Advisory is there to guide you!{" "}
@@ -472,7 +471,7 @@ export default function Home() {
               Latest blog posts.
             </h2>
             <p
-              className={`text-center lg:text-left lg:w-[90%] lg:mr-auto lg:ml-0 w-4/5 m-auto`}
+              className={`text-center text-[.94rem] lg:text-[1rem] lg:text-left lg:w-[90%] lg:mr-auto lg:ml-0 w-4/5 m-auto`}
             >
               Our blog is authored by a team of financial experts, market
               analysts, and traders
@@ -513,7 +512,7 @@ export default function Home() {
                         theme.mode === "dark"
                           ? "text-btn_orange"
                           : "`text-dark_green_90"
-                      } text-[.9rem] font-[600]`}
+                      } text-[.94rem] lg:text-[1rem] font-[600]`}
                     >
                       Investment Strategies
                     </span>
@@ -563,7 +562,7 @@ export default function Home() {
               FAQs.
             </h2>
             <p
-              className={`text-center lg:text-left lg:w-[70%] lg:mr-auto lg:ml-0 w-4/5 m-auto`}
+              className={`text-center text-[.94rem] lg:text-[1rem] lg:text-left lg:w-[70%] lg:mr-auto lg:ml-0 w-4/5 m-auto`}
             >
               Everything you need to know about us and our market. Can’t find
               the answer you’re looking for? Please chat to our friendly team.
@@ -575,7 +574,7 @@ export default function Home() {
           {Array.from({ length: 5 }).map((item) => {
             return (
               <div className={`flex justify-between`}>
-                <span>What markets can I trade on?</span>
+                <span className="text-[.94rem] lg:text-[1rem]" >What markets can I trade on?</span>
                 <span>
                   <img src="/plus-circle.svg" alt="plus circle icon" />
                 </span>
@@ -604,7 +603,7 @@ export default function Home() {
           <span className={`${DMFont.className} text-[1.25rem] font-[600]`}>
             Still have questions?{" "}
           </span>
-          <p className={`text-center`}>
+          <p className={`text-[.94rem] lg:text-[1rem] text-center`}>
             Can’t find the answer you’re looking for? Please chat to our
             friendly team.
           </p>
@@ -624,7 +623,7 @@ export default function Home() {
               {" "}
               Join 2000+ Subscribers
             </h2>
-            <p className="text-center lg:text-left">
+            <p className="text-center text-[.94rem] lg:text-[1rem] lg:text-left">
               We’re still building. Subscribe for updates. No spam, we promise!
             </p>
             <div className="flex mt-3  items-center gap-4  lg:flex-row  lg:items-start flex-col">
