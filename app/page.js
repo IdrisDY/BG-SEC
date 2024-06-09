@@ -14,7 +14,7 @@ export default function Home() {
         } flex-col h-[70vh] lg:min-h-[110vh] relative px-[1.25em] pt-24 lg:px-[112px] gap-2 items-center`}
       >
         {theme.mode === "dark" && (
-          <div className="absolute dark-gradient-bg w-3/5 ">
+          <div className="absolute z-10 dark-gradient-bg w-3/5 ">
             <Image
               layout="fill"
               src="/darkmodegradient.png"
@@ -24,12 +24,16 @@ export default function Home() {
         )}{" "}
         <div
           className={`rounded-lg ${
-            theme.mode === "dark" ? " border-outline_orange" : ""
+            theme.mode === "dark"
+              ? " border-outline_orange"
+              : "border-light_mainTxt"
           } flex absolute top-[34px] lg:top-[60px] w-fit gap-3 text-[.7em] lg:text-[.8em] py-[4px] px-1 border`}
         >
           <span
             className={` ${
-              theme.mode === "dark" ? "border-[1px] border-white" : ""
+              theme.mode === "dark"
+                ? "border-[1px] border-white"
+                : "border border-light_mainTxt text-light_mainTxt"
             } w-fit rounded-lg border px-[4px]`}
           >
             New feature
@@ -39,12 +43,16 @@ export default function Home() {
           </span>
         </div>
         <h1
-          className={`${DMFont.className} lg:w-[60%] w-[90%] leading-[2rem] lg:leading-[4.5rem] text-[2em] text-center lg:text-[2.5rem]`}
+          className={`${DMFont.className}  ${
+            theme.mode === "dark" ? "" : " text-light_mainTxt"
+          }   lg:w-[60%] w-[90%] leading-[2rem] lg:leading-[4.5rem] text-[2em] text-center lg:text-[2.5rem]`}
         >
           Navigate the dynamic world of financial markets.
         </h1>
         <p
-          className={`text-[.9rem] w-[95%] lg:w-1/2 lg:text-[1em] text-center`}
+          className={` ${
+            theme.mode === "dark" ? "" : " text-light_mainTxt"
+          }  text-[.9rem] w-[95%] lg:w-1/2 lg:text-[1em] text-center`}
         >
           Our mission is to empower you with the tools and knowledge to take
           control of your financial future success should be within reach for
@@ -77,15 +85,18 @@ export default function Home() {
             </span>
           </div>
         </div>
-        <div
-          className={` absolute   bottom-[70px]  ${
-            theme.mode === "dark" ? "z-[-1]" : ""
-          } w-full h-[20vh] `}
-        >
-          <div className="flex   justify-between">
-            <div className="w-1/2 mt-[135px]">
+      </HeroSection>
+      {/* Overlay Section */}
+      <section
+        className={`${
+          theme.mode === "dark" ? "bg" : ""
+        } lg:mt-[-135px] z-20 mt-[-140px] flex items-center relative overflow-hidden`}
+      >
+        <div className={`w-full absolute top-0 h-fit`}>
+          <div className="flex relative justify-between">
+            <div className="w-1/2 mx-[-1.25rem] lg:mt-[100px] mt-[135px]">
               <img
-                className=" w-1/2 h-[50px] lg:h-[100px]"
+                className="w-1/2 h-[50px] lg:h-[100px]"
                 src={
                   theme.mode === "dark"
                     ? "/dbandimg/dLeftband1.png"
@@ -94,7 +105,7 @@ export default function Home() {
                 alt="left band 1"
               />
               <img
-                className="h-[50px] w-[15%] lg:w-auto lg:h-[100px] lg:rotate-0 rotate-[4deg] mt-[-12px] lg:mt-[-30px]  "
+                className="h-[50px] w-[15%] lg:w-auto lg:h-[100px] lg:rotate-0 rotate-[4deg] mt-[-12px] lg:mt-[-30px]"
                 src={
                   theme.mode === "dark"
                     ? "/dbandimg/dLeftband2.png"
@@ -104,9 +115,9 @@ export default function Home() {
               />
             </div>
 
-            <div className="flex mt-[40px]  w-1/2 flex-col items-end">
+            <div className="flex absolute right-0 mx-[-1.25rem] w-1/2 flex-col items-end">
               <img
-                className="h-[50px] lg:h-[100px] rotate-[2deg] w-[60%] "
+                className="h-[50px]  lg:h-[100px] rotate-[2deg] w-[60%]"
                 src={
                   theme.mode === "dark"
                     ? "/dbandimg/dRightband1.png"
@@ -124,7 +135,7 @@ export default function Home() {
                 alt="left band 1"
               />
               <img
-                className=" h-[50px] lg:h-[100px] rotate-[4deg] lg:rotate-[-1deg]  w-[15%] lg:w-[30%] mt-[-41px] lg:mt-[-80.8px]"
+                className="h-[50px] lg:h-[100px] rotate-[4deg] lg:rotate-[-1deg] w-[15%] lg:w-[30%] mt-[-41px] lg:mt-[-80.8px]"
                 src={
                   theme.mode === "dark"
                     ? "/dbandimg/dRightband3.png"
@@ -135,41 +146,36 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </HeroSection>
-      {/* overplay */}
-      <section
-        className={` ${
-          theme.mode === "dark" ? "bg" : ""
-        } mt-[-135px] flex items-center relative overflow-hidden `}
-      >
         <div
-          className={` flex relative w-[90%] h-[50vh] lg:h-[70vh] items-center lg:w-3/5 m-auto justify-center `}
+          className={`flex relative w-[90%] h-[50vh] lg:h-[70vh] items-center lg:w-3/5 m-auto justify-center`}
         >
           <Image layout="fill" src="/vidplayer.png" alt="overlay" />
         </div>
         {theme.mode === "dark" && (
-          <div className="absolute side-gradient-bg w-3/5 ">
+          <div className="absolute side-gradient-bg w-3/5">
             <Image
               layout="fill"
               src="/totalsidegradient.png"
               alt="dark mode gradient"
             />
           </div>
-        )}{" "}
-
+        )}
       </section>
       {/* Total  */}
       <section
         className={`flex px-[1.25em] relative lg:px-[112px] flex-col mt-10 gap-4 text-center`}
       >
-
         <h2
-          className={`${DMFont.className} text-[1.5rem] m-auto leading-8 font-[500] lg:text-[1.9rem]`}
+          className={`${DMFont.className}  ${
+            theme.mode === "dark" ? "" : " text-light_subhead"
+          }  text-[1.5rem] m-auto leading-8 font-[500] lg:text-[1.9rem]`}
         >
           Total value of trades/ <br /> transactions
         </h2>
         <p
-          className={`${pathWay.className} text-[.7rem] w-[90%] text-center lg:max-w-[55%] m-auto lg:text-[1rem]`}
+          className={`${pathWay.className}  ${
+            theme.mode === "dark" ? "" : " text-light_gray_50"
+          }  text-[.7rem] w-[90%] text-center lg:max-w-[55%] m-auto lg:text-[1rem]`}
         >
           BGL Securities Limited drives the retail (and wholesale) stock broking
           strategy of the BGL Group.
@@ -272,7 +278,9 @@ export default function Home() {
             >
               Your success is our success{" "}
             </h2>
-            <p className={` text-[.94rem] lg:text-[1rem] m-auto max-w-[95%] text-center`}>
+            <p
+              className={` text-[.94rem] lg:text-[1rem] m-auto max-w-[95%] text-center`}
+            >
               {" "}
               BGL Securities Limited is the securities trading platform of BGL.
               It also doubles as the vehicle for distributing all public offers.
@@ -302,7 +310,9 @@ export default function Home() {
                 >
                   <img src="/landingfeature.svg" alt="feature icon" />
                   <h3 className={`${DMFont.className}`}>{item.title}</h3>
-                  <p className={`text-center text-[.94rem] lg:text-[1rem]`}>{item.p}</p>
+                  <p className={`text-center text-[.94rem] lg:text-[1rem]`}>
+                    {item.p}
+                  </p>
                 </div>
               );
             })}
@@ -333,7 +343,9 @@ export default function Home() {
             Access wide range of stocks
           </h2>
           <div>
-            <p className="text-center lg:text-left text-[.94rem] lg:text-[1rem]  ">
+            <p className={`  ${
+            theme.mode === "dark" ? "" : " text-[#3B4B4B]"
+          }  text-center lg:text-left text-[.94rem] lg:text-[1rem]  `}>
               Stocks are the cornerstone of modern investing, offering you the
               opportunity to own a piece of some of the world's most influential
               companies. At [Your Trading Platform], we make stock trading
@@ -471,13 +483,15 @@ export default function Home() {
               Latest blog posts.
             </h2>
             <p
-              className={`text-center text-[.94rem] lg:text-[1rem] lg:text-left lg:w-[90%] lg:mr-auto lg:ml-0 w-4/5 m-auto`}
+              className={`text-center  ${
+                theme.mode === "dark" ? "" : " text-[#3B4B4B]"
+              } text-[.94rem] lg:text-[1rem] lg:text-left lg:w-[90%] lg:mr-auto lg:ml-0 w-4/5 m-auto`}
             >
               Our blog is authored by a team of financial experts, market
               analysts, and traders
             </p>
           </div>
-          <Button customClassName={`lg:bg-btn_orange`} text="View all posts" />
+          <Button customClassName={` bg-light_mainTxt lg:bg-btn_orange`} text="View all posts" />
         </div>
 
         <div
@@ -490,7 +504,7 @@ export default function Home() {
                   theme.mode === "dark"
                     ? " border border-outline_orange shadow-orangeShadow rounded-lg bg-[#222425] "
                     : "bg-white"
-                }} p-5`}
+                } p-5`}
                 key={index}
               >
                 <div className={`relative h-[220px]`}>
@@ -562,7 +576,9 @@ export default function Home() {
               FAQs.
             </h2>
             <p
-              className={`text-center text-[.94rem] lg:text-[1rem] lg:text-left lg:w-[70%] lg:mr-auto lg:ml-0 w-4/5 m-auto`}
+              className={`  ${
+                theme.mode === "dark" ? "" : " text-[#3B4B4B]"
+              } text-center text-[.94rem] lg:text-[1rem] lg:text-left lg:w-[70%] lg:mr-auto lg:ml-0 w-4/5 m-auto`}
             >
               Everything you need to know about us and our market. Can’t find
               the answer you’re looking for? Please chat to our friendly team.
@@ -574,7 +590,9 @@ export default function Home() {
           {Array.from({ length: 5 }).map((item) => {
             return (
               <div className={`flex justify-between`}>
-                <span className="text-[.94rem] lg:text-[1rem]" >What markets can I trade on?</span>
+                <span className="text-[.94rem] lg:text-[1rem]">
+                  What markets can I trade on?
+                </span>
                 <span>
                   <img src="/plus-circle.svg" alt="plus circle icon" />
                 </span>
@@ -603,7 +621,9 @@ export default function Home() {
           <span className={`${DMFont.className} text-[1.25rem] font-[600]`}>
             Still have questions?{" "}
           </span>
-          <p className={`text-[.94rem] lg:text-[1rem] text-center`}>
+          <p className={`text-[.94rem]  ${
+            theme.mode === "dark" ? "" : " text-[#6B7878]"
+          } lg:text-[1rem] text-center`}>
             Can’t find the answer you’re looking for? Please chat to our
             friendly team.
           </p>
@@ -623,7 +643,9 @@ export default function Home() {
               {" "}
               Join 2000+ Subscribers
             </h2>
-            <p className="text-center text-[.94rem] lg:text-[1rem] lg:text-left">
+            <p className={`  ${
+            theme.mode === "dark" ? "" : " text-[#6B7878]"
+          } text-center  text-[.94rem] lg:text-[1rem] lg:text-left`}>
               We’re still building. Subscribe for updates. No spam, we promise!
             </p>
             <div className="flex mt-3  items-center gap-4  lg:flex-row  lg:items-start flex-col">
@@ -659,4 +681,9 @@ export default function Home() {
     </main>
   );
 }
-const HeroSection = styled.div``;
+const HeroSection = styled.div`
+  clip-path: ${(props) =>
+    props.theme.mode === "light"
+      ? "polygon(0 0, 100% 0, 100% 85%, 0 100%)"
+      : "none"};
+`;

@@ -31,11 +31,11 @@
   position: absolute;
   overflow: hidden;
   left: -150px;
-  top: 0px;
+  top: -150px;
   rotate: 30deg;
   border-radius: 20%;
   height: 100vh;
-  filter: blur(100px);
+  filter: blur(50px);
 }
 
 
@@ -43,4 +43,11 @@
   .text-balance {
     text-wrap: balance;
   }
+}
+.transition-opacity {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.transition-transform {
+  transition: transform 0.3s ease-in-out;
 }
