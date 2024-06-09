@@ -59,7 +59,7 @@ export default function Home() {
           Total value of trades/ <br /> transactions
         </h2>
         <p
-          className={`${pathWay.className} text-[.9rem]  lg:max-w-[55%] m-auto lg:text-[1rem]`}
+          className={`${pathWay.className} text-[.6rem] w-3/5  lg:max-w-[55%] m-auto lg:text-[1rem]`}
         >
           BGL Securities Limited drives the retail (and wholesale) stock broking
           strategy of the BGL Group.
@@ -142,7 +142,7 @@ export default function Home() {
             >
               Your success is our success{" "}
             </h2>
-            <p className=" text-[.9rem] m-auto max-w-[90%] text-center">
+            <p className=" text-[1rem] m-auto max-w-[95%] text-center">
               {" "}
               BGL Securities Limited is the securities trading platform of BGL.
               It also doubles as the vehicle for distributing all public offers.
