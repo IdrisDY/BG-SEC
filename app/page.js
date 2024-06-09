@@ -68,7 +68,7 @@ export default function Home() {
           <div className=" lg:w-4/5 flex items-center justify-between  m-auto">
             <div className="flex flex-col gap-2 lg:gap-8">
               <span
-                className={`text-dark_green_90 ${DMFont.className} leading-[1.5rem] font-[700] lg:text-[3.75rem] text-[1.4rem]`}
+                className={`text-dark_green_90 ${DMFont.className} leading-[1.5rem] font-[700] lg:text-[3rem] text-[1.4rem]`}
               >
                 5+
               </span>
@@ -78,7 +78,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col gap-2 lg:gap-8 ">
               <span
-                className={`text-dark_green_90 ${DMFont.className} leading-[1.5rem] font-[700] lg:text-[3.75rem] text-[1.4rem]`}
+                className={`text-dark_green_90 ${DMFont.className} leading-[1.5rem] font-[700] lg:text-[3rem] text-[1.4rem]`}
               >
                 $2.5+
               </span>
@@ -88,7 +88,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col gap-2 lg:gap-8">
               <span
-                className={`text-dark_green_90 ${DMFont.className} leading-[1.5rem] font-[700] lg:text-[3.75rem] text-[1.4rem]`}
+                className={`text-dark_green_90 ${DMFont.className} leading-[1.5rem] font-[700] lg:text-[3rem] text-[1.4rem]`}
               >
                 2k+
               </span>
@@ -304,7 +304,7 @@ export default function Home() {
               analysts, and traders
             </p>
           </div>
-          <Button text="View all posts" />
+          <Button customClassName="lg:bg-btn_orange" text="View all posts" />
         </div>
 
         <div className="flex flex-col lg:flex-row gap-7 lg:justify-between lg:gap-0">
@@ -396,15 +396,18 @@ export default function Home() {
             Can’t find the answer you’re looking for? Please chat to our
             friendly team.
           </p>
-          <Button customClassName="bg-dark_green_90" text="Get in Touch" />
+          <Button
+            customClassName="bg-dark_green_90 lg:bg-btn_orange"
+            text="Get in Touch"
+          />
         </div>
       </section>
       {/* Subscribe */}
-      <section className=" lg:px-[112px] mt-[100px] px-[1.3rem]">
-        <div className="flex flex-col min-h-[50vh] lg:flex-row ">
-          <div>
+      <section className="lg:px-[112px] mt-[160px] ">
+        <div className="flex flex-col justify-between gap-11  min-h-[50vh] lg:flex-row ">
+          <div className=" flex  px-[1.3rem] justify-center flex-col gap-5  lg:w-2/5  ">
             <h2
-              className={`${DMFont.className} w-[85%] lg:w-auto lg:text-left  text-center text-[1.5rem] lg:text-[1.9rem] `}
+              className={`${DMFont.className}  w-[85%] lg:w-auto lg:text-left whitespace-nowrap  text-center text-[1.5rem] lg:text-[2.25rem] `}
             >
               {" "}
               Join 2000+ Subscribers
@@ -412,26 +415,23 @@ export default function Home() {
             <p className="text-center lg:text-left">
               We’re still building. Subscribe for updates. No spam, we promise!
             </p>
-            <div className="flex flex-col">
-              <div className="flex gap-4 flex-col">
+            <div className="flex mt-3  items-center gap-4  lg:flex-row  lg:items-start flex-col">
+              <div className="flex gap-1 lg:w-[70%] w-full lg:items-start items-center flex-col">
                 <input
                   type="email"
-                  className="border rounded-lg p-2"
+                  className="border w-full rounded-lg p-2"
                   placeholder="Enter your email"
                 />
-                <Button
-                  customClassName="order-3 bg-btn_orange"
-                  text="Subscribe"
-                />
+                <span className="text-[.7rem] lg:text-[.8rem] ">
+                  We care about your data in our privacy policy.
+                </span>
               </div>
-              <span className="order-2">
-                We care about your data in our privacy policy.
-              </span>
+              <Button customClassName="bg-btn_orange" text="Subscribe" />
             </div>
           </div>
-          <div className="relative h-[60vh] ">
+          <div className="relative bg-[#E1F4F4] rounded-lg lg:w-1/2 h-[65vh] ">
             <Image
-              className="hidden lg:block"
+              className="hidden lg:flex"
               layout="fill"
               src="/deskmyphone.png"
               alt="subscribe phone"

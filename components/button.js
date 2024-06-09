@@ -10,7 +10,7 @@ const Button = ({
   onClick,
   id = "",
 }) => {
-  const baseClassName = "py-[0.8rem] px-5 lg:py-[0.8125rem] lg:px-[2.625rem] rounded ";
+  const baseClassName = "py-[10px] px-[18px]  rounded-[4px] ";
   const buttonWidth = size === "small" ? "w-fit" : "w-full";
   const buttonVariant = `bg-${variant}`;
   const buttonTextColor = variant === "black" ? "text-white" : "text-font_black";
