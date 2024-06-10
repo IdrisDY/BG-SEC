@@ -21,10 +21,11 @@ module.exports = {
         dark_green_90: "#045634",
         light_mainTxt: "#002616",
         light_subhead: "#0B1E1E",
-        light_gray_50:'#475467',
+        light_gray_50: "#475467",
         hero_section_bg: "#EFF9F9",
         outline_orange: "#FD891C",
-        onboard_green:'#008080'
+        onboard_green: "#008080",
+        default_steps: "#83796B",
       },
       boxShadow: {
         custom1: "0px 12px 16px -4px #10182814",
