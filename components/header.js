@@ -9,7 +9,7 @@ const Header = () => {
   const theme = useTheme();
   const [isMenuClicked, setIsMenuClicked] = useState(false);
   const [isLargeViewport, setIsLargeViewport] = useState(
-    window.innerWidth > 990
+    false
   ); // Assuming initial state is large viewport
   const { text, toggleTheme } = useContext(ToggleThemeContext);
 

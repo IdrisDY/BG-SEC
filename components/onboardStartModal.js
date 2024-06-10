@@ -13,7 +13,7 @@ export const OnboardStart = () => {
           />
         </div>
       </div>
-      <div className="w-1/2 m-auto flex text-center flex-col gap-4">
+      <div className=" w-3/5 lg:w-1/2 m-auto flex text-center flex-col gap-4">
         <span className="text-[1rem] lg:text-[1.25rem] font-[700] ">
           I'm your friendly BGL Assistant, here to make your journey smooth and
           enjoyable. Click on the link below to continue.
@@ -23,7 +23,7 @@ export const OnboardStart = () => {
           and agree to BGL Securitie's Terms of Service and Privacy Policy.
         </span>
       </div>
-      <div className="w-1/5 m-auto" >
+      <div className=" w-1/2 lg:w-1/5 m-auto" >
       <Button customClassName=" bg-white text-onboard_green "  size="big" text="Let's Begin" />
       </div>
     </div>
