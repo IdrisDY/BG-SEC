@@ -4,6 +4,7 @@ import { DMFont, pathWay } from "@/components/body";
 import { createGlobalStyle, useTheme } from "styled-components";
 import styled from "styled-components";
 import Button from "@/components/button";
+import OnboardStart from "@/components/onboardStartModal";
 export default function Home() {
   const theme = useTheme();
   return (
@@ -678,6 +679,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <OnboardStart/>
     </main>
   );
 }

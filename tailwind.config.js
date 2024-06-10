@@ -24,6 +24,7 @@ module.exports = {
         light_gray_50:'#475467',
         hero_section_bg: "#EFF9F9",
         outline_orange: "#FD891C",
+        onboard_green:'#008080'
       },
       boxShadow: {
         custom1: "0px 12px 16px -4px #10182814",
