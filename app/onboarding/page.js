@@ -29,7 +29,7 @@ const Onboarding = () => {
     {
       id: "1",
       message:
-        "Hello👋Great to have you hear. Don’t worry, your information is safe with us. We take your privacy seriously. Let’s begin with the basics, shall we?",
+        "Hello👋Great to have you here. Don’t worry, your information is safe with us. We take your privacy seriously. Let’s begin with the basics, shall we?",
       trigger: "2",
     },
     {
@@ -201,7 +201,7 @@ const Onboarding = () => {
     { id: 6, isActive: false },
   ];
 
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState({ value: 1, finished: false });
 
   const handleNext = () => {
     if (currentStep < steps.length - 1) {
@@ -219,10 +219,12 @@ const Onboarding = () => {
   console.log(window.innerHeight);
 
   return (
-    <div className="bg-font_black min-h-screen flex-col-reverse lg:flex-row flex text-white">
-      <aside className=" px-12 bg-aside_onboard md:w-2/5">
-        <div className=" border-b border-[#83796B] pt-7 pb-10">
-          <div className="relative w-1/2 h-[55px]">
+    <div
+      className={`bg-font_black min-h-screen md:items-center flex-col-reverse lg:flex-row flex text-white`}
+    >
+      <aside className={`bg-aside_onboard min-h-full lg:w-2/5`}>
+        <div className={`border-b px-12 border-[#83796B] pt-7 pb-10`}>
+          <div className={`relative w-1/2 h-[60px]`}>
             <Image
               layout="fill"
               src="/onboard/bgl-onboard-darklogo.png"
@@ -231,38 +233,63 @@ const Onboarding = () => {
           </div>
         </div>
 
-        <div className="flex pt-10 gap-4">
-          <div className="flex flex-col items-center">
-            {Array.from({ length: 4 }).map((item, index) => (
-              <div key={index} className="flex flex-col items-center">
-                <div className="border flex items-center border-gray-200 w-fit rounded-full bg-white p-[1px]">
-                  <div className="rounded-full w-[25px] flex items-center justify-center bg-[#DA8E23] h-[25px]">
-                    <div className="rounded-full w-[10px] h-[10px] bg-white"></div>
+        <div className={`px-12 flex flex-col gap-[20vh]`}>
+          <div className={`flex pt-10 gap-4`}>
+            <div className={`flex flex-col items-center`}>
+              {Array.from({ length: 4 }).map((item, index) => (
+                <div key={index} className={`flex flex-col items-center`}>
+                  <div
+                    className={`border flex items-center border-gray-200 w-fit rounded-full bg-white p-[1px]`}
+                  >
+                    <div
+                      className={`rounded-full w-[25px] flex items-center justify-center ${
+                        currentStep.value === index + 1
+                          ? " bg-[#DA8E23]"
+                          : "bg-default_steps"
+                      } h-[25px]`}
+                    >
+                      <div
+                        className={`rounded-full w-[10px] h-[10px] bg-white`}
+                      ></div>
+                    </div>
                   </div>
+                  {index !== 3 && (
+                    <div className={`w-[3px] h-[45px] my-1 bg-[#E1F4F4]`}></div>
+                  )}{" "}
                 </div>
-                <div className="w-[3px] h-[45px] my-1 bg-[#E1F4F4]"></div>
-              </div>
-            ))}
+              ))}
+            </div>
+            <ul className={`flex gap-8 flex-col`}>
+              {listOfSteps.map((item, index) => (
+                <li key={index} className={`flex gap-1`}>
+                  <div className={`flex flex-col`}>
+                    <span>{item.title}</span>
+                    <span>{item.txt}</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul className="flex gap-8 flex-col">
-            {listOfSteps.map((item, index) => (
-              <li key={index} className="flex gap-1">
-                <div className="flex flex-col">
-                  <span>{item.title}</span>
-                  <span>{item.txt}</span>
-                </div>
-              </li>
-            ))}
-          </ul>
+          <div>
+            <span className={`text-default_steps`}>
+              © BGLSecurityLimited2024
+            </span>
+            <span>
+              {" "}
+              <Link className={`underline text-[#11BC74]`} href="/">
+                help@bgl.com
+              </Link>
+            </span>
+          </div>
         </div>
       </aside>
-      <main className="px-6 py-12 flex flex-col gap-14 lg:px-12 md:w-3/5">
-        <div className="flex justify-between items-center">
-          <div className="flex w-2/5 gap-3">
+      <main className={`px-6 py-12 flex flex-col gap-14 lg:px-12 md:w-3/5`}>
+        <div className={`flex justify-between items-center`}>
+          <div className={`flex w-2/5 gap-3`}>
             {paginationIndicator.map((step) => (
               <div
                 key={step.id}
-                className={`w-[50px] h-2  rounded-full  cursor-pointer ${
+                className={`w-[50px] h-2 rounded-full cursor-pointer ${
                   step.isActive ? "bg-white" : "bg-default_steps"
                 }`}
                 onClick={() => setActiveStep(step.id)}
@@ -270,10 +297,10 @@ const Onboarding = () => {
             ))}
           </div>
           <div>
-            <span className="text-default_steps">Have an account ?</span>
+            <span className={`text-default_steps`}>Have an account ?</span>
             <span>
               {" "}
-              <Link className="underline text-[#11BC74]" href="/">
+              <Link className={`underline text-[#11BC74]`} href="/">
                 Click Here!
               </Link>
             </span>
@@ -306,6 +333,10 @@ const Onboarding = () => {
               padding: "10px",
               margin: "5px 0",
             }}
+            inputStyle={{
+              color: "white",
+            }}
+            botAvatar="/onboard/Memoji.png"
           />
         </ThemeProvider>
       </main>
