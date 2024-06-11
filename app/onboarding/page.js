@@ -1,8 +1,10 @@
 "use client";
 import { useState } from "react";
-import { ThemeProvider } from "styled-components";
+import { ThemeProvider, useTheme } from "styled-components";
 import ChatBot from "react-simple-chatbot";
 import { pathWay } from "@/components/body";
+import Image from "next/image";
+import Link from "next/link";
 const Onboarding = () => {
   const listOfSteps = [
     {
@@ -132,11 +134,12 @@ const Onboarding = () => {
     {
       id: "19",
       user: true,
+      trigger: "20",
     },
     {
       id: "20",
       options: [
-        { value: 1, label: "Seen", trigger: "13" },
+        { value: 1, label: "Seen", trigger: "21" },
         { value: 2, label: "Resend OTP", trigger: "18" },
       ],
     },
@@ -189,6 +192,14 @@ const Onboarding = () => {
     userBubbleColor: "#fff",
     userFontColor: "#4a4a4a",
   };
+  const paginationIndicator = [
+    { id: 1, isActive: true },
+    { id: 2, isActive: false },
+    { id: 3, isActive: false },
+    { id: 4, isActive: false },
+    { id: 5, isActive: false },
+    { id: 6, isActive: false },
+  ];
 
   const [currentStep, setCurrentStep] = useState(0);
 
@@ -204,11 +215,23 @@ const Onboarding = () => {
     }
   };
 
+  const page = useTheme();
+  console.log(window.innerHeight);
+
   return (
     <div className="bg-font_black min-h-screen flex-col-reverse lg:flex-row flex text-white">
-      <aside className="md:w-2/5">
-        <header></header>
-        <div className="flex gap-4">
+      <aside className=" px-12 bg-aside_onboard md:w-2/5">
+        <div className=" border-b border-[#83796B] pt-7 pb-10">
+          <div className="relative w-1/2 h-[55px]">
+            <Image
+              layout="fill"
+              src="/onboard/bgl-onboard-darklogo.png"
+              alt="dark logo"
+            />
+          </div>
+        </div>
+
+        <div className="flex pt-10 gap-4">
           <div className="flex flex-col items-center">
             {Array.from({ length: 4 }).map((item, index) => (
               <div key={index} className="flex flex-col items-center">
@@ -233,11 +256,33 @@ const Onboarding = () => {
           </ul>
         </div>
       </aside>
-      <main className="  px-6 lg:px-12 md:w-3/5">
+      <main className="px-6 py-12 flex flex-col gap-14 lg:px-12 md:w-3/5">
+        <div className="flex justify-between items-center">
+          <div className="flex w-2/5 gap-3">
+            {paginationIndicator.map((step) => (
+              <div
+                key={step.id}
+                className={`w-[50px] h-2  rounded-full  cursor-pointer ${
+                  step.isActive ? "bg-white" : "bg-default_steps"
+                }`}
+                onClick={() => setActiveStep(step.id)}
+              ></div>
+            ))}
+          </div>
+          <div>
+            <span className="text-default_steps">Have an account ?</span>
+            <span>
+              {" "}
+              <Link className="underline text-[#11BC74]" href="/">
+                Click Here!
+              </Link>
+            </span>
+          </div>
+        </div>
         <ThemeProvider theme={theme}>
           <ChatBot
             hideHeader
-            className={`${pathWay.className} text-font_black md:3/4 lg:w-3/5 m-auto`}
+            className={`${pathWay.className} text-font_black md:3/4 lg:w-full mx-auto`}
             steps={steps}
             bubbleOptionStyle={{ borderRadius: "0px" }}
             footerStyle={{
@@ -251,7 +296,7 @@ const Onboarding = () => {
               border: "1px solid #DA8E23",
               borderRadius: "8px",
               width: "100%",
-              maxWidth: "70%",
+              maxWidth: "50%",
             }}
             userBubbleStyle={{
               borderRadius: "10px",

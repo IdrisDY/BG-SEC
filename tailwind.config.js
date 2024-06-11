@@ -26,6 +26,7 @@ module.exports = {
         outline_orange: "#FD891C",
         onboard_green: "#008080",
         default_steps: "#83796B",
+        aside_onboard: "#171B1B",
       },
       boxShadow: {
         custom1: "0px 12px 16px -4px #10182814",

@@ -53,19 +53,24 @@
 }
 .rsc-container{
   width: 100% !important;
+  display: flex !important;
+  flex-direction: column;
+  gap: 30px;
+  height: 50vh !important;
+  min-height: 80vh;
 }
 .rsc-content{
   overflow-y: auto !important;
   border: 1px solid  #DA8E23;
   border-radius: 8px !important;
   background: #171B1B !important ;
+  height: 100% !important;
 }
 .rsc-footer{
-  position: absolute !important;
   width: 100%;
   bottom: 0;
   border: 1px solid  #DA8E23;
-  border-radius: 8px !important;
+  border-radius: 10px !important;
   background: #171B1B !important;
 
 }
@@ -76,11 +81,17 @@
 
 }
 .rsc-os-options li{
-  width: 70% !important;
-  margin: auto;
+  width: 50% !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
 }
 .rsc-os-options li button{
   width: inherit;
   border-radius: 8px !important;
 
+}
+.rsc-input{
+  background: transparent !important;
+  border: 0px !important;
 }
