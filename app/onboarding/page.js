@@ -187,12 +187,11 @@ const Onboarding = () => {
 
       trigger: "17",
     },
-{
+    {
       id: "17",
-      component:( <RetrievedBankAccounts />),
+      component: <RetrievedBankAccounts />,
       trigger: "18",
     },
-
 
     {
       id: "18",
