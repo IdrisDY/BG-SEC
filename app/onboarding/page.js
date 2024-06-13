@@ -235,20 +235,20 @@ const Onboarding = () => {
       trigger: "25",
     },
     {
-      id: "26",
+      id: "25",
       options: [
-        { value: 1, label: "Okay, let's do this", trigger: "27" },
+        { value: 1, label: "Okay, let's do this", trigger: "26" },
         { value: 2, label: "Skip", trigger: "24" },
       ],
     },
     {
-      id: "27",
+      id: "26",
       message:
         "Awesome! Lastly, we recommend setting up an Alert PIN for withdrawal. NB: No BGL staff will request your alert pin or password.",
-      trigger: "26",
+      trigger: "27",
     },
     {
-      id: "26",
+      id: "27",
       user: true,
       end: true,
     },
