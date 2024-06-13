@@ -5,6 +5,72 @@ import ChatBot from "react-simple-chatbot";
 import { pathWay } from "@/components/body";
 import Image from "next/image";
 import Link from "next/link";
+
+const RetrievedBankAccounts = ({ steps, triggerNextStep }) => {
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const options = [
+    {
+      id: 1,
+      image: "/onboard/accessbank.png",
+      title: "123456788",
+      value: "123456789",
+    },
+    {
+      id: 2,
+      image: "/onboard/accessbank.png",
+      title: "123456788",
+      value: "123456789",
+    },
+    {
+      id: 3,
+      image: "/onboard/accessbank.png",
+      title: "123456788",
+      value: "123456789",
+    },
+  ];
+
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
+
+  const handleSubmit = () => {
+    // Make the backend request here
+    fetch("/api/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ selectedOption }),
+    }).then(() => {
+      // Trigger the next step
+      triggerNextStep();
+    });
+  };
+
+  return (
+    <div>
+      {options.map((option) => (
+        <div key={option.id} className="option">
+          <img src={option.image} alt={option.title} />
+          <label>
+            <input
+              type="radio"
+              value={option.value}
+              checked={selectedOption === option.value}
+              onChange={handleOptionChange}
+            />
+            {option.title}
+          </label>
+        </div>
+      ))}
+      <button onClick={handleSubmit} disabled={!selectedOption}>
+        Submit
+      </button>
+    </div>
+  );
+};
+
 const Onboarding = () => {
   const listOfSteps = [
     {
@@ -118,58 +184,66 @@ const Onboarding = () => {
       id: "16",
       message:
         "Wow, some account numbers were retrieved with your BVN. For smooth transaction of your money, kindly choose your permanent account number you want to be using on the app. (Note that this can’t be changed).",
+
       trigger: "17",
     },
-    {
+
       id: "17",
-      user: true,
+      component:( <RetrievedBankAccounts />),
       trigger: "18",
     },
+
+
     {
       id: "18",
-      message:
-        "Great! We’ve sent a one-time password (OTP) to the mobile number associated with your BVN. Please check and respond below.",
+      user: true,
       trigger: "19",
     },
     {
       id: "19",
-      user: true,
+      message:
+        "Great! We’ve sent a one-time password (OTP) to the mobile number associated with your BVN. Please check and respond below.",
       trigger: "20",
     },
     {
       id: "20",
-      options: [
-        { value: 1, label: "Seen", trigger: "21" },
-        { value: 2, label: "Resend OTP", trigger: "18" },
-      ],
+      user: true,
+      trigger: "21",
     },
     {
       id: "21",
-      message:
-        "Great! Thank you for providing your BVN and OTP, Susan. We need a Security Question from you, pick your choice.",
-      trigger: "22",
-    },
-    {
-      id: "22",
-      user: true,
-      trigger: "23",
-    },
-
-    {
-      id: "23",
-      message:
-        "Awesome! Gabriel. Lastly, we recommend setting up an Alert PIN for withdrawal. NB: No BGL staff will request your alert pin or password.",
-      trigger: "24",
-    },
-    {
-      id: "24",
       options: [
-        { value: 1, label: "Okay, let's do this", trigger: "25" },
-        { value: 2, label: "Skip", trigger: "23" },
+        { value: 1, label: "Seen", trigger: "22" },
+        { value: 2, label: "Resend OTP", trigger: "19" },
       ],
     },
     {
-      id: "25",
+      id: "22",
+      message:
+        "Great! Thank you for providing your BVN and OTP, Susan. We need a Security Question from you, pick your choice.",
+      trigger: "23",
+    },
+    {
+      id: "23",
+      user: true,
+      trigger: "24",
+    },
+
+    {
+      id: "24",
+      message:
+        "Awesome! Gabriel. Lastly, we recommend setting up an Alert PIN for withdrawal. NB: No BGL staff will request your alert pin or password.",
+      trigger: "25",
+    },
+    {
+      id: "26",
+      options: [
+        { value: 1, label: "Okay, let's do this", trigger: "27" },
+        { value: 2, label: "Skip", trigger: "24" },
+      ],
+    },
+    {
+      id: "27",
       message:
         "Awesome! Lastly, we recommend setting up an Alert PIN for withdrawal. NB: No BGL staff will request your alert pin or password.",
       trigger: "26",
@@ -220,7 +294,7 @@ const Onboarding = () => {
 
   return (
     <div
-      className={`bg-font_black min-h-screen md:items-center flex-col-reverse lg:flex-row flex text-white`}
+      className={`bg-font_black min-h-screen md:items-center lg:items-stretch flex-col-reverse lg:flex-row flex text-white`}
     >
       <aside className={`bg-aside_onboard min-h-full lg:w-2/5`}>
         <div className={`border-b px-12 border-[#83796B] pt-7 pb-10`}>
