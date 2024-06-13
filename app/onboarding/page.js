@@ -289,7 +289,6 @@ const Onboarding = () => {
   };
 
   const page = useTheme();
-  console.log(window.innerHeight);
 
   return (
     <div
