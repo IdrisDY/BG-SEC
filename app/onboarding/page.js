@@ -187,7 +187,7 @@ const Onboarding = () => {
 
       trigger: "17",
     },
-
+{
       id: "17",
       component:( <RetrievedBankAccounts />),
       trigger: "18",
