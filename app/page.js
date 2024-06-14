@@ -17,9 +17,12 @@ export default function Home() {
   const { showModal, loading } = useSelector((state) => state.LandingPage);
   console.log(loading);
   useEffect(() => {
-    setTimeout(() => {
-      dispatch(setLoading(false));
+    const timeout = setTimeout(() => {
+      // dispatch(setLoading(false));
     }, 1500);
+
+    
+
   }, []);
 
   if (loading) {
