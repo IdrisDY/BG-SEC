@@ -11,6 +11,10 @@
   font-size: 16px;
 }
 
+html{
+  scroll-behavior: smooth;
+
+}
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
@@ -95,4 +99,9 @@
 .rsc-input{
   background: transparent !important;
   border: 0px !important;
+}
+.rsc-cs{
+  background: #171B1B !important ;
+  justify-content: start !important;
+  padding-left: 4em !important;
 }

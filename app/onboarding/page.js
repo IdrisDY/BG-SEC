@@ -5,8 +5,9 @@ import ChatBot from "react-simple-chatbot";
 import { pathWay } from "@/components/body";
 import Image from "next/image";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
-const RetrievedBankAccounts = ({ steps, triggerNextStep }) => {
+const StepQuestions = ({ role, steps, triggerNextStep }) => {
   const [selectedOption, setSelectedOption] = useState(null);
 
   const options = [
@@ -14,19 +15,46 @@ const RetrievedBankAccounts = ({ steps, triggerNextStep }) => {
       id: 1,
       image: "/onboard/accessbank.png",
       title: "123456788",
-      value: "123456789",
+      value: "1234589",
     },
     {
       id: 2,
       image: "/onboard/accessbank.png",
       title: "123456788",
-      value: "123456789",
+      value: "123232319",
     },
     {
       id: 3,
       image: "/onboard/accessbank.png",
       title: "123456788",
-      value: "123456789",
+      value: "1234232789",
+    },
+  ];
+  const securityOptions = [
+    {
+      id: 1,
+      title: "Your birthday date",
+      value: "123",
+    },
+    {
+      id: 2,
+      title: "Your mother maiden's name",
+      value: "123232319",
+    },
+    {
+      id: 3,
+      title: "Your favorite colour",
+      value: "12",
+    },
+    {
+      id: 4,
+      title: "Your state of origin",
+      value: "12",
+    },
+    {
+      id: 3,
+      title: "Your popular artist",
+      value: "12",
     },
   ];
 
@@ -34,41 +62,89 @@ const RetrievedBankAccounts = ({ steps, triggerNextStep }) => {
     setSelectedOption(event.target.value);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
     // Make the backend request here
-    fetch("/api/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ selectedOption }),
-    }).then(() => {
-      // Trigger the next step
-      triggerNextStep();
-    });
+    // fetch("/api/submit", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({ selectedOption }),
+    // }).then(() => {
+    //   // Trigger the next step
+    //   triggerNextStep();
+    console.log("wyling");
+    // });
+    triggerNextStep();
   };
 
-  return (
-    <div>
-      {options.map((option) => (
-        <div key={option.id} className="option">
-          <img src={option.image} alt={option.title} />
-          <label>
+  if (role === "Account Retrieval") {
+    return (
+      <form
+        onSubmit={handleSubmit}
+        className="w-1/2 min-w-[220px] text-white px-7 py-3 gap-5 rounded self-start flex flex-col bg-[#232626]"
+      >
+        {options.map((option) => (
+          <label
+            key={option.id}
+            className="flex justify-between items-center gap-2"
+          >
+            <div className="flex gap-2 items-center">
+              <img src={option.image} alt={option.title} className="w-8 h-8" />
+              <span>{option.title}</span>
+            </div>
             <input
               type="radio"
+              name="bankAccount"
               value={option.value}
               checked={selectedOption === option.value}
               onChange={handleOptionChange}
             />
-            {option.title}
           </label>
-        </div>
-      ))}
-      <button onClick={handleSubmit} disabled={!selectedOption}>
-        Submit
-      </button>
-    </div>
-  );
+        ))}
+        <button
+          type="submit"
+          className="bg-outline_orange text-white py-2 px-4 rounded"
+          disabled={!selectedOption}
+        >
+          Submit
+        </button>
+      </form>
+    );
+  } else {
+    return (
+      <form
+        onSubmit={handleSubmit}
+        className="w-1/2 min-w-[220px] text-white px-7 py-3 gap-5 rounded self-start flex flex-col bg-[#232626]"
+      >
+        {securityOptions.map((option) => (
+          <label
+            key={option.id}
+            className="flex justify-between items-center gap-2"
+          >
+            <div className="flex gap-2 items-center">
+              <span>{option.title}</span>
+            </div>
+            <input
+              type="radio"
+              name="bankAccount"
+              value={option.value}
+              checked={selectedOption === option.value}
+              onChange={handleOptionChange}
+            />
+          </label>
+        ))}
+        <button
+          type="submit"
+          className="bg-outline_orange text-white py-2 px-4 rounded"
+          disabled={!selectedOption}
+        >
+          Choose
+        </button>
+      </form>
+    );
+  }
 };
 
 const Onboarding = () => {
@@ -189,7 +265,7 @@ const Onboarding = () => {
     },
     {
       id: "17",
-      component: <RetrievedBankAccounts />,
+      component: <StepQuestions role="Account Retrieval" />,
       trigger: "18",
     },
 
@@ -206,15 +282,15 @@ const Onboarding = () => {
     },
     {
       id: "20",
-      user: true,
-      trigger: "21",
+      options: [
+        { value: 1, label: "Seen", trigger: "21" },
+        { value: 2, label: "Resend OTP", trigger: "19" },
+      ],
     },
     {
       id: "21",
-      options: [
-        { value: 1, label: "Seen", trigger: "22" },
-        { value: 2, label: "Resend OTP", trigger: "19" },
-      ],
+      user: true,
+      trigger: "22",
     },
     {
       id: "22",
@@ -224,28 +300,28 @@ const Onboarding = () => {
     },
     {
       id: "23",
-      user: true,
+      component: <StepQuestions role="Security Question" />,
       trigger: "24",
     },
 
     {
       id: "24",
-      message:
-        "Awesome! Gabriel. Lastly, we recommend setting up an Alert PIN for withdrawal. NB: No BGL staff will request your alert pin or password.",
+      user: true,
       trigger: "25",
     },
+
     {
       id: "25",
-      options: [
-        { value: 1, label: "Okay, let's do this", trigger: "26" },
-        { value: 2, label: "Skip", trigger: "24" },
-      ],
+      message:
+        "Awesome! Gabriel. Lastly, we recommend setting up an Alert PIN for withdrawal. NB: No BGL staff will request your alert pin or password.",
+      trigger: "26",
     },
     {
       id: "26",
-      message:
-        "Awesome! Lastly, we recommend setting up an Alert PIN for withdrawal. NB: No BGL staff will request your alert pin or password.",
-      trigger: "27",
+      options: [
+        { value: 1, label: "Okay, let's do this", trigger: "27" },
+        { value: 2, label: "Skip", trigger: "25" },
+      ],
     },
     {
       id: "27",
@@ -289,12 +365,14 @@ const Onboarding = () => {
   };
 
   const page = useTheme();
+  const {showModal} =  useSelector(state=>state.LandingPage)
+  console.log(showModal);
 
   return (
     <div
-      className={`bg-font_black min-h-screen md:items-center lg:items-stretch flex-col-reverse lg:flex-row flex text-white`}
+      className={`bg-font_black min-h-screen text-[.9rem] md:items-center lg:items-stretch flex-col lg:flex-row flex text-white`}
     >
-      <aside className={`bg-aside_onboard min-h-full lg:w-2/5`}>
+      <aside className={`bg-aside_onboard  min-h-full lg:w-2/5`}>
         <div className={`border-b px-12 border-[#83796B] pt-7 pb-10`}>
           <div className={`relative w-1/2 h-[60px]`}>
             <Image
@@ -326,7 +404,7 @@ const Onboarding = () => {
                     </div>
                   </div>
                   {index !== 3 && (
-                    <div className={`w-[3px] h-[45px] my-1 bg-[#E1F4F4]`}></div>
+                    <div className={`w-[3px] h-[40px] my-1 bg-[#E1F4F4]`}></div>
                   )}{" "}
                 </div>
               ))}

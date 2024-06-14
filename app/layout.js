@@ -1,7 +1,8 @@
 import "./globals.css";
 import { createGlobalStyle } from "styled-components";
-import { ToggleThemeProvider } from "./utils/toggleTheme";
+import { ToggleThemeProvider } from "../utils/toggleTheme";
 import BodyWrapper from "@/components/body";
+
 // const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -13,9 +14,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <ToggleThemeProvider>
-        <BodyWrapper>
-          {children}
-        </BodyWrapper>
+        <BodyWrapper>{children}</BodyWrapper>
       </ToggleThemeProvider>
     </html>
   );

@@ -13,10 +13,10 @@ const Button = ({
   const baseClassName = "py-[10px] px-[18px]  rounded-[4px] ";
   const buttonWidth = size === "small" ? "w-fit" : "w-full";
   const buttonVariant = `bg-${variant}`;
-  const buttonTextColor = variant === "black" ? "text-white" : "text-font_black";
+  // const buttonTextColor = variant === "black" ? "text-white" : "text-font_black";
   const isDisabledStyle = disabled ? "bg-gray-400 text-white" : "";
 
-  const className = `${baseClassName} ${buttonWidth} ${buttonVariant} ${buttonTextColor} ${isDisabledStyle}`;
+  const className = `${baseClassName} ${buttonWidth} ${buttonVariant}  ${isDisabledStyle}`;
 
   return (
     <button

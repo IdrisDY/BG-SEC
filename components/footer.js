@@ -20,9 +20,9 @@ const Footer = () => {
         <div className="flex flex-col items-center lg:items-start gap-8 lg:gap-0 lg:flex-row justify-between ">
           <div className="flex flex-col gap-6  ">
             <div className="flex flex-col lg:flex-row justify-center lg:justify-start items-center gap-2">
-              <img src="/feature-icon.png" alt="" /> 
+              <img src="/logo.svg" alt="logo bgl" /> 
 
-              <span className="text-2xl font-bold "> B G L</span>
+              {/* <span className="text-2xl font-bold "> B G L</span> */}
             </div>
             <p className="lg: m-auto text-center w-1/2 font-[400] text-[1rem] lg:text-[1rem] lg:m-0 lg:text-left text-[#E1F4F4] leading-[24px] ">
               BGL securities Ltd has earned a sterling reputation in the market

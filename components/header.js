@@ -1,30 +1,57 @@
 "use client";
 import Button from "./button";
 import { useTheme } from "styled-components";
-import { ToggleThemeContext } from "@/app/utils/toggleTheme";
+import { ToggleThemeContext } from "@/utils/toggleTheme";
 import { useContext, useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { setShowModal } from "@/store/LandingPageSlice";
 
-const Header = () => {
+const Header = ({ showSignUpModal }) => {
   const theme = useTheme();
   const [isMenuClicked, setIsMenuClicked] = useState(false);
-  const [isLargeViewport, setIsLargeViewport] = useState(
-    false
-  ); // Assuming initial state is large viewport
+  const [isLargeViewport, setIsLargeViewport] = useState(false);
   const { text, toggleTheme } = useContext(ToggleThemeContext);
 
+  const dispatch = useDispatch();
+
+  function handleShowModal() {
+    dispatch(setShowModal(true));
+  }
   const NavLinks = () => {
+    const NavLink = ({ href, text }) => (
+      <li>
+        <Link href={href}>
+          <span
+            className={`cursor-pointer ${
+              theme.mode === "dark"
+                ? "hover:text-outline_orange"
+                : "hover:text-[#56A173]"
+            }  transition-colors duration-300`}
+          >
+            {text}
+          </span>
+        </Link>
+      </li>
+    );
+    const navigationItems = [
+      { id: "about-us", text: "About Us" },
+      { id: "product", text: "Product" },
+      { id: "FAQs", text: "FAQs" },
+      { id: "learn", text: "Learn" },
+      { id: "contact-us", text: "Contact Us" },
+    ];
+
     return (
       <ul
         className={`flex ${
           theme.mode === "dark" ? "text-white" : "text-light_mainTxt"
         } h-full text-[.9rem] flex-col lg:flex-row justify-center items-center gap-8`}
       >
-        <li>About Us</li>
-        <li>Product</li>
-        <li>FAQs</li>
-        <li>Learn</li>
-        <li>Contact Us</li>
+        {navigationItems.map((item) => (
+          <NavLink key={item.id} href={`#${item.id}`} text={item.text} />
+        ))}
       </ul>
     );
   };
@@ -40,7 +67,11 @@ const Header = () => {
           variant={theme.mode === "dark" ? "black" : "white"}
           text="Log In"
         />
-        <Button customClassName="bg-btn_orange" text="Start Trading" />
+        <Button
+          onClick={() => handleShowModal()}
+          customClassName="bg-btn_orange"
+          text="Start Trading"
+        />
       </div>
     );
   };
@@ -48,13 +79,14 @@ const Header = () => {
   // Handle viewport changes
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 1024) {
+      if (window.innerWidth >= 990) {
         setIsLargeViewport(true);
         setIsMenuClicked(false); // Close menu when viewport changes to large
       } else {
         setIsLargeViewport(false);
       }
     };
+    handleResize();
 
     window.addEventListener("resize", handleResize);
     return () => {
@@ -68,18 +100,12 @@ const Header = () => {
         theme.mode === "dark" ? "bg" : "bg-hero_section_bg"
       } w-full `}
     >
-      <marquee
-        behavior="scroll"
-        height="40px"
-        style={{ color: "white" }}
-        bgColor={
-          "linear-gradient(90deg, #D01313 0%, #8D1D0C 30.5%, #BE3206 56%, #A52222 100%)"
-        }
-        direction="left"
-      >
-        New stock called BOA has just been released.| Dangote stock has
-        increased with +0.5. | Stanbic IBTC +2.4
-      </marquee>
+      <div class="marquee-container bg-gradient-to-r h-[10vh] flex items-center from-red-700 via-red-800 to-red-900 overflow-hidden relative">
+        <div class="marquee-content absolute  whitespace-nowrap text-white animate-marquee">
+          New stock called BOA has just been released. | Dangote stock has
+          increased with +0.5. | Stanbic IBTC +2.4
+        </div>
+      </div>
 
       <nav className="flex px-[1.25rem] h-[70px] lg:px-[112px] m-auto justify-between items-center">
         <div className="w-[58%] lg:w-1/5 flex items-center ">
@@ -128,12 +154,7 @@ const Header = () => {
               onClick={() => setIsMenuClicked(false)}
               className="self-end mb-5"
             >
-              <Image
-                width={24}
-                height={24}
-                src="/x.svg"
-                alt="close button"
-              />
+              <Image width={24} height={24} src="/x.svg" alt="close button" />
             </button>
             {isMenuClicked && <NavLinks />}
             {isMenuClicked && <Buttons />}
