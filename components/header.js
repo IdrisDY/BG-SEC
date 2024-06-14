@@ -63,14 +63,14 @@ const Header = ({ showSignUpModal }) => {
           <img src={theme.img} alt={theme.mode} />
         </button>
         <Button
-          customClassName=""
-          variant={theme.mode === "dark" ? "black" : "white"}
+          customClassName="bg-transparent"
           text="Log In"
         />
         <Button
           onClick={() => handleShowModal()}
-          customClassName="bg-btn_orange"
+          customClassName=" bg-btn_orange"
           text="Start Trading"
+          base
         />
       </div>
     );
@@ -100,14 +100,14 @@ const Header = ({ showSignUpModal }) => {
         theme.mode === "dark" ? "bg" : "bg-hero_section_bg"
       } w-full `}
     >
-      <div class="marquee-container bg-gradient-to-r h-[10vh] flex items-center from-red-700 via-red-800 to-red-900 overflow-hidden relative">
+      <div class="marquee-container bg-gradient-to-r h-[47px] flex items-center from-red-700 via-red-800 to-red-900 overflow-hidden relative">
         <div class="marquee-content absolute  whitespace-nowrap text-white animate-marquee">
           New stock called BOA has just been released. | Dangote stock has
           increased with +0.5. | Stanbic IBTC +2.4
         </div>
       </div>
 
-      <nav className="flex px-[1.25rem] h-[70px] lg:px-[112px] m-auto justify-between items-center">
+      <nav className="flex px-[1.25rem] mt-3 md:mt-6 h-[70px] lg:px-[112px] m-auto justify-between items-center">
         <div className="w-[58%] lg:w-1/5 flex items-center ">
           <img
             src={`${

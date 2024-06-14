@@ -32,7 +32,7 @@ export default function Home() {
           <HeroSection
             className={`flex ${
               theme.mode === "dark" ? "bg gradient " : "bg-hero_section_bg"
-            } flex-col h-[70vh] lg:min-h-[110vh] relative px-[1.25em] pt-24 lg:px-[112px] gap-2 items-center`}
+            } flex-col h-[50vh] lg:min-h-[110vh] relative px-[1.25em] pt-24 lg:px-[112px] gap-2 items-center`}
           >
             {theme.mode === "dark" && (
               <div className="absolute z-[-1] dark-gradient-bg w-3/5 ">
@@ -171,7 +171,7 @@ export default function Home() {
               </div>
             </div>
             <div
-              className={`flex relative w-[90%] h-[50vh] lg:h-[70vh] items-center lg:w-3/5 m-auto justify-center`}
+              className={`flex relative w-[90%] h-[30vh] lg:h-[70vh] items-center lg:w-3/5 m-auto justify-center`}
             >
               <Image layout="fill" src="/vidplayer.png" alt="overlay" />
             </div>
@@ -401,9 +401,9 @@ export default function Home() {
                   information.
                 </p>
               </div>
-              <Button
+              <Button base={false}
                 text="Start Trading"
-                customClassName=" hidden lg:block  bg-btn_orange"
+                customClassName=" hidden lg:block text-light_mainTxt  bg-btn_orange"
               />
             </div>
             <div className="relative lg:w-3/4">
@@ -531,14 +531,14 @@ export default function Home() {
                 </h2>
                 <p
                   className={`text-center  ${
-                    theme.mode === "dark" ? "" : " text-[#3B4B4B]"
+                    theme.mode === "dark" ? "text-white" : " text-[#3B4B4B]"
                   } text-[.94rem] lg:text-[1rem] lg:text-left lg:w-[90%] lg:mr-auto lg:ml-0 w-4/5 m-auto`}
                 >
                   Our blog is authored by a team of financial experts, market
                   analysts, and traders
                 </p>
               </div>
-              <Button
+              <Button base
                 customClassName={` bg-light_mainTxt lg:bg-btn_orange`}
                 text="View all posts"
               />
@@ -686,7 +686,7 @@ export default function Home() {
                 Can’t find the answer you’re looking for? Please chat to our
                 friendly team.
               </p>
-              <Button
+              <Button base
                 customClassName={`bg-dark_green_90 lg:bg-btn_orange`}
                 text="Get in Touch"
               />
@@ -721,7 +721,7 @@ export default function Home() {
                       We care about your data in our privacy policy.
                     </span>
                   </div>
-                  <Button customClassName="bg-btn_orange" text="Subscribe" />
+                  <Button base customClassName=" bg-light_mainTxt md:bg-btn_orange" text="Subscribe" />
                 </div>
               </div>
               <div className="relative bg-[#E1F4F4] rounded-lg lg:w-1/2 h-[65vh] ">

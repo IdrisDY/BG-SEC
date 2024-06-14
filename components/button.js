@@ -7,6 +7,7 @@ const Button = ({
   type = "button",
   customClassName = "",
   disabled = false,
+  base = false,
   onClick,
   id = "",
 }) => {
@@ -15,8 +16,8 @@ const Button = ({
   const buttonVariant = `bg-${variant}`;
   // const buttonTextColor = variant === "black" ? "text-white" : "text-font_black";
   const isDisabledStyle = disabled ? "bg-gray-400 text-white" : "";
-
-  const className = `${baseClassName} ${buttonWidth} ${buttonVariant}  ${isDisabledStyle}`;
+const baseColor = base ? 'text-[#FAFFFF]' : ''
+  const className = `${baseClassName} ${buttonWidth} ${buttonVariant} ${baseColor}  ${isDisabledStyle}`;
 
   return (
     <button

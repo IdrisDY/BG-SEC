@@ -45,16 +45,20 @@ module.exports = {
           "0%": { opacity: 0.7, transform: "translateY(-100%)" },
           "100%": { opacity: 1, transform: "translateY(0%)" },
         },
-        'marquee': {
-          " 0%" : { transform: "translateX(100%)"} ,
-           "100% ": {transform: "translateX(-100%)"},
-         },
-   
+        rollup: {
+          "0%": { opacity: 1, transform: "translateY(0%)" },
+          "100%": { opacity: 0.7, transform: "translateY(-100%)" },
+        },
+        marquee: {
+          " 0%": { transform: "translateX(100%)" },
+          "100% ": { transform: "translateX(-100%)" },
+        },
       },
       animation: {
         spinner: "spinner .5s linear infinite",
         dropdown: "dropdown .5s ease-in-out",
-        marquee:"marquee 15s linear infinite",
+        rollup: "rollup .5s ease-in-out",
+        marquee: "marquee 15s linear infinite",
       },
     },
   },
