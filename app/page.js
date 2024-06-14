@@ -32,7 +32,7 @@ export default function Home() {
           <HeroSection
             className={`flex ${
               theme.mode === "dark" ? "bg gradient " : "bg-hero_section_bg"
-            } flex-col h-[50vh] lg:min-h-[110vh] relative px-[1.25em] pt-24 lg:px-[112px] gap-2 items-center`}
+            } flex-col min-h-[450px] lg:min-h-[110vh] relative px-[1.25em] pt-24 lg:px-[112px] gap-2 items-center`}
           >
             {theme.mode === "dark" && (
               <div className="absolute z-[-1] dark-gradient-bg w-3/5 ">
