@@ -1,10 +1,13 @@
 import Button from "./button";
 import { DMFont } from "./body";
+import Link from "next/link";
 const Footer = () => {
   return (
     <footer className=" bottom-0 w-full mt-[80px] bg-footer_bg px-6 lg:px-[112px] py-[64px] text-white  ">
       <section className="flex border-b pb-16 mb-16 border-btn_orange flex-col items-center text-center gap-4">
-        <h3 className={` ${DMFont.className} text-[1.25rem] lg:text-[1.6rem] w-[90%] lg:w-[70%]`}>
+        <h3
+          className={` ${DMFont.className} text-[1.25rem] lg:text-[1.6rem] w-[90%] lg:w-[70%]`}
+        >
           We have consistently maintained the top five positions in terms of
           volume and value of securities traded.
         </h3>
@@ -12,7 +15,10 @@ const Footer = () => {
           It also doubles as the vehicle for distributing all public offers.
         </h4>
 
-        <Button customClassName=" mt-6 bg-white text-font_black lg:text-white lg:bg-btn_orange" text="Start Trading" />
+        <Button
+          customClassName=" mt-6 bg-white text-font_black lg:text-white lg:bg-btn_orange"
+          text="Start Trading"
+        />
       </section>
 
       <section className="flex flex-col gap-48 lg:gap-16">
@@ -20,7 +26,7 @@ const Footer = () => {
         <div className="flex flex-col items-center lg:items-start gap-8 lg:gap-0 lg:flex-row justify-between ">
           <div className="flex flex-col gap-6  ">
             <div className="flex flex-col lg:flex-row justify-center lg:justify-start items-center gap-2">
-              <img src="/logo.svg" alt="logo bgl" /> 
+              <img src="/logo.svg" alt="logo bgl" />
 
               {/* <span className="text-2xl font-bold "> B G L</span> */}
             </div>
@@ -30,12 +36,30 @@ const Footer = () => {
               as stockbroker to the issue for many public offers.
             </p>
             <ul className="flex flex-col lg:flex-row items-center  lg:items-start lg: text-[1rem] lg:text-[1rem] text-green_60 gap-8">
-              <li className="cursor-pointer underline ">About Us</li>
-              <li className="cursor-pointer underline ">FAQs</li>
-              <li className="cursor-pointer underline ">Trading Markets</li>
-              <li className="cursor-pointer underline ">Contact Us</li>
-              <li className="cursor-pointer underline ">Help</li>
-              <li className="cursor-pointer underline ">Privacy</li>
+              <li className="cursor-pointer underline ">
+                {" "}
+                <Link href="#about-us">About Us</Link>{" "}
+              </li>
+              <li className="cursor-pointer underline ">
+                {" "}
+                <Link href="#FAQs">FAQs</Link>{" "}
+              </li>
+              <li className="cursor-pointer underline ">
+                {" "}
+                <Link href="#">Trading Markets</Link>{" "}
+              </li>
+              <li className="cursor-pointer underline ">
+                {" "}
+                <Link href="#contact-us">Contact Us</Link>{" "}
+              </li>
+              <li className="cursor-pointer underline ">
+                {" "}
+                <Link href="#learn">Help</Link>{" "}
+              </li>
+              <li className="cursor-pointer underline ">
+                {" "}
+                <Link href="#privacy">Privacy</Link>{" "}
+              </li>
             </ul>
           </div>
           <div className="flex flex-col lg:w-1/3 items-end ">

@@ -18,7 +18,7 @@ export default function Home() {
   console.log(loading);
   useEffect(() => {
     const timeout = setTimeout(() => {
-      // dispatch(setLoading(false));
+      dispatch(setLoading(false));
     }, 1500);
 
     

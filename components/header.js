@@ -62,10 +62,7 @@ const Header = ({ showSignUpModal }) => {
         <button className="w-[30px] h-[30px]" onClick={toggleTheme}>
           <img src={theme.img} alt={theme.mode} />
         </button>
-        <Button
-          customClassName="bg-transparent"
-          text="Log In"
-        />
+        <Button customClassName="bg-transparent" text="Log In" />
         <Button
           onClick={() => handleShowModal()}
           customClassName=" bg-btn_orange"
