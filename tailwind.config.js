@@ -16,6 +16,7 @@ module.exports = {
         btn_orange: "#DA8E23",
         font_black: "#131414",
         footer_bg: "#02150D",
+        steps_component_bg:'#232626',
         green_60: "#96CCCC",
         fade_green_landing: "#EAF8F8",
         dark_green_90: "#045634",

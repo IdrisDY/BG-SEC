@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Button from "./button";
+import Button from "../button";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { setShowModal } from "@/store/LandingPageSlice";

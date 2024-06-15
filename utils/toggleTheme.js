@@ -20,7 +20,7 @@ const lightTheme = {
 };
 
 export const ToggleThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState(lightTheme);
+  const [theme, setTheme] = useState(darkTheme);
 
   const toggleTheme = () => {
     setTheme((prevTheme) =>
