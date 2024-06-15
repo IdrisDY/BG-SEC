@@ -11,46 +11,46 @@ const StepQuestions = ({ role, steps, triggerNextStep }) => {
       id: 1,
       image: "/onboard/accessbank.png",
       title: "123456788",
-      value: "1234589",
+      value: "1",
     },
     {
       id: 2,
       image: "/onboard/accessbank.png",
       title: "123456788",
-      value: "123232319",
+      value: "2",
     },
     {
       id: 3,
       image: "/onboard/accessbank.png",
       title: "123456788",
-      value: "1234232789",
+      value: "3",
     },
   ];
   const securityOptions = [
     {
       id: 1,
       title: "Your birthday date",
-      value: "123",
+      value: "1",
     },
     {
       id: 2,
       title: "Your mother maiden's name",
-      value: "123232319",
+      value: "2",
     },
     {
       id: 3,
       title: "Your favorite colour",
-      value: "12",
+      value: "3",
     },
     {
       id: 4,
       title: "Your state of origin",
-      value: "12",
+      value: "4",
     },
     {
       id: 3,
       title: "Your popular artist",
-      value: "12",
+      value: "5",
     },
   ];
 
@@ -145,6 +145,19 @@ const StepQuestions = ({ role, steps, triggerNextStep }) => {
 
 const Onboarding = () => {
   const [finishOnbarding, setFinishOnboarding] = useState(false);
+  const isValidPassword = (password) => {
+    const minLength = 8;
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+    return (
+      password.length >= minLength &&
+      hasUpperCase &&
+      hasLowerCase &&
+      hasSpecialChar
+    );
+  };
+
   const listOfSteps = [
     {
       title: "Your details",
@@ -246,6 +259,13 @@ const Onboarding = () => {
       id: "14",
       user: true,
       trigger: "15",
+      validator: (value) => {
+        if (isValidPassword(value)) {
+          return true;
+        } else {
+          return "Password must be at least 8 characters long and include lowercase, uppercase, and special characters";
+        }
+      },
     },
     {
       id: "15",
@@ -324,9 +344,9 @@ const Onboarding = () => {
       id: "27",
       user: true,
       trigger: () => {
-        console.log("we have come to an end");
-        setFinishOnboarding(true);
+        return '28'
       },
+      end:true
     },
   ];
 
@@ -338,7 +358,6 @@ const Onboarding = () => {
     { id: 5, isActive: false },
     { id: 6, isActive: false },
   ];
-
 
   const handleNext = () => {
     if (currentStep < steps.length - 1) {
@@ -352,6 +371,10 @@ const Onboarding = () => {
     }
   };
 
+  function handleEnd(steps){
+    console.log(steps);
+  }
+
   const { showModal } = useSelector((state) => state.LandingPage);
   console.log(showModal);
   return (
@@ -364,6 +387,7 @@ const Onboarding = () => {
       listOfSteps={listOfSteps}
       numberOfSteps={4}
       topRightPageText={"Have an account?"}
+      handleEnd={handleEnd}
     />
   );
 };

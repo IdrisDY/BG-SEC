@@ -18,6 +18,7 @@ const ForgotPassword = ({ steps, triggerNextStep }) => {
 
 const Login = () => {
   const [finishLogin, setFinishLogin] = useState(false);
+  const [stepsFinished, setStepsFinished] = useState([]);
   const listOfSteps = [
     {
       title: "Enter email address",
@@ -33,11 +34,23 @@ const Login = () => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
   };
-  
+
+  function handleEnd(value) {
+    console.log(value.steps);
+
+    const email = value.steps.find((step) => step?.id === "5");
+    const password = value.steps.find((step) => step === "password");
+
+    console.log("Email:", email);
+    console.log("Password:", password);
+    setFinishLogin(true);
+  }
+
   const steps = [
     {
       id: "1",
-      message: "Hello👋It’s good to see you again! To access your account, please enter login details below carefully. Shall we?",
+      message:
+        "Hello👋It’s good to see you again! To access your account, please enter login details below carefully. Shall we?",
       trigger: "2",
     },
     {
@@ -50,32 +63,32 @@ const Login = () => {
     {
       id: "3",
       message: "Please enter your email address",
-      trigger: "4",
+      trigger: "email",
     },
     {
-      id: "4",
+      id: "email",
       user: true,
       validator: (value) => {
         if (isValidEmail(value)) {
           return true;
         } else {
-          return 'Please enter a valid email address';
+          return "Please enter a valid email address";
         }
       },
       trigger: "5",
     },
     {
       id: "5",
-      message: "Now let’s securely verify your identity. Please enter your password.",
-      trigger: "6",
+      message:
+        "Now let’s securely verify your identity. Please enter your password.",
+      trigger: "password",
     },
     {
-      id: "6",
+      id: "password",
       user: true,
-      hideInput:true,
+      hideInput: true,
       trigger: ({ value }) => {
         // Replace this with your actual password validation logic if needed
-        setFinishLogin(true); 
         return "7";
       },
     },
@@ -88,7 +101,8 @@ const Login = () => {
       id: "forgotPassword",
       component: <ForgotPassword />,
     },
-  ];  const paginationIndicator = [
+  ];
+  const paginationIndicator = [
     { id: 1, isActive: true },
     { id: 2, isActive: false },
     { id: 3, isActive: false },
@@ -120,6 +134,7 @@ const Login = () => {
       finishProcess={finishLogin}
       listOfSteps={listOfSteps}
       numberOfSteps={2}
+      handleEnd={handleEnd}
       topRightPageText={"You already have an account?"}
     />
   );

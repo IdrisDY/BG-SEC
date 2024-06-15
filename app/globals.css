@@ -96,7 +96,8 @@ html {
   background: transparent !important;
   border:  1px solid #da8e23 !important;
   border-radius: 10px !important;
-  width: 100%;
+  width: fit-content;
+  color: white;
   height: 100%;
 }
 .rsc-cs {

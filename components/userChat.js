@@ -14,6 +14,8 @@ const UserChatTemplate = ({
   topRightPageText,
   paginationIndicator,
   finishProcess,
+  stepCompleted,
+  handleEnd
 }) => {
   const [currentStep, setCurrentStep] = useState({ value: 1, finished: false });
   const theme = {
@@ -32,7 +34,7 @@ const UserChatTemplate = ({
     <div
       className={`bg-font_black min-h-screen text-[.9rem] md:items-center w-[95%] m-auto lg:w-full md:w-[60%] lg:items-stretch flex-col lg:flex-row flex text-white`}
     >
-      <aside className={`bg-aside_onboard w-full  min-h-full lg:w-2/5`}>
+      <aside className={`bg-aside_onboard relative w-full  min-h-full lg:w-2/5`}>
         <div className={`border-b px-12 border-[#83796B] pt-7 pb-10`}>
           <div className={`relative w-1/2 h-[60px]`}>
             <Image
@@ -63,7 +65,7 @@ const UserChatTemplate = ({
                       ></div>
                     </div>
                   </div>
-                  {index !== 3 && (
+                  {index !== (numberOfSteps - 1 )&& (
                     <div className={`w-[3px] h-[40px] my-1 bg-[#E1F4F4]`}></div>
                   )}{" "}
                 </div>
@@ -80,7 +82,7 @@ const UserChatTemplate = ({
               ))}
             </ul>
           </div>
-          <div className="flex flex-col gap-3 items-center lg:flex-row lg:justify-between lg:items-stretch">
+          <div className="flex absolute bottom-[48px] flex-col gap-3 items-center lg:flex-row lg:justify-between lg:items-stretch">
             <span className={`text-default_steps`}>
               © BGLSecurityLimited2024
             </span>
@@ -129,6 +131,7 @@ const UserChatTemplate = ({
             footerStyle={{
               background: "#131414",
             }}
+            handleEnd={handleEnd}
             inputStyle={{
               borderTopRadius: "10px",
               border: "1px solid #DA8E23",
@@ -147,9 +150,6 @@ const UserChatTemplate = ({
               border: "1px solid #DA8E23",
               padding: "10px",
               margin: "5px 0",
-            }}
-            inputStyle={{
-              color: "white",
             }}
             botAvatar="/onboard/Memoji.png"
           />
