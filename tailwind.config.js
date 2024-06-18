@@ -30,7 +30,9 @@ module.exports = {
         aside_onboard: "#171B1B",
         dashboard_cards_bg: "#232626",
         dashboard_green_80: "#11BC74",
-        change_green:'#52FF00',
+        change_green: "#52FF00",
+        sidebar_light: "#DFE6E6",
+        dashboard_cards_light:'#F3F9F9',
       },
       boxShadow: {
         custom1: "0px 12px 16px -4px #10182814",

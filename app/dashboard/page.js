@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import Button from "@/components/button";
 import { ToggleThemeContext } from "@/utils/toggleTheme";
 import Image from "next/image";
@@ -8,14 +8,24 @@ import {
   InputLeftElement,
   Input,
   Flex,
+  IconButton,
   Select,
   Text,
+  HStack,
 } from "@chakra-ui/react";
-import { SearchIcon } from "@chakra-ui/icons";
+import {
+  SearchIcon,
+  ChevronUpIcon,
+  ChevronDownIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from "@chakra-ui/icons";
 import TableComponent from "@/components/Dashboard/table";
 
 const Dashboard = () => {
   const { theme, toggleTheme } = useContext(ToggleThemeContext);
+  const dark = theme.mode === "dark";
+  const [arrowButtonDirection, setArrowButtonDirection] = useState("down");
   const portfolioCards = [
     { title: "NGN Portfolio", color: "#E5C162", value: `₦0.0` },
     { title: "USD Portfolio", color: "#E7EB34CC", value: `$0.0` },
@@ -120,40 +130,89 @@ const Dashboard = () => {
       date: "15 Jan 2022",
     },
   ];
+
+  const topSector = [
+    { title: "Entertainment", text: "There are stocks are often distributed" },
+    { title: "Sports", text: "There are stocks are often distributed" },
+    { title: "Entertainment", text: "There are stocks are often distributed" },
+    { title: "Entertainment", text: "There are stocks are often distributed" },
+    { title: "Entertainment", text: "There are stocks are often distributed" },
+  ];
+
   return (
     <div className=" ">
-      <section className="flex flex-col gap-4">
-        <div className="flex rounded-lg py-[18px] px-5 items-center justify-between w-full border-2 border-outline_orange bg-dashboard_cards_bg">
-          <span className="font-[700]">
+      <section className={`flex flex-col gap-4`}>
+        <div
+          className={`flex rounded-lg py-[18px] px-5 items-center justify-between w-full   ${
+            dark
+              ? "bg-dashboard_cards_bg border-2 border-outline_orange"
+              : "bg-sidebar_light"
+          }`}
+        >
+          <span className={`font-[700]`}>
             Kindly proceed with your account verification for proper trading.
           </span>
-          <Button customClassName="bg-btn_orange" text="Verify Account" />
+          <Button customClassName={`bg-btn_orange`} text="Verify Account" />
         </div>
-        <div className="flex rounded-lg py-[18px] px-5 items-center justify-between w-full border-2 border-outline_orange bg-dashboard_cards_bg">
+        <div
+          className={`flex rounded-lg py-[18px] border-2 border-outline_orange px-5 items-center justify-between w-full  ${
+            dark ? "bg-dashboard_cards_bg " : "bg-white"
+          }`}
+        >
           <div>
-            <span className="text-outline_orange font-[700]">
+            <span className={`text-outline_orange font-[700]`}>
               Market Closing Hours:{" "}
             </span>
           </div>
-          <div>
-            <button className="w-[30px] h-[30px]" onClick={toggleTheme}>
+          <div className={`flex gap-2 items-center`}>
+            <button>
+              <img src="/Dashboard/bell-dot.svg" alt="notification" />
+            </button>
+            <button
+              className={`ml-4 mr-4 w-[30px] h-[30px]`}
+              onClick={toggleTheme}
+            >
               <img src={theme.img} alt={theme.mode} />
             </button>
+            <div className={`relative w-[40px] h-[40px]`}>
+              <Image
+                src="/Dashboard/avatarDashboard.png"
+                alt="avatar"
+                layout="fill"
+              />
+            </div>
+            <div>
+              <span className={`text-default_steps`}>Gabriel Cooper</span>
+              <button
+                onClick={() =>
+                  setArrowButtonDirection((prevState) =>
+                    prevState === "down" ? "up" : "down"
+                  )
+                }
+              >
+                {arrowButtonDirection === "down" ? (
+                  <ChevronDownIcon />
+                ) : (
+                  <ChevronUpIcon />
+                )}
+              </button>{" "}
+            </div>
           </div>
-          <Button customClassName="bg-btn_orange" text="Verify Account" />
         </div>
       </section>
-      <section className="grid py-[14px] gap-4 text-font_black mt-[24px] grid-cols-3">
+      <section
+        className={`grid py-[14px] gap-4 text-font_black mt-[24px] grid-cols-3`}
+      >
         {portfolioCards.map((item) => (
           <div
             key={item.title}
-            className="border h-[135px] border-outline_orange rounded-lg p-4"
+            className={`border h-[135px] border-outline_orange rounded-lg p-4`}
             style={{ backgroundColor: item.color }}
           >
             <span>{item.title}</span>
-            <div className="flex items-center justify-between">
-              <span className="text-[1.8rem]">{item.value}</span>
-              <button className="relative w-[20px] h-[20px]">
+            <div className={`flex items-center justify-between`}>
+              <span className={`text-[1.8rem]`}>{item.value}</span>
+              <button className={`relative w-[20px] h-[20px]`}>
                 <Image
                   src="/Dashboard/eye.svg"
                   layout="fill"
@@ -164,18 +223,22 @@ const Dashboard = () => {
           </div>
         ))}
       </section>
-      <section className=" mt-[24px]">
-        <div className="flex flex-col gap-6 w-[52%]">
-          <div className="border flex flex-col gap-5 bg-aside_onboard p-6 rounded-lg border-outline_orange">
-            <div className="flex w-full justify-between">
-              <span className="text-outline_orange">Top Gainers</span>
-              <button className="text-dashboard_green_80">
+      <section className={`flex gap-[22px] mt-[24px]`}>
+        <div className={`flex flex-col gap-6 w-[52%]`}>
+          <div
+            className={`border-2 flex flex-col gap-5 ${
+              dark ? "bg-dashboard_cards_bg" : "bg-white"
+            } p-6 rounded-lg border-outline_orange`}
+          >
+            <div className={`flex w-full justify-between`}>
+              <span className={`text-outline_orange`}>Top Gainers</span>
+              <button className={`text-dashboard_green_80`}>
                 View All Stocks
               </button>
             </div>
 
-            <div className="flex gap-4">
-              <div className="w-4/5">
+            <div className={`flex gap-4`}>
+              <div className={`w-4/5`}>
                 <InputGroup size="md">
                   <InputLeftElement pointerEvents="none">
                     <SearchIcon color="gray.300" />
@@ -183,7 +246,7 @@ const Dashboard = () => {
                   <Input type="tel" placeholder="Search for anything" />
                 </InputGroup>
               </div>
-              <div className="w-1/5">
+              <div className={`w-1/5`}>
                 <InputGroup>
                   <InputLeftElement
                     pointerEvents="none"
@@ -202,31 +265,41 @@ const Dashboard = () => {
           </div>
 
           {/* Market News */}
-          <div className="border flex flex-col gap-5 bg-aside_onboard p-6 rounded-lg border-outline_orange">
-            <div className="flex w-full justify-between">
-              <span className="text-outline_orange">Market News</span>
-              <button className="text-dashboard_green_80">Show More</button>
+          <div
+            className={`border-2 flex flex-col gap-5 ${
+              dark ? "bg-aside_onboard" : "bg-white"
+            } p-6 rounded-lg border-outline_orange`}
+          >
+            <div className={`flex w-full justify-between`}>
+              <span className={`text-outline_orange`}>Market News</span>
+              <button className={`text-dashboard_green_80`}>Show More</button>
             </div>
 
-            <div className="flex flex-col gap-5">
+            <div className={`flex flex-col gap-5`}>
               {marketNews.map((item) => {
                 return (
-                  <div className="flex bg-dashboard_cards_bg rounded-lg gap-4 p-3">
-                    <div className="relative w-1/2 h-[100px]">
+                  <div
+                    className={`flex ${
+                      dark
+                        ? "bg-dashboard_cards_bg"
+                        : "bg-dashboard_cards_light"
+                    }  rounded-lg gap-4 p-3`}
+                  >
+                    <div className={`relative w-1/2 h-[100px]`}>
                       <Image
                         src="/blogImg.png"
                         alt="news image"
                         layout="fill"
                       />
                     </div>
-                    <div className="flex flex-col gap-1">
-                      <small className="text-btn_orange text-[.8rem]">
+                    <div className={`flex flex-col gap-1`}>
+                      <small className={`text-btn_orange text-[.8rem]`}>
                         {" "}
                         {item.type}{" "}
                       </small>
                       <span> {item.title} </span>
-                      <span className="text-[.8rem]"> {item.shortText} </span>
-                      <span className="text-[.8rem]"> {item.date} </span>
+                      <span className={`text-[.8rem]`}> {item.shortText} </span>
+                      <span className={`text-[.8rem]`}> {item.date} </span>
                     </div>
                   </div>
                 );
@@ -234,7 +307,109 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div className="w-[48%]"></div>
+        <div className={`flex flex-col gap-6 w-[48%]`}>
+          <div
+            className={`border-2 flex flex-col gap-5 ${
+              dark ? "bg-aside_onboard" : "bg-white"
+            } p-6 rounded-lg border-outline_orange`}
+          >
+            <div className={`flex w-full justify-between`}>
+              <span className={`text-outline_orange`}>Announcement</span>
+              <HStack>
+                <IconButton
+                  aria-label="Left Arrow"
+                  icon={<ChevronLeftIcon />}
+                  size="sm"
+                  border={"1px solid #83796B"}
+                  color={"#83796B"}
+                  isRound
+                  background={"transparent"}
+                  onClick={() => console.log("Left arrow clicked")}
+                  sx={{
+                    _hover: {
+                      borderColor: "#FD891C",
+                      color: "#FD891C",
+                    },
+                  }}
+                />
+                <IconButton
+                  aria-label="Right Arrow"
+                  icon={<ChevronRightIcon />}
+                  size="sm"
+                  border={"1px solid #83796B"}
+                  color={"#83796B"}
+                  isRound
+                  background={"transparent"}
+                  onClick={() => console.log("Left arrow clicked")}
+                  sx={{
+                    _hover: {
+                      borderColor: "#FD891C",
+                      color: "#FD891C",
+                    },
+                  }}
+                />{" "}
+              </HStack>
+            </div>
+
+            <div className={`flex flex-col gap-5`}>
+              <div
+                className={`flex ${
+                  dark ? "bg-dashboard_cards_bg" : "bg-white"
+                } items-center justify-between h-fit rounded-lg gap-4 p-3`}
+              >
+                <div className={`flex flex-col gap-1`}>
+                  <span> Stock of the week</span>
+                  <div className={`flex gap-1`}>
+                    <span className={`w-[20px] h-[20px] relative`}>
+                      <Image
+                        src="/onboard/accessbank.png"
+                        alt="accessbank"
+                        layout="fill"
+                      />
+                    </span>
+                    <div className={`flex flex-col gap-[2px]`}>
+                      <span>GTB</span>
+                      <small>Guaranty Trust Bank</small>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <span className={`rounded-lg border p-2 border-[#B3BBBB]`}>
+                    {" "}
+                    60320{" "}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            className={`border-2 flex flex-col gap-5 ${
+              dark ? "bg-aside_onboard" : "bg-white"
+            } p-6 rounded-lg border-outline_orange`}
+          >
+            <span className={`text-btn_orange font-[700]`}>Top Sector</span>
+
+            <div className={`flex flex-col gap-4`}>
+              {topSector.map((item) => {
+                return (
+                  <div
+                    key={item}
+                    className={`flex py-5 px-4 ${
+                      dark
+                        ? "bg-dashboard_cards_bg"
+                        : "bg-dashboard_cards_light"
+                    } rounded-lg flex-col gap-2`}
+                  >
+                    <span className={`font-[700]`}> {item.title}</span>
+                    <span> {item.text}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   );

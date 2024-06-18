@@ -1,7 +1,6 @@
 "use client";
 import { DM_Sans, Pathway_Extreme } from "next/font/google";
 import { createGlobalStyle, useTheme } from "styled-components";
-import RootProvider from "./Provider";
 import { Provider } from "react-redux";
 import { store } from "@/store/store";
 
