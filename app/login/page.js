@@ -35,14 +35,12 @@ const Login = () => {
     return re.test(email);
   };
 
-  function handleEnd(value) {
-    console.log(value.steps);
+  function handleEnd({steps,value}) {
+    console.log(steps.email.value);
 
-    const email = value.steps.find((step) => step?.id === "5");
-    const password = value.steps.find((step) => step === "password");
+    // const email = steps.find((step) => step?.id == "email");
 
-    console.log("Email:", email);
-    console.log("Password:", password);
+    // console.log("Email:", email);
     setFinishLogin(true);
   }
 

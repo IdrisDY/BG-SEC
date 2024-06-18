@@ -1,6 +1,7 @@
 "use client";
 import { createContext, useState, useContext, useEffect } from "react";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
+import { ChakraProvider } from "@chakra-ui/react";
 
 export const ToggleThemeContext = createContext();
 
@@ -16,7 +17,7 @@ const lightTheme = {
   background: "#ffffff",
   color: "#121212",
   img: "/sun-medium.svg",
-  h2txt:'#0B1E1E',
+  h2txt: "#0B1E1E",
 };
 
 export const ToggleThemeProvider = ({ children }) => {
@@ -40,8 +41,10 @@ export const ToggleThemeProvider = ({ children }) => {
   }, [theme]);
 
   return (
-    <ToggleThemeContext.Provider value={{ theme, toggleTheme }}>
-      <StyledThemeProvider theme={theme}>{children}</StyledThemeProvider>
-    </ToggleThemeContext.Provider>
+    <ChakraProvider>
+      <ToggleThemeContext.Provider value={{ theme, toggleTheme }}>
+        <StyledThemeProvider theme={theme}>{children}</StyledThemeProvider>
+      </ToggleThemeContext.Provider>
+    </ChakraProvider>
   );
 };

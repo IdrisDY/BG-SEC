@@ -371,7 +371,7 @@ const Onboarding = () => {
     }
   };
 
-  function handleEnd(steps){
+  function handleEnd({steps,value}){
     console.log(steps);
   }
 

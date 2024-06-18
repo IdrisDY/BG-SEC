@@ -16,7 +16,7 @@ module.exports = {
         btn_orange: "#DA8E23",
         font_black: "#131414",
         footer_bg: "#02150D",
-        steps_component_bg:'#232626',
+        steps_component_bg: "#232626",
         green_60: "#96CCCC",
         fade_green_landing: "#EAF8F8",
         dark_green_90: "#045634",
@@ -28,6 +28,9 @@ module.exports = {
         onboard_green: "#008080",
         default_steps: "#83796B",
         aside_onboard: "#171B1B",
+        dashboard_cards_bg: "#232626",
+        dashboard_green_80: "#11BC74",
+        change_green:'#52FF00',
       },
       boxShadow: {
         custom1: "0px 12px 16px -4px #10182814",
