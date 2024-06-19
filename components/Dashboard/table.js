@@ -16,7 +16,7 @@ const TableComponent = ({ columns, data }) => {
 
   return (
     <table
-      className="border-separate  text-[.9rem] border-spacing-x-4 border-spacing-y-4 w-full"
+      className="border-separate text-[.7rem] border-spacing-x-2  lg:text-[.9rem] lg:border-spacing-x-4 border-spacing-y-4 w-full"
       {...getTableProps()}
     >
       <thead>
@@ -54,7 +54,7 @@ const TableComponent = ({ columns, data }) => {
                   onClick={() =>
                     console.log("Action clicked for row ID:", row.id)
                   }
-                  className=" px-[10px] text-center w-full min-w-[67px] py-[7px] rounded-lg bg-btn_orange"
+                  className=" px-[10px]  text-white text-center w-full min-w-[67px] py-[7px] rounded-lg bg-btn_orange"
                 >
                   Buy
                 </button>

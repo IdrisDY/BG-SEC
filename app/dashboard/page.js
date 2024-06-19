@@ -41,14 +41,9 @@ const Dashboard = () => {
           <img
             src={value.image}
             alt={value.title}
-            style={{
-              width: 30,
-              height: 30,
-              borderRadius: "7px",
-              marginRight: 10,
-            }}
+            className="w-[20px] h-[20px] rounded-[7px] mr-2 "
           />
-          <span>{value.title}</span>
+          <span  className="text-left" >{value.title}</span>
         </div>
       ),
     },
@@ -140,10 +135,10 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className=" ">
+    <div className=" py-8">
       <section className={`flex flex-col gap-4`}>
         <div
-          className={`flex rounded-lg py-[18px] px-5 items-center justify-between w-full   ${
+          className={`flex flex-col gap-4 lg:gap-0 lg:flex-row rounded-lg py-[18px] px-5 lg:items-center justify-between w-full   ${
             dark
               ? "bg-dashboard_cards_bg border-2 border-outline_orange"
               : "bg-sidebar_light"
@@ -152,10 +147,10 @@ const Dashboard = () => {
           <span className={`font-[700]`}>
             Kindly proceed with your account verification for proper trading.
           </span>
-          <Button customClassName={`bg-btn_orange`} text="Verify Account" />
+          <Button customClassName={`text-white bg-btn_orange`} text="Verify Account" />
         </div>
         <div
-          className={`flex rounded-lg py-[18px] border-2 border-outline_orange px-5 items-center justify-between w-full  ${
+          className={`flex flex-col lg:flex-row rounded-lg py-[18px] border-2 border-outline_orange px-5 items-center justify-between w-full  ${
             dark ? "bg-dashboard_cards_bg " : "bg-white"
           }`}
         >
@@ -200,8 +195,10 @@ const Dashboard = () => {
           </div>
         </div>
       </section>
+
+      {/* Portfolio Cards Section */}
       <section
-        className={`grid py-[14px] gap-4 text-font_black mt-[24px] grid-cols-3`}
+        className={`grid py-[14px] gap-4 text-font_black mt-[24px] lg:grid-cols-3`}
       >
         {portfolioCards.map((item) => (
           <div
@@ -223,21 +220,22 @@ const Dashboard = () => {
           </div>
         ))}
       </section>
-      <section className={`flex gap-[22px] mt-[24px]`}>
-        <div className={`flex flex-col gap-6 w-[52%]`}>
+      <section className={`flex flex-col lg:flex-row gap-[22px] mt-[24px]`}>
+        <div className={`flex flex-col gap-6 lg:w-[52%]`}>
+          {/*  Top Gainers Table*/}
           <div
             className={`border-2 flex flex-col gap-5 ${
               dark ? "bg-dashboard_cards_bg" : "bg-white"
-            } p-6 rounded-lg border-outline_orange`}
+            } px-2 py-4 lg:p-6 rounded-lg border-outline_orange`}
           >
-            <div className={`flex w-full justify-between`}>
+            <div className={`flex px-2 lg:px-0 w-full justify-between`}>
               <span className={`text-outline_orange`}>Top Gainers</span>
               <button className={`text-dashboard_green_80`}>
                 View All Stocks
               </button>
             </div>
 
-            <div className={`flex gap-4`}>
+            <div className={`flex  px-2 lg:px-0 gap-4`}>
               <div className={`w-4/5`}>
                 <InputGroup size="md">
                   <InputLeftElement pointerEvents="none">
@@ -274,18 +272,18 @@ const Dashboard = () => {
               <span className={`text-outline_orange`}>Market News</span>
               <button className={`text-dashboard_green_80`}>Show More</button>
             </div>
-
+{/* News List */}
             <div className={`flex flex-col gap-5`}>
               {marketNews.map((item) => {
                 return (
                   <div
-                    className={`flex ${
+                    className={`flex flex-col lg:flex-row ${
                       dark
                         ? "bg-dashboard_cards_bg"
                         : "bg-dashboard_cards_light"
                     }  rounded-lg gap-4 p-3`}
                   >
-                    <div className={`relative w-1/2 h-[100px]`}>
+                    <div className={`relative lg:w-1/2 h-[100px]`}>
                       <Image
                         src="/blogImg.png"
                         alt="news image"
@@ -307,7 +305,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div className={`flex flex-col gap-6 w-[48%]`}>
+        <div className={`flex flex-col gap-6 lg:w-[48%]`}>
           <div
             className={`border-2 flex flex-col gap-5 ${
               dark ? "bg-aside_onboard" : "bg-white"
