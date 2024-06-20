@@ -8,6 +8,7 @@ export const ToggleThemeContext = createContext();
 const darkTheme = {
   mode: "dark",
   background: "#131414",
+
   color: "#ffffff",
   img: "/moon.svg",
 };
@@ -15,6 +16,7 @@ const darkTheme = {
 const lightTheme = {
   mode: "light",
   background: "#ffffff",
+  dashboard_bg: "#EEF6F6",
   color: "#121212",
   img: "/sun-medium.svg",
   h2txt: "#0B1E1E",
@@ -41,8 +43,8 @@ export const ToggleThemeProvider = ({ children }) => {
   }, [theme]);
 
   return (
-      <ToggleThemeContext.Provider value={{ theme, toggleTheme }}>
-        <StyledThemeProvider theme={theme}>{children}</StyledThemeProvider>
-      </ToggleThemeContext.Provider>
+    <ToggleThemeContext.Provider value={{ theme, toggleTheme }}>
+      <StyledThemeProvider theme={theme}>{children}</StyledThemeProvider>
+    </ToggleThemeContext.Provider>
   );
 };

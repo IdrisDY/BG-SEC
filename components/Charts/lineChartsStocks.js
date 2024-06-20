@@ -61,7 +61,7 @@ const LineChart = ({ data }) => {
     };
   }, [data]);
 
-  return <canvas ref={chartRef}></canvas>;
+  return <canvas className="w-full" ref={chartRef}></canvas>;
 };
 
 export default LineChart;

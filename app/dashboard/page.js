@@ -21,22 +21,27 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 import TableComponent from "@/components/Dashboard/table";
+import PortfolioCards from "@/components/Dashboard/portfolioCards";
 
 export const TopDashboardBoxes = () => {
   const { theme, toggleTheme } = useContext(ToggleThemeContext);
   const dark = theme.mode === "dark";
   const [arrowButtonDirection, setArrowButtonDirection] = useState("down");
-
+  console.log(dark);
   return (
     <section className={`flex flex-col gap-4`}>
       <div
-        className={`flex flex-col gap-4 lg:gap-0 lg:flex-row rounded-lg py-[18px] px-5 lg:items-center justify-between w-full   ${
+        className={`flex box-border border-2 flex-col gap-4 lg:gap-0 lg:flex-row rounded-lg py-[18px] px-5 lg:items-center justify-between w-full   ${
           dark
-            ? "bg-dashboard_cards_bg border-2 border-outline_orange"
-            : "bg-sidebar_light"
+            ? "bg-dashboard_cards_bg  border-outline_orange"
+            : "bg-sidebar_light border-transparent "
         }`}
       >
-        <span className={` text-[.9rem] lg:text-[1rem] font-[700]`}>
+        <span
+          className={`  ${
+            dark ? "" : "text-light_mainTxt"
+          } text-[.9rem] lg:text-[1rem] font-[700]`}
+        >
           Kindly proceed with your account verification for proper trading.
         </span>
         <Button
@@ -50,7 +55,9 @@ export const TopDashboardBoxes = () => {
         }`}
       >
         <div>
-          <span className={`text-outline_orange  text-[.9rem] lg:text-[1rem] font-[700]`}>
+          <span
+            className={`text-outline_orange  text-[.9rem] lg:text-[1rem] font-[700]`}
+          >
             Market Closing Hours:{" "}
           </span>
         </div>
@@ -96,12 +103,6 @@ export const TopDashboardBoxes = () => {
 const Dashboard = () => {
   const { theme, toggleTheme } = useContext(ToggleThemeContext);
   const dark = theme.mode === "dark";
-
-  const portfolioCards = [
-    { title: "NGN Portfolio", color: "#E5C162", value: `₦0.0` },
-    { title: "USD Portfolio", color: "#E7EB34CC", value: `$0.0` },
-    { title: "My cash balance ", color: "#CCF066", value: `₦0.0` },
-  ];
 
   const columns = [
     {
@@ -207,32 +208,10 @@ const Dashboard = () => {
 
   return (
     <div className=" py-8">
-      {/* Top Dashboard Content */}
-      <TopDashboardBoxes />
+      
       {/* Portfolio Cards Section */}
-      <section
-        className={`grid py-[14px] gap-4 text-font_black mt-[24px] lg:grid-cols-3`}
-      >
-        {portfolioCards.map((item) => (
-          <div
-            key={item.title}
-            className={`border h-[135px] border-outline_orange rounded-lg p-4`}
-            style={{ backgroundColor: item.color }}
-          >
-            <span>{item.title}</span>
-            <div className={`flex items-center justify-between`}>
-              <span className={`text-[1.8rem]`}>{item.value}</span>
-              <button className={`relative w-[20px] h-[20px]`}>
-                <Image
-                  src="/Dashboard/eye.svg"
-                  layout="fill"
-                  alt="see balance"
-                />
-              </button>
-            </div>
-          </div>
-        ))}
-      </section>
+      <PortfolioCards />
+
       <section className={`flex flex-col lg:flex-row gap-[22px] mt-[24px]`}>
         <div className={`flex flex-col gap-6 lg:w-[52%]`}>
           {/*  Top Gainers Table*/}
@@ -241,7 +220,9 @@ const Dashboard = () => {
               dark ? "bg-dashboard_cards_bg" : "bg-white"
             } px-2 py-4 lg:p-6 rounded-lg border-outline_orange`}
           >
-            <div className={`flex px-2  text-[.9rem] lg:text-[1rem] lg:px-0 w-full justify-between`}>
+            <div
+              className={`flex px-2  text-[.9rem] lg:text-[1rem] lg:px-0 w-full justify-between`}
+            >
               <span className={`text-outline_orange`}>Top Gainers</span>
               <button className={`text-dashboard_green_80`}>
                 View All Stocks
@@ -281,7 +262,9 @@ const Dashboard = () => {
               dark ? "bg-aside_onboard" : "bg-white"
             } p-6 rounded-lg border-outline_orange`}
           >
-            <div className={`flex w-full  text-[.9rem] lg:text-[1rem] justify-between`}>
+            <div
+              className={`flex w-full  text-[.9rem] lg:text-[1rem] justify-between`}
+            >
               <span className={`text-outline_orange`}>Market News</span>
               <button className={`text-dashboard_green_80`}>Show More</button>
             </div>
@@ -325,7 +308,11 @@ const Dashboard = () => {
             } p-6 rounded-lg border-outline_orange`}
           >
             <div className={`flex w-full justify-between`}>
-              <span className={`text-outline_orange  text-[.9rem] lg:text-[1rem]`}>Announcement</span>
+              <span
+                className={`text-outline_orange  text-[.9rem] lg:text-[1rem]`}
+              >
+                Announcement
+              </span>
               <HStack>
                 <IconButton
                   aria-label="Left Arrow"
@@ -400,7 +387,11 @@ const Dashboard = () => {
               dark ? "bg-aside_onboard" : "bg-white"
             } p-6 rounded-lg border-outline_orange`}
           >
-            <span className={`text-btn_orange text-[.9rem] lg:text-[1rem] font-[700]`}>Top Sector</span>
+            <span
+              className={`text-btn_orange text-[.9rem] lg:text-[1rem] font-[700]`}
+            >
+              Top Sector
+            </span>
 
             <div className={`flex flex-col gap-4`}>
               {topSector.map((item) => {

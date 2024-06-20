@@ -32,7 +32,9 @@ module.exports = {
         dashboard_green_80: "#11BC74",
         change_green: "#52FF00",
         sidebar_light: "#DFE6E6",
-        dashboard_cards_light:'#F3F9F9',
+        dashboard_cards_light: "#F3F9F9",
+        stock_cardsbg: "#2F3434",
+        dashboard_bg_light:'#EEF6F6',
       },
       boxShadow: {
         custom1: "0px 12px 16px -4px #10182814",
