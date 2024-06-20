@@ -4,7 +4,7 @@ import { DMFont, pathWay } from "@/components/body";
 import { createGlobalStyle, useTheme } from "styled-components";
 import styled from "styled-components";
 import Button from "@/components/button";
-import OnboardStart from "@/components/onboardStartModal";
+import OnboardStart from "@/components/Onboarding/onboardStartModal";
 import Loader from "@/components/home-loading";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";

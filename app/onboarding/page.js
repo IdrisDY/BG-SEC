@@ -1,11 +1,7 @@
 "use client";
 import { useState } from "react";
-import { ThemeProvider, useTheme } from "styled-components";
-import ChatBot from "react-simple-chatbot";
-import { pathWay } from "@/components/body";
-import Image from "next/image";
-import Link from "next/link";
 import { useSelector } from "react-redux";
+import UserChatTemplate from "@/components/userChat";
 
 const StepQuestions = ({ role, steps, triggerNextStep }) => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -15,46 +11,46 @@ const StepQuestions = ({ role, steps, triggerNextStep }) => {
       id: 1,
       image: "/onboard/accessbank.png",
       title: "123456788",
-      value: "1234589",
+      value: "1",
     },
     {
       id: 2,
       image: "/onboard/accessbank.png",
       title: "123456788",
-      value: "123232319",
+      value: "2",
     },
     {
       id: 3,
       image: "/onboard/accessbank.png",
       title: "123456788",
-      value: "1234232789",
+      value: "3",
     },
   ];
   const securityOptions = [
     {
       id: 1,
       title: "Your birthday date",
-      value: "123",
+      value: "1",
     },
     {
       id: 2,
       title: "Your mother maiden's name",
-      value: "123232319",
+      value: "2",
     },
     {
       id: 3,
       title: "Your favorite colour",
-      value: "12",
+      value: "3",
     },
     {
       id: 4,
       title: "Your state of origin",
-      value: "12",
+      value: "4",
     },
     {
       id: 3,
       title: "Your popular artist",
-      value: "12",
+      value: "5",
     },
   ];
 
@@ -148,6 +144,20 @@ const StepQuestions = ({ role, steps, triggerNextStep }) => {
 };
 
 const Onboarding = () => {
+  const [finishOnbarding, setFinishOnboarding] = useState(false);
+  const isValidPassword = (password) => {
+    const minLength = 8;
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+    return (
+      password.length >= minLength &&
+      hasUpperCase &&
+      hasLowerCase &&
+      hasSpecialChar
+    );
+  };
+
   const listOfSteps = [
     {
       title: "Your details",
@@ -249,6 +259,13 @@ const Onboarding = () => {
       id: "14",
       user: true,
       trigger: "15",
+      validator: (value) => {
+        if (isValidPassword(value)) {
+          return true;
+        } else {
+          return "Password must be at least 8 characters long and include lowercase, uppercase, and special characters";
+        }
+      },
     },
     {
       id: "15",
@@ -326,21 +343,13 @@ const Onboarding = () => {
     {
       id: "27",
       user: true,
-      end: true,
+      trigger: () => {
+        return '28'
+      },
+      end:true
     },
   ];
 
-  const theme = {
-    background: "",
-    fontFamily: "",
-    headerBgColor: "#EF6C00",
-    headerFontColor: "#fff",
-    headerFontSize: "15px",
-    botBubbleColor: "#EF6C00",
-    botFontColor: "#fff",
-    userBubbleColor: "#fff",
-    userFontColor: "#4a4a4a",
-  };
   const paginationIndicator = [
     { id: 1, isActive: true },
     { id: 2, isActive: false },
@@ -349,8 +358,6 @@ const Onboarding = () => {
     { id: 5, isActive: false },
     { id: 6, isActive: false },
   ];
-
-  const [currentStep, setCurrentStep] = useState({ value: 1, finished: false });
 
   const handleNext = () => {
     if (currentStep < steps.length - 1) {
@@ -364,133 +371,24 @@ const Onboarding = () => {
     }
   };
 
-  const page = useTheme();
-  const {showModal} =  useSelector(state=>state.LandingPage)
+  function handleEnd({steps,value}){
+    console.log(steps);
+  }
+
+  const { showModal } = useSelector((state) => state.LandingPage);
   console.log(showModal);
-
   return (
-    <div
-      className={`bg-font_black min-h-screen text-[.9rem] md:items-center lg:items-stretch flex-col lg:flex-row flex text-white`}
-    >
-      <aside className={`bg-aside_onboard  min-h-full lg:w-2/5`}>
-        <div className={`border-b px-12 border-[#83796B] pt-7 pb-10`}>
-          <div className={`relative w-1/2 h-[60px]`}>
-            <Image
-              layout="fill"
-              src="/onboard/bgl-onboard-darklogo.png"
-              alt="dark logo"
-            />
-          </div>
-        </div>
-
-        <div className={`px-12 flex flex-col gap-[20vh]`}>
-          <div className={`flex pt-10 gap-4`}>
-            <div className={`flex flex-col items-center`}>
-              {Array.from({ length: 4 }).map((item, index) => (
-                <div key={index} className={`flex flex-col items-center`}>
-                  <div
-                    className={`border flex items-center border-gray-200 w-fit rounded-full bg-white p-[1px]`}
-                  >
-                    <div
-                      className={`rounded-full w-[25px] flex items-center justify-center ${
-                        currentStep.value === index + 1
-                          ? " bg-[#DA8E23]"
-                          : "bg-default_steps"
-                      } h-[25px]`}
-                    >
-                      <div
-                        className={`rounded-full w-[10px] h-[10px] bg-white`}
-                      ></div>
-                    </div>
-                  </div>
-                  {index !== 3 && (
-                    <div className={`w-[3px] h-[40px] my-1 bg-[#E1F4F4]`}></div>
-                  )}{" "}
-                </div>
-              ))}
-            </div>
-            <ul className={`flex gap-8 flex-col`}>
-              {listOfSteps.map((item, index) => (
-                <li key={index} className={`flex gap-1`}>
-                  <div className={`flex flex-col`}>
-                    <span>{item.title}</span>
-                    <span>{item.txt}</span>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <span className={`text-default_steps`}>
-              © BGLSecurityLimited2024
-            </span>
-            <span>
-              {" "}
-              <Link className={`underline text-[#11BC74]`} href="/">
-                help@bgl.com
-              </Link>
-            </span>
-          </div>
-        </div>
-      </aside>
-      <main className={`px-6 py-12 flex flex-col gap-14 lg:px-12 md:w-3/5`}>
-        <div className={`flex justify-between items-center`}>
-          <div className={`flex w-2/5 gap-3`}>
-            {paginationIndicator.map((step) => (
-              <div
-                key={step.id}
-                className={`w-[50px] h-2 rounded-full cursor-pointer ${
-                  step.isActive ? "bg-white" : "bg-default_steps"
-                }`}
-                onClick={() => setActiveStep(step.id)}
-              ></div>
-            ))}
-          </div>
-          <div>
-            <span className={`text-default_steps`}>Have an account ?</span>
-            <span>
-              {" "}
-              <Link className={`underline text-[#11BC74]`} href="/">
-                Click Here!
-              </Link>
-            </span>
-          </div>
-        </div>
-        <ThemeProvider theme={theme}>
-          <ChatBot
-            hideHeader
-            className={`${pathWay.className} text-font_black md:3/4 lg:w-full mx-auto`}
-            steps={steps}
-            bubbleOptionStyle={{ borderRadius: "0px" }}
-            footerStyle={{
-              background: "#131414",
-              border: "1px solid #DA8E23",
-              borderRadius: "8px",
-              padding: "4px",
-            }}
-            bubbleStyle={{
-              background: "#131414",
-              border: "1px solid #DA8E23",
-              borderRadius: "8px",
-              width: "100%",
-              maxWidth: "50%",
-            }}
-            userBubbleStyle={{
-              borderRadius: "10px",
-              background: "#fff",
-              color: "#4a4a4a",
-              border: "1px solid #DA8E23",
-              padding: "10px",
-              margin: "5px 0",
-            }}
-            inputStyle={{
-              color: "white",
-            }}
-            botAvatar="/onboard/Memoji.png"
-          />
-        </ThemeProvider>
-      </main>
-    </div>
+    <UserChatTemplate
+      steps={steps}
+      paginationIndicator={paginationIndicator}
+      bottomText={"Welcome on board"}
+      topText={"Finally"}
+      finishProcess={finishOnbarding}
+      listOfSteps={listOfSteps}
+      numberOfSteps={4}
+      topRightPageText={"Have an account?"}
+      handleEnd={handleEnd}
+    />
   );
 };
 
