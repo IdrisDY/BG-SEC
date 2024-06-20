@@ -51,6 +51,14 @@ module.exports = {
           "0%": { opacity: 0.7, transform: "translateY(-100%)" },
           "100%": { opacity: 1, transform: "translateY(0%)" },
         },
+        rollLeft: {
+          "0%": { opacity: 0.7, transform: "translateX(100%)" },
+          "100%": { opacity: 1, transform: "translateX(0%)" },
+        },
+        rollRight: {
+          "0%": { opacity: 0.7, transform: "translateX(0%)" },
+          "100%": { opacity: 1, transform: "translateX(100%)" },
+        },
         rollup: {
           "0%": { opacity: 1, transform: "translateY(0%)" },
           "100%": { opacity: 0.7, transform: "translateY(-100%)" },
@@ -64,6 +72,8 @@ module.exports = {
         spinner: "spinner .5s linear infinite",
         dropdown: "dropdown .5s ease-in-out",
         rollup: "rollup .5s ease-in-out",
+        rollLeft: "rollLeft .5s ease-in-out",
+        rollRight: "rollRight .5s ease-in-out",
         marquee: "marquee 15s linear infinite",
       },
     },

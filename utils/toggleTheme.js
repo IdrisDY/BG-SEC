@@ -41,10 +41,8 @@ export const ToggleThemeProvider = ({ children }) => {
   }, [theme]);
 
   return (
-    <ChakraProvider>
       <ToggleThemeContext.Provider value={{ theme, toggleTheme }}>
         <StyledThemeProvider theme={theme}>{children}</StyledThemeProvider>
       </ToggleThemeContext.Provider>
-    </ChakraProvider>
   );
 };
