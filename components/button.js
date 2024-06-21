@@ -2,6 +2,7 @@ import React from "react";
 
 const Button = ({
   text = "",
+  children,
   variant = "black",
   size = "small",
   type = "button",
@@ -16,7 +17,7 @@ const Button = ({
   const buttonVariant = `bg-${variant}`;
   // const buttonTextColor = variant === "black" ? "text-white" : "text-font_black";
   const isDisabledStyle = disabled ? "bg-gray-400 text-white" : "";
-const baseColor = base ? 'text-[#FAFFFF]' : ''
+  const baseColor = base ? "text-[#FAFFFF]" : "";
   const className = `${baseClassName} ${buttonWidth} ${buttonVariant} ${baseColor}  ${isDisabledStyle}`;
 
   return (
@@ -27,6 +28,7 @@ const baseColor = base ? 'text-[#FAFFFF]' : ''
       id={id}
       className={`${className} ${customClassName}`}
     >
+      {children}
       {text}
     </button>
   );
