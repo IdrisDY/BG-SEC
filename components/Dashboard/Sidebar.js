@@ -41,21 +41,21 @@ const DashboardSidebar = () => {
   }
   return (
     <aside
-      className={` ${
+      className={`z-10 relative flex lg:w-1/5 ${
         isMenuClicked
-          ? " bg-black bg-opacity-50 z-10 transition-all duration-500  fixed w-full h-full bottom-0 "
+          ? " bg-black bg-opacity-50 transition-all duration-500    bottom-0 fixed "
           : ""
-      } '}`}
+      }`}
     >
       <div
-        className={` ${darkMode ? "bg-aside_onboard" : "bg-sidebar_light"} ${
+        className={`transition-all duration-[250ms] ${darkMode ? "bg-aside_onboard" : "bg-sidebar_light"} ${
           isMenuClicked
-            ? " w-[65%] sm:w-1/2  absolute right-0  animate-rollLeft h-full "
+            ? "   w-[65%] sm:w-1/2  absolute right-0  animate-rollLeft h-full "
             : "max-w-[500px]  mt-[47px]  w-full"
-        } lg:absolute top:0 lg:left-0 flex mx-auto lg:max-w-full  lg:min-h-screen h-full lg:w-1/5 lg:mt-0`}
+        } lg:absolute top:0 lg:left-0 flex mx-auto lg:max-w-full  lg:min-h-screen h-full  lg:w-full  lg:mt-0`}
       >
         <div
-          className={`h-full ${
+          className={`w-full h-full ${
             isMenuClicked ? "flex" : "hidden"
           } w-full lg:flex flex-col  `}
         >

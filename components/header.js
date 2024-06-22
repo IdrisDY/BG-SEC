@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { setShowModal } from "@/store/LandingPageSlice";
 import Marquee from "./marquee";
+import { IconButton } from "@chakra-ui/react";
 
 const Header = ({ showSignUpModal }) => {
   const theme = useTheme();
@@ -60,15 +61,23 @@ const Header = ({ showSignUpModal }) => {
   const Buttons = () => {
     return (
       <div className="lg:flex gap-6 items-center">
-        <button className="w-[30px] h-[30px]" onClick={toggleTheme}>
-          <img src={theme.img} alt={theme.mode} />
-        </button>
+        <IconButton
+          onClick={toggleTheme}
+          icon={theme.img}
+          variant={"ghost"}
+          sx={{
+            _hover: {
+              background: "transparent",
+            },
+          }}
+          aria-label="Theme icon change  "
+        ></IconButton>
         <Link href="/login"> Log In</Link>
         <Button
           onClick={() => handleShowModal()}
           customClassName=" bg-btn_orange"
           text="Start Trading"
-          base
+          variant="custom-yellow"
         />
       </div>
     );

@@ -2,29 +2,42 @@
 import Button from "@/components/button";
 import {
   AddIcon,
-  ArrowBackIcon,
   ChevronUpIcon,
   HamburgerIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
+  SearchIcon,
 } from "@chakra-ui/icons";
 import {
   IconButton,
   Menu,
+  Select,
   MenuItem,
   MenuList,
   MenuButton,
   HStack,
+  InputGroup,
+  Input,
+  InputLeftElement,
 } from "@chakra-ui/react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import DoughnutChart from "@/components/Charts/walletDoughnuts";
 import { useTheme } from "styled-components";
 import ChartCard from "@/components/Dashboard/chartCard";
+import { useState } from "react";
+import Image from "next/image";
+import { FiArrowUpRight } from "react-icons/fi";
+import AboutStocksChart from "@/components/Charts/StockAboutsChart";
+import { useRouter } from "next/navigation";
+import GoBackButton from "@/components/Dashboard/goBack";
 
 const Stock = () => {
   const theme = useTheme();
   const dark = theme.mode === "dark";
+  const [stockDetailsInView, setStockDetailsInView] = useState("About");
+
   const data = [70, 20, 40];
+  const router = useRouter();
   const stocks = [
     {
       img: "/onboard/accessbank.png",
@@ -91,152 +104,182 @@ const Stock = () => {
     { time: "4h ago", price: "NGN10,000" },
     { time: "5h ago", price: "NGN10,000" },
   ];
+  const topSector = [
+    { title: "Entertainment", text: "There are stocks are often distributed" },
+    { title: "Sports", text: "There are stocks are often distributed" },
+    { title: "Entertainment", text: "There are stocks are often distributed" },
+    { title: "Entertainment", text: "There are stocks are often distributed" },
+    { title: "Entertainment", text: "There are stocks are often distributed" },
+  ];
+  const marketNews = [
+    {
+      type: "Investment",
+      title: "Building your portfolio",
+      shortText:
+        "The rise of RESTful APIs has been met by a rise in tools for creating, testing, and managing them.",
+      date: "15 Jan 2022",
+    },
+    {
+      type: "Investment",
+      title: "Building your portfolio",
+      shortText:
+        "The rise of RESTful APIs has been met by a rise in tools for creating, testing, and managing them.",
+      date: "15 Jan 2022",
+    },
+    {
+      type: "Investment",
+      title: "Building your portfolio",
+      shortText:
+        "The rise of RESTful APIs has been met by a rise in tools for creating, testing, and managing them.",
+      date: "15 Jan 2022",
+    },
+    {
+      type: "Investment",
+      title: "Building your portfolio",
+      shortText:
+        "The rise of RESTful APIs has been met by a rise in tools for creating, testing, and managing them.",
+      date: "15 Jan 2022",
+    },
+    {
+      type: "Investment",
+      title: "Building your portfolio",
+      shortText:
+        "The rise of RESTful APIs has been met by a rise in tools for creating, testing, and managing them.",
+      date: "15 Jan 2022",
+    },
+    {
+      type: "Investment",
+      title: "Building your portfolio",
+      shortText:
+        "The rise of RESTful APIs has been met by a rise in tools for creating, testing, and managing them.",
+      date: "15 Jan 2022",
+    },
+  ];
 
-  return (
-    <div>
-      <Button
-        text="Back"
-        customClassName={` flex mt-10 gap-2 rounded-lg  items-center ${
-          dark ? "bg-btn_orange" : "bg-white border border-[#D0D5DD] "
-        }`}
-      >
-        {" "}
-        <ArrowBackIcon color={dark ? "white" : "black"} />
-      </Button>
+  const isAboutView = stockDetailsInView === "About";
+  const isFinancialsView = stockDetailsInView === "Financials";
+  const isNewsView = stockDetailsInView === "News";
 
-      <div
-        className={` ${
-          dark ? "bg-[#1C1F1F]" : "bg-[#0080800A]"
-        } flex mt-6 mb-4 py-2 px-5  rounded-lg justify-between `}
-      >
+  const About = () => {
+    const chartData = [
+      { date: "2023-01-01", price: 100 },
+      { date: "2023-01-02", price: 105 },
+      { date: "2023-01-03", price: 102 },
+      { date: "2023-01-04", price: 104 },
+      { date: "2023-01-05", price: 108 },
+      { date: "2023-01-06", price: 107 },
+      { date: "2023-01-07", price: 110 },
+      { date: "2023-01-08", price: 112 },
+      { date: "2023-01-09", price: 115 },
+      { date: "2023-01-10", price: 113 },
+      { date: "2023-01-11", price: 117 },
+      { date: "2023-01-12", price: 116 },
+      { date: "2023-01-13", price: 100 },
+      { date: "2023-01-14", price: 121 },
+      { date: "2023-01-15", price: 120 },
+      { date: "2023-01-16", price: 123 },
+      { date: "2023-01-17", price: 125 },
+      { date: "2023-01-18", price: 122 },
+      { date: "2023-01-19", price: 126 },
+      { date: "2023-01-20", price: 124 },
+      { date: "2023-01-21", price: 127 },
+      { date: "2023-01-22", price: 129 },
+      { date: "2023-01-23", price: 99 },
+    ];
+
+    return (
+      <section className="flex flex-col gap-10">
         <div
-          className={`${
-            dark ? "bg-[#344444]" : "bg-[#FAFFFF]"
-          } flex border border-outline_orange rounded-lg py-2 px-4`}
+          className={`flex lg:h-[300px] flex-col relative gap-3 rounded-[12px]  w-full   ${
+            dark ? "bg- " : "bg-white"
+          } border-2 px-6 pt-6 rounded-[12px] border-outline_orange`}
         >
-          <img src="/onboard/accessbank.png" alt="stock image" />
-          <span> AccessBank </span>
+          <AboutStocksChart data={chartData} />
         </div>
-        <Menu>
-          <MenuButton
-            as={IconButton}
-            aria-label="Options"
-            variant="outline"
-            border={"none"}
-            colorScheme={dark ? "#FD891C" : "bg-white"}
-            icon={<BsThreeDotsVertical />}
-          />
-          <MenuList>
-            <MenuItem onClick={() => console.log("Option 1 clicked")}>
-              Option 1
-            </MenuItem>
-            <MenuItem onClick={() => console.log("Option 2 clicked")}>
-              Option 2
-            </MenuItem>
-            <MenuItem onClick={() => console.log("Option 3 clicked")}>
-              Option 3
-            </MenuItem>
-          </MenuList>
-        </Menu>{" "}
-      </div>
-
-      <div
-        className={`flex mt-6 flex-col lg:flex-row relative gap-1 lg:gap-1 rounded-lg  w-full   ${
-          dark ? "bg- " : "bg-white"
-        } border-2 py-7 px-9 rounded-[12px] border-outline_orange`}
-      >
-        <div className=" flex flex-col gap-[6px] lg:w-3/5">
-          <h1 className="font-[600]">Key Stats</h1>
-
-          <div className="flex text-[.9rem] lg:text-[1rem] gap-[80px] ">
-            <ul className="flex flex-col gap-5">
-              {firstColumnStats.map((item) => {
-                return (
-                  <li className="flex flex-col gap-1">
-                    <h2 className="font-[800] font-[.9rem] "> {item.title} </h2>
-                    <p className="text-[#3B4B4B]"> {item.value} </p>
-                  </li>
-                );
-              })}
-            </ul>
-            <ul className="flex flex-col gap-5">
-              {secondColumnStats.map((item) => {
-                return (
-                  <li className="flex flex-col gap-1">
-                    <h2 className="font-[800] font-[.9rem] "> {item.title} </h2>
-                    <p className="text-[#3B4B4B]"> {item.value} </p>
-                  </li>
-                );
-              })}
-            </ul>
+        <div className="flex flex-col lg:flex-row gap-7 ">
+          <div
+            className={`flex lg:w-3/5 flex-col relative gap-3 rounded-lg  w-full   ${
+              dark ? "bg- " : "bg-white"
+            } border-2 py-7 px-9 rounded-[12px] border-outline_orange`}
+          >
+            {/* Article Text */}
+            <article className="flex flex-col gap-3">
+              <h3
+                className={`font-[700]  ${
+                  dark ? "text-outline_orange" : "text-light_subhead"
+                } `}
+              >
+                About
+              </h3>
+              <p>
+                Dangote stock is a multinational technology company known for
+                its consumer electronics, software, and digital services. It is
+                one of the world's largest technology companies. Apple Inc. is a
+                multinational technology company known for its consumer
+                electronics, software, and digital services. It is one of the
+                world's largest technology companies.Apple Inc. is a
+                multinational technology company known for its consumer
+                electronics, software, and digital services. It is one of the
+                world's largest technology companies. Apple Inc. is a
+                multinational technology company known for its consumer
+                electronics, software, and digital services. It is one of the
+                world's largest technology companies.
+              </p>
+            </article>
+            <article className="flex flex-col gap-3">
+              <h3
+                className={`font-[700]  ${
+                  dark ? "text-outline_orange" : "text-light_subhead"
+                } `}
+              >
+                Our Vision
+              </h3>
+              <p>
+                Dangote stock s a multinational technology company known for its
+                consumer electronics, software, and digital services. It is one
+                of the world's largest technology companies. Apple Inc. is a
+                multinational technology company known for its consumer
+                electronics, software, and digital services. It is one of the
+                world's largest technology companies.rgest technology companies.{" "}
+              </p>
+            </article>
           </div>
-        </div>
-
-        <div
-          className={`flex lg:w-1/2 mt-6 flex-col h-fit relative gap- lg:gap-2 rounded-lg  w-full   ${
-            dark ? " " : ""
-          } border-2 py-6 px-5 rounded-[12px] border-outline_orange`}
-        >
-          <div className="flex justify-between">
-            <span>Price</span>
-            <span>NGN60,000</span>
-          </div>
-          <div className="flex font-[800] justify-between">
-            <span className="text-[#6B7878]">Today</span>
-            <span className="text-[#008080]">
-              {" "}
-              <ChevronUpIcon /> 25.40%
+          {/* Featured In */}
+          <div
+            className={`border-2 lg:w-2/5 flex flex-col gap-5 ${
+              dark ? "bg-aside_onboard" : "bg-white"
+            } p-6 rounded-lg border-outline_orange`}
+          >
+            <span
+              className={`text-btn_orange text-[.9rem] lg:text-[1rem] font-[700]`}
+            >
+              Featured In
             </span>
+
+            <div className={`flex flex-col gap-4`}>
+              {topSector.map((item) => {
+                return (
+                  <div
+                    key={item}
+                    className={`flex py-5 px-4 ${
+                      dark
+                        ? "bg-dashboard_cards_bg"
+                        : "bg-dashboard_cards_light"
+                    } rounded-lg flex-col gap-2`}
+                  >
+                    <span className={`font-[700]`}> {item.title}</span>
+                    <span> {item.text}</span>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-          <span className="my-6 text-[#00CC66] ">Available</span>
-          <Button
-            customClassName="bg-btn_orange w-full text-white"
-            text="Buy"
-          />
         </div>
-      </div>
-
-      {/* Mid Texts */}
-      <div
-        className={`flex mt-10 mb-4 gap-4 lg:gap-0  flex-col lg:flex-row lg:items-center justify-between`}
-      >
-        <div
-          className={`h-full flex ${
-            dark ? "text-default_steps" : "bg-white text-[#344054]"
-          } font-[800]`}
-        >
-          <span
-            className={`border-y-2 border-l-2 rounded-tl-lg rounded-bl-lg ${
-              dark ? "border-outline_orange" : "border-[#D0D5DD]"
-            }  py-[10px] px-4`}
-          >
-            About
-          </span>
-          <span
-            className={`border-y-2 border-x  ${
-              dark ? "border-outline_orange" : "border-[#D0D5DD]"
-            } py-[10px] px-4`}
-          >
-            Financial
-          </span>
-          <span
-            className={`border-y-2 border-r-2 rounded-tr-lg rounded-br-lg  ${
-              dark ? "border-outline_orange" : "border-[#D0D5DD]"
-            } py-[10px] px-4`}
-          >
-            News
-          </span>
-        </div>
-        <Button
-          customClassName={`flex gap-2 border rounded-lg items-center ${
-            dark ? "bg-btn_orange  " : "bg-white  border-[#D0D5DD]"
-          }`}
-          text="Compare Stocks"
-        >
-          <AddIcon />
-        </Button>
-      </div>
-
+      </section>
+    );
+  };
+  const Financials = () => {
+    return (
       <section className="flex flex-col lg:flex-row gap-8 ">
         <div className=" w-full lg:w-[48%] ">
           <div
@@ -324,6 +367,272 @@ const Stock = () => {
           </div>
         </div>
       </section>
+    );
+  };
+  const News = () => {
+    return (
+      <div>
+        <div
+          className={`border-2 my-8 flex flex-col gap-5 ${
+            dark ? "bg-aside_onboard" : "bg-white"
+          }  px-2 py-4 lg:p-6 rounded-[10px] border-outline_orange`}
+        >
+          <div
+            className={`flex px-2 ${
+              dark ? "bg-[#121D1D]" : "bg-[]"
+            } text-[.9rem] lg:text-[1rem] lg:px-0 w-full justify-between`}
+          >
+            <span className={`text-outline_orange font-[500] `}>
+              Market News
+            </span>
+            <div className={`flex lg:w-3/5 px-2 lg:px-0 gap-4`}>
+              <div className={`w-4/5`}>
+                <InputGroup size="md">
+                  <InputLeftElement pointerEvents="none">
+                    <SearchIcon color="gray.300" />
+                  </InputLeftElement>
+                  <Input
+                    borderWidth={"2px"}
+                    borderColor={"#FD891C"}
+                    type="tel"
+                    placeholder="Search for anything"
+                  />
+                </InputGroup>
+              </div>
+              <div className={`w-1/5`}>
+                <InputGroup>
+                  <InputLeftElement
+                    pointerEvents="none"
+                    color="gray.300"
+                  ></InputLeftElement>
+                  <Select border={"2px solid #FD891C"} placeholder="Filter">
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    <option value="option3">Option 3</option>
+                  </Select>
+                </InputGroup>
+              </div>
+            </div>
+          </div>
+
+          {/* News Grid */}
+          <div className={`grid lg:grid-cols-3 gap-5`}>
+            {marketNews.map((item) => {
+              return (
+                <div
+                  className={`flex flex-col ${
+                    dark ? "" : "bg-dashboard_cards_light"
+                  } rounded-lg gap-4 p-3`}
+                  key={item.id}
+                >
+                  <div className={`relative rounded-lg  h-[150px]`}>
+                    <Image
+                      className="rounded-t-[12px]  "
+                      src="/blogImg.png"
+                      alt="news image"
+                      layout="fill"
+                    />
+                    <div className=" w-full flex justify-between bg-[#00000000] p-[11px] bg-opacity-100 backdrop-blur-sm  text-[.8rem] absolute bottom-0">
+                      <span className="flex font-[600] flex-col ">
+                        Land Steiner
+                        <time className=" text-[.7rem] font-[400]">
+                          {" "}
+                          15 Jan 2022{" "}
+                        </time>
+                      </span>
+
+                      <span className="font-[600]">Portfolio</span>
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <h3 className="font-[600]">{item.title}</h3>
+                    <p className="text-[.8rem]">{item.shortText}</p>
+                    <button
+                      dateTime={item.date}
+                      className="flex gap-1 mt-4 text-dashboard_green_80 w-fit text-[.8rem]"
+                    >
+                      Read Post <FiArrowUpRight color="#11BC74" />
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div>
+      <GoBackButton />
+      <div
+        className={` ${
+          dark ? "bg-[#1C1F1F]" : "bg-[#0080800A]"
+        } flex mt-6 mb-4 py-2 px-5  rounded-lg justify-between `}
+      >
+        <div
+          className={`${
+            dark ? "bg-[#344444]" : "bg-[#FAFFFF]"
+          } flex border border-outline_orange rounded-lg py-2 px-4`}
+        >
+          <img src="/onboard/accessbank.png" alt="stock image" />
+          <span> AccessBank </span>
+        </div>
+        <Menu>
+          <MenuButton
+            as={IconButton}
+            aria-label="Options"
+            variant="outline"
+            border={"none"}
+            colorScheme={dark ? "#FD891C" : "bg-white"}
+            icon={<BsThreeDotsVertical />}
+          />
+          <MenuList>
+            <MenuItem onClick={() => console.log("Option 1 clicked")}>
+              Option 1
+            </MenuItem>
+            <MenuItem onClick={() => console.log("Option 2 clicked")}>
+              Option 2
+            </MenuItem>
+            <MenuItem onClick={() => console.log("Option 3 clicked")}>
+              Option 3
+            </MenuItem>
+          </MenuList>
+        </Menu>{" "}
+      </div>
+
+      <div
+        className={`flex mt-6 flex-col lg:flex-row relative gap-1 lg:gap-1 rounded-lg  w-full   ${
+          dark ? "bg- " : "bg-white"
+        } border-2 py-7 px-9 rounded-[12px] border-outline_orange`}
+      >
+        <div className=" flex flex-col gap-[6px] lg:w-3/5">
+          <h1 className="font-[600]">Key Stats</h1>
+
+          <div className="flex text-[.9rem] lg:text-[1rem] gap-[80px] ">
+            <ul className="flex flex-col gap-5">
+              {firstColumnStats.map((item) => {
+                return (
+                  <li className="flex flex-col gap-1">
+                    <h2 className="font-[800] font-[.9rem] "> {item.title} </h2>
+                    <p className={`  ${dark ? "white" : "text-[#3B4B4B]"}`}>
+                      {" "}
+                      {item.value}{" "}
+                    </p>
+                  </li>
+                );
+              })}
+            </ul>
+            <ul className="flex flex-col gap-5">
+              {secondColumnStats.map((item) => {
+                return (
+                  <li className="flex flex-col gap-1">
+                    <h2 className="font-[800] font-[.9rem] "> {item.title} </h2>
+                    <p className={`  ${dark ? "white" : "text-[#3B4B4B]"}`}>
+                      {" "}
+                      {item.value}{" "}
+                    </p>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </div>
+
+        <div
+          className={`flex lg:w-1/2 mt-6 flex-col h-fit relative gap- lg:gap-2 rounded-lg  w-full   ${
+            dark ? " " : ""
+          } border-2 py-6 px-5 rounded-[12px] border-outline_orange`}
+        >
+          <div className="flex justify-between">
+            <span>Price</span>
+            <span>NGN60,000</span>
+          </div>
+          <div className="flex font-[800] justify-between">
+            <span className="text-[#6B7878]">Today</span>
+            <span className="text-[#008080]">
+              {" "}
+              <ChevronUpIcon /> 25.40%
+            </span>
+          </div>
+          <span className="my-6 text-[#00CC66] ">Available</span>
+          <Button
+            customClassName="bg-btn_orange w-full text-white"
+            text="Buy"
+            variant="custom-yellow"
+          />
+        </div>
+      </div>
+
+      {/* Mid Texts */}
+      <div
+        className={`flex mt-10 mb-4 gap-4 lg:gap-0  flex-col lg:flex-row lg:items-center justify-between`}
+      >
+        <div
+          className={`h-full flex ${
+            dark ? "text-default_steps" : "bg-white text-[#344054]"
+          } font-[800]`}
+        >
+          <button
+            onClick={() => setStockDetailsInView("About")}
+            className={`   ${
+              isAboutView && dark
+                ? "bg-btn_orange text-white"
+                : isAboutView && !dark
+                ? "bg-[#F9FAFB]"
+                : ""
+            }  border-y-2 border-l-2 rounded-tl-lg rounded-bl-lg ${
+              dark ? "border-outline_orange" : "border-[#D0D5DD]"
+            }  py-[10px] px-4`}
+          >
+            About
+          </button>
+          <button
+            onClick={() => setStockDetailsInView("Financials")}
+            className={`border-y-2 border-x  ${
+              dark ? "border-outline_orange" : "border-[#D0D5DD]"
+            } ${
+              isFinancialsView && dark
+                ? "bg-btn_orange text-white "
+                : isFinancialsView && !dark
+                ? "bg-[#F9FAFB]"
+                : ""
+            } py-[10px] px-4`}
+          >
+            Financial
+          </button>
+          <button
+            onClick={() => setStockDetailsInView("News")}
+            className={`border-y-2 border-r-2 rounded-tr-lg rounded-br-lg  ${
+              dark ? "border-outline_orange" : "border-[#D0D5DD]"
+            } ${
+              isNewsView && dark
+                ? "bg-btn_orange text-white"
+                : isNewsView && !dark
+                ? "bg-[#F9FAFB]"
+                : ""
+            } py-[10px] px-4`}
+          >
+            News
+          </button>
+        </div>
+        <Button
+          customClassName={`flex gap-2 border rounded-lg items-center ${
+            dark ? "bg-btn_orange  " : "bg-white  border-[#D0D5DD]"
+          } `}
+          text="Compare Stocks"
+        >
+          <AddIcon />
+        </Button>
+      </div>
+      {isAboutView ? (
+        <About />
+      ) : isFinancialsView ? (
+        <Financials />
+      ) : isNewsView ? (
+        <News />
+      ) : null}
     </div>
   );
 };

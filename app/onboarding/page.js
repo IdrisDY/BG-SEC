@@ -2,7 +2,8 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import UserChatTemplate from "@/components/userChat";
-
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 const StepQuestions = ({ role, steps, triggerNextStep }) => {
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -72,7 +73,9 @@ const StepQuestions = ({ role, steps, triggerNextStep }) => {
     //   triggerNextStep();
     console.log("wyling");
     // });
-    triggerNextStep();
+    role === "Account Retrieval"
+      ? triggerNextStep({ trigger: "18" })
+      : triggerNextStep({ trigger: "23" });
   };
 
   if (role === "Account Retrieval") {
@@ -157,6 +160,7 @@ const Onboarding = () => {
       hasSpecialChar
     );
   };
+  const router = useRouter()
 
   const listOfSteps = [
     {
@@ -227,7 +231,7 @@ const Onboarding = () => {
     },
     {
       id: "9",
-      message: "Email : ",
+      message: "Email :  johndoe@gmail.com ",
       trigger: "10",
     },
     {
@@ -283,70 +287,65 @@ const Onboarding = () => {
     {
       id: "17",
       component: <StepQuestions role="Account Retrieval" />,
-      trigger: "18",
+      waitAction: true,
     },
 
     {
       id: "18",
-      user: true,
+      message:
+        "Great! We’ve sent a one-time password (OTP) to the mobile number associated with your BVN. Please check and respond below.",
       trigger: "19",
     },
     {
       id: "19",
-      message:
-        "Great! We’ve sent a one-time password (OTP) to the mobile number associated with your BVN. Please check and respond below.",
-      trigger: "20",
-    },
-    {
-      id: "20",
       options: [
-        { value: 1, label: "Seen", trigger: "21" },
-        { value: 2, label: "Resend OTP", trigger: "19" },
+        { value: 1, label: "Seen", trigger: "20" },
+        { value: 2, label: "Resend OTP", trigger: "18" },
       ],
     },
     {
-      id: "21",
+      id: "20",
       user: true,
+      trigger: "21",
+    },
+    {
+      id: "21",
+      message:
+        "Great! Thank you for providing your BVN and OTP, Susan. We need a Security Question from you, pick your choice.",
       trigger: "22",
     },
     {
       id: "22",
-      message:
-        "Great! Thank you for providing your BVN and OTP, Susan. We need a Security Question from you, pick your choice.",
-      trigger: "23",
+      component: <StepQuestions role="Security Question" />,
+      waitAction: true,
     },
+
     {
       id: "23",
-      component: <StepQuestions role="Security Question" />,
+      user: true,
       trigger: "24",
     },
 
     {
       id: "24",
-      user: true,
-      trigger: "25",
-    },
-
-    {
-      id: "25",
       message:
         "Awesome! Gabriel. Lastly, we recommend setting up an Alert PIN for withdrawal. NB: No BGL staff will request your alert pin or password.",
-      trigger: "26",
+      trigger: "25",
     },
     {
-      id: "26",
+      id: "25",
       options: [
-        { value: 1, label: "Okay, let's do this", trigger: "27" },
-        { value: 2, label: "Skip", trigger: "25" },
+        { value: 1, label: "Okay, let's do this", trigger: "26" },
+        { value: 2, label: "Skip", trigger: "24" },
       ],
     },
     {
-      id: "27",
+      id: "26",
       user: true,
       trigger: () => {
-        return '28'
+        return "27";
       },
-      end:true
+      end: true,
     },
   ];
 
@@ -371,8 +370,12 @@ const Onboarding = () => {
     }
   };
 
-  function handleEnd({steps,value}){
+  function handleEnd({ steps, value }) {
     console.log(steps);
+    setFinishOnboarding(true)
+    setTimeout(() => {
+      router.push('/dashboard')
+    }, 700);
   }
 
   const { showModal } = useSelector((state) => state.LandingPage);
@@ -388,6 +391,17 @@ const Onboarding = () => {
       numberOfSteps={4}
       topRightPageText={"Have an account?"}
       handleEnd={handleEnd}
+      upperRightPageComponent={
+        <div className=" ml-auto flex">
+          <span className={`text-default_steps`}>Have an account?</span>
+          <span>
+            {" "}
+            <Link className={`underline text-[#11BC74]`} href="/">
+              Click Here!
+            </Link>
+          </span>
+        </div>
+      }
     />
   );
 };

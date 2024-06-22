@@ -1,7 +1,9 @@
 "use client";
 import { createContext, useState, useContext, useEffect } from "react";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
-import { ChakraProvider } from "@chakra-ui/react";
+import { SunIcon } from "@chakra-ui/icons";
+import { FaRegMoon } from "react-icons/fa";
+import { FiSun } from "react-icons/fi";
 
 export const ToggleThemeContext = createContext();
 
@@ -10,7 +12,7 @@ const darkTheme = {
   background: "#131414",
 
   color: "#ffffff",
-  img: "/moon.svg",
+  img: <FaRegMoon size={"20px"} color={"#83796B"} />,
 };
 
 const lightTheme = {
@@ -18,7 +20,7 @@ const lightTheme = {
   background: "#ffffff",
   dashboard_bg: "#EEF6F6",
   color: "#121212",
-  img: "/sun-medium.svg",
+  img: <FiSun size={"20px"} />,
   h2txt: "#0B1E1E",
 };
 
