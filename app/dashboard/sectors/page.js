@@ -139,7 +139,6 @@ const TopSectors = () => {
   ];
 
   return (
-    <Suspense>
       <section
         className={`flex border-2 gap-11 rounded-xl ${
           dark ? "border-outline_orange" : "border-transparent bg-white"
@@ -197,7 +196,6 @@ const TopSectors = () => {
           <StocksTableComponent columns={columns} data={data} />
         </div>
       </section>
-    </Suspense>
   );
 };
 

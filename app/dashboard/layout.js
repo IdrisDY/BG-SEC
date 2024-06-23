@@ -1,6 +1,7 @@
 import DashboardSidebar from "@/components/Dashboard/Sidebar";
 import Marquee from "@/components/marquee";
 import { TopDashboardBoxes } from "./page";
+import { Suspense } from "react";
 const DashboardLayout = ({ children }) => {
   return (
     <div className="flex   flex-col lg:flex-row w-full relative">
@@ -14,7 +15,7 @@ const DashboardLayout = ({ children }) => {
       </div>
       <main className="max-w-[500px]  w-full mx-auto lg:max-w-full lg:ml-auto lg:mr-0 px-[20px] lg:pl-[40px] lg:w-4/5 lg:pr-[48px] pb-8  pt-[24px] lg:mt-[47px]">
         <TopDashboardBoxes />
-        {children}
+        <Suspense> {children}</Suspense>
       </main>
     </div>
   );
