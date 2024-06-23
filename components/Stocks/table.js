@@ -41,7 +41,6 @@ const StocksTableComponent = ({ columns, data }) => {
           return (
             <tr className=" " {...row.getRowProps()}>
               {row.cells.map((cell) => {
-                console.log(cell);
                 return (
                   <td
                     className={`${

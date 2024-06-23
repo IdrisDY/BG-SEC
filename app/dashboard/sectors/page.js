@@ -1,4 +1,5 @@
 "use client";
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import StocksTableComponent from "@/components/Stocks/table";
 import {
@@ -138,63 +139,65 @@ const TopSectors = () => {
   ];
 
   return (
-    <section
-      className={`flex border-2 gap-11 rounded-xl ${
-        dark ? "border-outline_orange" : "border-transparent bg-white"
-      } p-6 mt-8 flex-col`}
-    >
-      <div
-        className={`  flex rounded-[12px] flex-col place-items-center py-[60px] ${
-          type === "sports"
-            ? "bg-[#D5F9F5]"
-            : type === "entertainment"
-            ? "bg-[#FF4D4D1A]"
-            : type === "transport"
-            ? "bg-[#F9A0001A]"
-            : "bg-[#B1FF4D33]"
-        } `}
+    <Suspense>
+      <section
+        className={`flex border-2 gap-11 rounded-xl ${
+          dark ? "border-outline_orange" : "border-transparent bg-white"
+        } p-6 mt-8 flex-col`}
       >
-        <h2 className=" text-[1.125rem] font-[700]">
-          {capitaliseFirstLetter(type)} stocks
-        </h2>
-        <p className="text-[.9rem]">These are the {type} stocks available</p>
-      </div>
-
-      <div className={``}>
         <div
-          className={`flex px-2 text-[.9rem] gap-3 lg:text-[1rem] lg:px-0 w-full justify-between`}
+          className={`  flex rounded-[12px] flex-col place-items-center py-[60px] ${
+            type === "sports"
+              ? "bg-[#D5F9F5]"
+              : type === "entertainment"
+              ? "bg-[#FF4D4D1A]"
+              : type === "transport"
+              ? "bg-[#F9A0001A]"
+              : "bg-[#B1FF4D33]"
+          } `}
         >
-          <div className={`w-4/5`}>
-            <InputGroup size="md">
-              <InputLeftElement pointerEvents="none">
-                <SearchIcon color="gray.300" />
-              </InputLeftElement>
-              <Input
-                borderWidth={"2px"}
-                borderColor={"#FD891C"}
-                type="tel"
-                placeholder="Search for anything"
-              />
-            </InputGroup>
-          </div>
-          <div className={`w-1/5`}>
-            <InputGroup>
-              <InputLeftElement
-                pointerEvents="none"
-                color="gray.300"
-              ></InputLeftElement>
-              <Select border={"2px solid #FD891C"} placeholder="Filter">
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-              </Select>
-            </InputGroup>
-          </div>
+          <h2 className=" text-[1.125rem] font-[700]">
+            {capitaliseFirstLetter(type)} stocks
+          </h2>
+          <p className="text-[.9rem]">These are the {type} stocks available</p>
         </div>
 
-        <StocksTableComponent columns={columns} data={data} />
-      </div>
-    </section>
+        <div className={``}>
+          <div
+            className={`flex px-2 text-[.9rem] gap-3 lg:text-[1rem] lg:px-0 w-full justify-between`}
+          >
+            <div className={`w-4/5`}>
+              <InputGroup size="md">
+                <InputLeftElement pointerEvents="none">
+                  <SearchIcon color="gray.300" />
+                </InputLeftElement>
+                <Input
+                  borderWidth={"2px"}
+                  borderColor={"#FD891C"}
+                  type="tel"
+                  placeholder="Search for anything"
+                />
+              </InputGroup>
+            </div>
+            <div className={`w-1/5`}>
+              <InputGroup>
+                <InputLeftElement
+                  pointerEvents="none"
+                  color="gray.300"
+                ></InputLeftElement>
+                <Select border={"2px solid #FD891C"} placeholder="Filter">
+                  <option value="option1">Option 1</option>
+                  <option value="option2">Option 2</option>
+                  <option value="option3">Option 3</option>
+                </Select>
+              </InputGroup>
+            </div>
+          </div>
+
+          <StocksTableComponent columns={columns} data={data} />
+        </div>
+      </section>
+    </Suspense>
   );
 };
 
