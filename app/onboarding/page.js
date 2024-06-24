@@ -112,9 +112,7 @@ const Onboarding = () => {
           }
         } catch (error) {
           console.error(error);
-        } finally {
-          setDisabled(false);
-        }
+        } 
       } else {
         triggerNextStep({ value: { selectedOption }, trigger: "23" });
       }
@@ -614,9 +612,7 @@ const Onboarding = () => {
       }
     } catch (error) {
       console.error(error);
-    } finally {
-      setDisabled(false);
-    }
+    } 
 
     console.log(finalObj);
   }
