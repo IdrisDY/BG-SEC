@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Socket.IO Client</title>
+  </head>
+  <body>
+
+
+
+	const CustomInput = ({
+		placeholder,
+		triggerNextStep,
+		value,
+		steps,
+		step,
+		type,
+		apiEndpoint,
+		onApiResponse,
+		role,
+	  }) => {
+		const [showPassword, setShowPassword] = useState("");
+		const [inputValue, setInputValue] = useState("");
+		const [disabled, setDisabled] = useState(false);
+	
+		const handleChange = (event) => {
+		  setInputValue(event.target.value);
+		};
+	
+		async function validateBVN() {
+		  try {
+			// First API call to fetch the consent URL
+			const response = await axios.get(
+			  `${process.env.NEXT_PUBLIC_API_URL}/bvnConsent`,
+			  {
+				params: {
+				  bvn: inputValue,
+				},
+				headers: {
+				  "x-api-key": "BGL-AUTH",
+				  "Content-Type": "application/json",
+				},
+			  }
+			);
+	
+			if (response) {
+			  // Prepare payload for the second API call
+			  const payload = {
+				bvn: inputValue,
+				action: "bvnPassed",
+			  };
+	
+			  // Second API call to verify consent
+			  const data = await axios.post(
+				`${process.env.NEXT_PUBLIC_VFD_URL}/verify/consent`,
+				payload,
+				{
+				  headers: {
+					"Content-Type": "application/json",
+				  },
+				}
+			  );
+	
+			  if (data) {
+				triggerNextStep({ trigger: "8" });
+			  }
+	
+			  console.log(data);
+			}
+		  } catch (error) {
+			console.log(error);
+		  }
+		}
+		async function confirmOTP() {
+		  try {
+			const payload = {
+			  otp: inputValue,
+			  bvn: steps.BVN.value,
+			  action: "otpSent",
+			};
+			console.log("here", steps.BVN.value);
+	
+			const data = await axios.post(
+			  `${process.env.NEXT_PUBLIC_VFD_URL}/verify/consent`,
+			  payload,
+			  {
+				headers: {
+				  "Content-Type": "application/json",
+				},
+			  }
+			);
+	
+			if (data) {
+			  triggerNextStep({ trigger: "10" });
+			  setDisabled(true);
+			}
+		  } catch (error) {
+			console.log(error);
+		  }
+		}
+	
+		const handleSubmit = async () => {
+		  role === "BVN" ? validateBVN() : confirmOTP();
+		};
+	
+		return (
+		  <FormControl>
+			<FormLabel>{placeholder}</FormLabel>
+			<InputGroup>
+			  <Input
+				type={type}
+				placeholder={placeholder}
+				value={inputValue}
+				disabled={disabled}
+				onChange={handleChange}
+			  />
+			  {type === "paswword" && (
+				<InputRightElement>
+				  <Button size="sm" onClick={() => setShowPassword(!showPassword)}>
+					{showPassword ? "Hide" : "Show"}
+				  </Button>
+				</InputRightElement>
+			  )}
+			</InputGroup>
+			<Button disabled={disabled} mt={2} onClick={handleSubmit}>
+			  Submit
+			</Button>
+		  </FormControl>
+		);
+	  };
+	
+    <h1>
+      Socket.IO Client bvn: "22222222252", action: "bvnPassed" action :
+      "bvnPassed" bvn : "22222222252" { "bvn": "22222222252", "otp": "111162",
+      "action": "otpSent" }
+    </h1>
+    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
+    <script>
+      const socket = io("https://bgl-auth-956a9252d788.herokuapp.com", {
+        transports: ["websocket"],
+        timeout: 2000000000,
+      });
+
+      socket.on("connect", () => {
+        console.log("Connected to server");
+
+        // inputs bvn
+        socket.emit("join", "22222222252");
+        socket.emit("bvn-consent", { bvn: "22222222252" });
+      });
+
+      socket.on("connect_error", (error) => {
+        console.log("Connection Error:", error);
+      });
+
+      socket.on("bvn-consent", (msg) => {
+        console.log("Message from server:", msg);
+        const response = {
+          status: "00",
+          message: "Consent response",
+          data: {
+            statusCode: "false",
+            url: "https://services.vfdtech.ng/",
+            reference: "595-22222222231-250927022024",
+          },
+        };
+      });
+
+      socket.on("bvn-info", (msg) => {
+        console.log("Message from server:", msg);
+        const response = {
+          status: "00",
+          message: "BVN Details Retrieved Successfully",
+          data: {
+            firstName: "Phil",
+            middleName: "Bull",
+            lastName: "Holden",
+            gender: "Male",
+            dateOfBirth: "05-Apr-1994",
+            phoneNo: "09019056927",
+            enrollmentBank: "",
+            enrollmentBranch: "",
+            email: "testemail@yahoo.com",
+            phoneNo2: "",
+            levelOfAccount: "",
+            lgaOfOrigin: "",
+            lgaOfResidence: "",
+            maritalStatus: "",
+            nin: "1234567890",
+            nameOnCard: "",
+            nationality: "",
+            residentialAddress: "",
+            stateOfOrigin: "",
+            stateOfResidence: "",
+            title: "",
+            pixBase64: "NULL",
+            bvn: "22222222252",
+            registrationDate: "",
+            watchListed: "NO",
+            account: {
+              status: "00",
+              message: "Successful",
+              data: [
+                {
+                  accountname: "TEST NAME ONE",
+                  accountnumber: "0001091234",
+                  accountDesignation: "2",
+                  accountstatus: "1",
+                  accounttype: "2",
+                  institution: "9",
+                  branch: "0491",
+                  accounttier: "0",
+                  nipCode: "000004",
+                  BankCode: "033",
+                  BankName: "UBA Bank",
+                  AccountDesignationName: "INDIVIDUAL",
+                  AccountTypeName: "SAVINGS",
+                },
+              ],
+            },
+          },
+        };
+      });
+      socket.on("bvn-verification", (msg) => {
+        console.log("Message from server:", msg);
+      });
+
+      socket.on("disconnect", () => {
+        console.log("Disconnected from server");
+      });
+    </script>
+  </body>
+</html>
+
+

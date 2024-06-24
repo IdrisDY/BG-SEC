@@ -10,7 +10,6 @@ export const ToggleThemeContext = createContext();
 const darkTheme = {
   mode: "dark",
   background: "#131414",
-
   color: "#ffffff",
   img: <FaRegMoon size={"20px"} color={"#83796B"} />,
 };
