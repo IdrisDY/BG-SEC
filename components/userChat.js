@@ -7,6 +7,7 @@ import Image from "next/image";
 import WelcomeToDashboard from "./Onboarding/welcome";
 const UserChatTemplate = ({
   bottomText,
+  showVerifyStep,
   topText,
   steps,
   numberOfSteps,
@@ -14,8 +15,10 @@ const UserChatTemplate = ({
   topRightPageText,
   paginationIndicator,
   finishProcess,
+  showUpperProgressBars,
   stepCompleted,
-  handleEnd
+  handleEnd,
+  upperRightPageComponent,
 }) => {
   const [currentStep, setCurrentStep] = useState({ value: 1, finished: false });
   const theme = {
@@ -34,7 +37,7 @@ const UserChatTemplate = ({
     <div
       className={`bg-font_black min-h-screen text-[.9rem] md:items-center w-[95%] m-auto lg:w-full md:w-[60%] lg:items-stretch flex-col lg:flex-row flex text-white`}
     >
-      <aside className={`bg-aside_onboard relative w-full  min-h-full lg:w-2/5`}>
+      <aside className={`bg-aside_onboard relative w-full  lg:w-2/5`}>
         <div className={`border-b px-12 border-[#83796B] pt-7 pb-10`}>
           <div className={`relative w-1/2 h-[60px]`}>
             <Image
@@ -45,44 +48,74 @@ const UserChatTemplate = ({
           </div>
         </div>
 
-        <div className={`px-12 flex flex-col gap-[20vh]`}>
-          <div className={`flex pt-10 gap-4`}>
-            <div className={`flex flex-col items-center`}>
-              {Array.from({ length: numberOfSteps }).map((item, index) => (
-                <div key={index} className={`flex flex-col items-center`}>
-                  <div
-                    className={`border flex items-center border-gray-200 w-fit rounded-full bg-white p-[1px]`}
-                  >
+        <div className={`px-12 flex flex-col h-4/5 pb-8 justify-between`}>
+          {showVerifyStep ? (
+            <div className={`flex flex-col pt-10 gap-4`}>
+              <div className="flex flex-col gap-4">
+                <h1 className={`font-bold text-[1.25rem] `}>
+                  Verify your account
+                </h1>
+                <p className="w-4/5  ">
+                  There’s just few details left. Please provide all the
+                  information below to complete your verification.
+                </p>
+              </div>
+
+              <div className=" flex gap-4 justify-between mt-[76px]">
+                <div className="bg-white flex   justify-center items-center rounded-full w-[30px] h-[30px] ">
+                  <div className="bg-btn_orange rounded-full w-[10px] h-[10px]"></div>
+                </div>
+                <div className="flex  w-fit flex-col">
+                  <h2 className="text-[1.125rem]">Personal details</h2>
+                  <p className="w-4/5">
+                    Kindly provide us with your home address and ID card so that
+                    you can trade with ease.
+                  </p>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className={`flex pt-10 gap-4`}>
+              <div className={`flex flex-col items-center`}>
+                {Array.from({ length: numberOfSteps }).map((item, index) => (
+                  <div key={index} className={`flex flex-col items-center`}>
                     <div
-                      className={`rounded-full w-[25px] flex items-center justify-center ${
-                        currentStep.value === index + 1
-                          ? " bg-[#DA8E23]"
-                          : "bg-default_steps"
-                      } h-[25px]`}
+                      className={`border flex items-center border-gray-200 w-fit rounded-full bg-white p-[1px]`}
                     >
                       <div
-                        className={`rounded-full w-[10px] h-[10px] bg-white`}
-                      ></div>
+                        className={`rounded-full w-[25px] flex items-center justify-center ${
+                          currentStep.value === index + 1
+                            ? " bg-[#DA8E23]"
+                            : "bg-default_steps"
+                        } h-[25px]`}
+                      >
+                        <div
+                          className={`rounded-full w-[10px] h-[10px] bg-white`}
+                        ></div>
+                      </div>
                     </div>
+                    {index !== numberOfSteps - 1 && (
+                      <div
+                        className={`w-[3px] h-[40px] my-1 bg-[#E1F4F4]`}
+                      ></div>
+                    )}{" "}
                   </div>
-                  {index !== (numberOfSteps - 1 )&& (
-                    <div className={`w-[3px] h-[40px] my-1 bg-[#E1F4F4]`}></div>
-                  )}{" "}
-                </div>
-              ))}
+                ))}
+              </div>
+              <ul className={`flex gap-8 flex-col`}>
+                {listOfSteps.map((item, index) => (
+                  <li key={index} className={`flex gap-1`}>
+                    <div className={`flex flex-col`}>
+                      <span>{item.title}</span>
+                      <span>{item.txt}</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <ul className={`flex gap-8 flex-col`}>
-              {listOfSteps.map((item, index) => (
-                <li key={index} className={`flex gap-1`}>
-                  <div className={`flex flex-col`}>
-                    <span>{item.title}</span>
-                    <span>{item.txt}</span>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="flex absolute bottom-[48px] flex-col gap-3 items-center lg:flex-row lg:justify-between lg:items-stretch">
+          )}
+
+          <footer className="flex flex-col gap-3 items-center lg:flex-row lg:justify-between lg:items-stretch">
             <span className={`text-default_steps`}>
               © BGLSecurityLimited2024
             </span>
@@ -92,7 +125,7 @@ const UserChatTemplate = ({
                 help@bgl.com
               </Link>
             </span>
-          </div>
+          </footer>
         </div>
       </aside>
       <main
@@ -101,26 +134,21 @@ const UserChatTemplate = ({
         <div
           className={`flex justify-between flex-col gap-3 lg:flex-row items-center`}
         >
-          <div className={`flex w-4/5 lg:w-2/5 gap-3`}>
-            {paginationIndicator.map((step) => (
-              <div
-                key={step.id}
-                className={`w-[50px] h-2 rounded-full cursor-pointer ${
-                  step.isActive ? "bg-white" : "bg-default_steps"
-                }`}
-                onClick={() => setActiveStep(step.id)}
-              ></div>
-            ))}
-          </div>
-          <div>
-            <span className={`text-default_steps`}>{topRightPageText}</span>
-            <span>
-              {" "}
-              <Link className={`underline text-[#11BC74]`} href="/">
-                Click Here!
-              </Link>
-            </span>
-          </div>
+          {showUpperProgressBars && (
+            <div className="flex w-4/5 lg:w-2/5 gap-3">
+              {paginationIndicator.map((step) => (
+                <div
+                  key={step.id}
+                  className={`w-[50px] h-2 rounded-full cursor-pointer ${
+                    step.isActive ? "bg-white" : "bg-default_steps"
+                  }`}
+                  onClick={() => setActiveStep(step.id)}
+                ></div>
+              ))}
+            </div>
+          )}
+
+          {upperRightPageComponent}
         </div>
         <ThemeProvider theme={theme}>
           <ChatBot

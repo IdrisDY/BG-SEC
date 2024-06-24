@@ -20,6 +20,7 @@ import {
 } from "@chakra-ui/icons";
 import LineChart from "@/components/Charts/lineChartsStocks";
 import StocksTableComponent from "@/components/Stocks/table";
+import ChartCard from "@/components/Dashboard/chartCard";
 
 const Stocks = () => {
   const theme = useTheme();
@@ -267,31 +268,7 @@ const Stocks = () => {
         <div className={`grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-4`}>
           {stocks.map((item, i) => {
             return (
-              <div
-                className={` ${
-                  dark ? "bg-stock_cardsbg" : "bg-white"
-                } border-2 gap-3 pl-[12px] pr-2 flex flex-col py-[14px] border-outline_orange rounded-[12.5px]`}
-                key={i + 1}
-              >
-                <div className={`flex items-center gap-[2px]`}>
-                  <img src={item.img} alt="item logo" />
-                  <span className={`text-[.8rem]`}>{item.title}</span>
-                </div>
-                <div className={`flex justify-between`}>
-                  <span className={`text-[1.3rem] font-[700]`}>
-                    {item.price}
-                  </span>
-                  {/* Chart Section */}
-                  <div
-                    className={`flex items-end h-[40px] justify-end w-3/5 lg:w-1/2`}
-                  >
-                    <LineChart data={chartData} />
-                  </div>
-                </div>
-                <span className={`text-change_green`}>
-                  <ChevronUpIcon color={"#52FF00"} /> {item.percentChange}
-                </span>
-              </div>
+              <ChartCard item={item} data={chartData}/>
             );
           })}
         </div>

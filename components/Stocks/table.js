@@ -1,6 +1,7 @@
 import React from "react";
 import { useTable } from "react-table";
 import Button from "../button";
+import Link from "next/link";
 
 const StocksTableComponent = ({ columns, data }) => {
   const {
@@ -23,7 +24,10 @@ const StocksTableComponent = ({ columns, data }) => {
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column) => (
-              <th className="text-left font-normal " {...column.getHeaderProps()}>
+              <th
+                className="text-left font-normal "
+                {...column.getHeaderProps()}
+              >
                 {column.render("Header")}
               </th>
             ))}
@@ -37,7 +41,6 @@ const StocksTableComponent = ({ columns, data }) => {
           return (
             <tr className=" " {...row.getRowProps()}>
               {row.cells.map((cell) => {
-                console.log(cell);
                 return (
                   <td
                     className={`${
@@ -56,7 +59,7 @@ const StocksTableComponent = ({ columns, data }) => {
                   }
                   className=" px-[10px]  text-white text-center w-full min-w-[67px] py-[7px] rounded-lg bg-btn_orange"
                 >
-                  Buy
+                  <Link href={`/dashboard/stocks/${row.id}`}>Buy</Link>
                 </button>
               </td>
             </tr>

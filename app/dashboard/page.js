@@ -22,33 +22,45 @@ import {
 } from "@chakra-ui/icons";
 import TableComponent from "@/components/Dashboard/table";
 import PortfolioCards from "@/components/Dashboard/portfolioCards";
+import { usePathname, useRouter } from "next/navigation";
+import ProfileDropdown from "@/components/Dashboard/Profile";
+import NotificationDropdown from "@/components/Dashboard/Notifications";
 
 export const TopDashboardBoxes = () => {
   const { theme, toggleTheme } = useContext(ToggleThemeContext);
   const dark = theme.mode === "dark";
   const [arrowButtonDirection, setArrowButtonDirection] = useState("down");
-  console.log(dark);
+  const router = useRouter();
+  const isInVerifyPageInDashboard = usePathname() === "/dashboard/verify";
+
+  function goToVerifyPage() {
+    router.push("/dashboard/verify");
+  }
   return (
     <section className={`flex flex-col gap-4`}>
-      <div
-        className={`flex box-border border-2 flex-col gap-4 lg:gap-0 lg:flex-row rounded-lg py-[18px] px-5 lg:items-center justify-between w-full   ${
-          dark
-            ? "bg-dashboard_cards_bg  border-outline_orange"
-            : "bg-sidebar_light border-transparent "
-        }`}
-      >
-        <span
-          className={`  ${
-            dark ? "" : "text-light_mainTxt"
-          } text-[.9rem] lg:text-[1rem] font-[700]`}
+      {!isInVerifyPageInDashboard && (
+        <div
+          className={`flex box-border border-2 flex-col gap-4 lg:gap-0 lg:flex-row rounded-lg py-[18px] px-5 lg:items-center justify-between w-full   ${
+            dark
+              ? "bg-dashboard_cards_bg  border-outline_orange"
+              : "bg-sidebar_light border-transparent "
+          }`}
         >
-          Kindly proceed with your account verification for proper trading.
-        </span>
-        <Button
-          customClassName={`text-white bg-btn_orange`}
-          text="Verify Account"
-        />
-      </div>
+          <span
+            className={`  ${
+              dark ? "" : "text-light_mainTxt"
+            } text-[.9rem] lg:text-[1rem] font-[700]`}
+          >
+            Kindly proceed with your account verification for proper trading.
+          </span>
+          <Button
+            onClick={goToVerifyPage}
+            customClassName={`text-white bg-btn_orange`}
+            text="Verify Account"
+            variant="custom-yellow"
+          />
+        </div>
+      )}{" "}
       <div
         className={`flex flex-col lg:flex-row rounded-lg py-[18px] border-2 border-outline_orange px-5 items-center justify-between w-full  ${
           dark ? "bg-dashboard_cards_bg " : "bg-white"
@@ -62,15 +74,19 @@ export const TopDashboardBoxes = () => {
           </span>
         </div>
         <div className={`flex gap-2 items-center`}>
-          <button>
-            <img src="/Dashboard/bell-dot.svg" alt="notification" />
-          </button>
-          <button
-            className={`ml-4 mr-4 w-[30px] h-[30px]`}
+          <NotificationDropdown />
+
+          <IconButton
             onClick={toggleTheme}
-          >
-            <img src={theme.img} alt={theme.mode} />
-          </button>
+            icon={theme.img}
+            variant={'ghost'}
+            sx={{
+              _hover: {
+                background: "transparent",
+              },
+            }}
+            aria-label="Theme icon change  "
+          ></IconButton>
           <div className={`relative w-[40px] h-[40px]`}>
             <Image
               src="/Dashboard/avatarDashboard.png"
@@ -80,19 +96,8 @@ export const TopDashboardBoxes = () => {
           </div>
           <div>
             <span className={`text-default_steps`}>Gabriel Cooper</span>
-            <button
-              onClick={() =>
-                setArrowButtonDirection((prevState) =>
-                  prevState === "down" ? "up" : "down"
-                )
-              }
-            >
-              {arrowButtonDirection === "down" ? (
-                <ChevronDownIcon />
-              ) : (
-                <ChevronUpIcon />
-              )}
-            </button>{" "}
+
+            <ProfileDropdown />
           </div>
         </div>
       </div>
@@ -103,6 +108,7 @@ export const TopDashboardBoxes = () => {
 const Dashboard = () => {
   const { theme, toggleTheme } = useContext(ToggleThemeContext);
   const dark = theme.mode === "dark";
+  const router = useRouter();
 
   const columns = [
     {
@@ -201,14 +207,19 @@ const Dashboard = () => {
   const topSector = [
     { title: "Entertainment", text: "There are stocks are often distributed" },
     { title: "Sports", text: "There are stocks are often distributed" },
-    { title: "Entertainment", text: "There are stocks are often distributed" },
-    { title: "Entertainment", text: "There are stocks are often distributed" },
-    { title: "Entertainment", text: "There are stocks are often distributed" },
+    {
+      title: "Estate Management",
+      text: "There are stocks are often distributed",
+    },
+    { title: "Transport", text: "There are stocks are often distributed" },
   ];
+
+  function viewSectors(title) {
+    router.push(`/dashboard/sectors?type=${title.toLowerCase()}`);
+  }
 
   return (
     <div className=" py-8">
-      
       {/* Portfolio Cards Section */}
       <PortfolioCards />
 
@@ -393,12 +404,13 @@ const Dashboard = () => {
               Top Sector
             </span>
 
-            <div className={`flex flex-col gap-4`}>
+            <ul className={`flex flex-col gap-4`}>
               {topSector.map((item) => {
                 return (
-                  <div
+                  <li
                     key={item}
-                    className={`flex py-5 px-4 ${
+                    onClick={() => viewSectors(item.title)}
+                    className={`  cursor-pointer flex py-5 px-4 ${
                       dark
                         ? "bg-dashboard_cards_bg"
                         : "bg-dashboard_cards_light"
@@ -406,10 +418,10 @@ const Dashboard = () => {
                   >
                     <span className={`font-[700]`}> {item.title}</span>
                     <span> {item.text}</span>
-                  </div>
+                  </li>
                 );
               })}
-            </div>
+            </ul>
           </div>
         </div>
       </section>

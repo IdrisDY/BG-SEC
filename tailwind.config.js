@@ -14,6 +14,7 @@ module.exports = {
       },
       colors: {
         btn_orange: "#DA8E23",
+        "hover-orange-dark": "#AF6E13",
         font_black: "#131414",
         footer_bg: "#02150D",
         steps_component_bg: "#232626",
@@ -34,7 +35,7 @@ module.exports = {
         sidebar_light: "#DFE6E6",
         dashboard_cards_light: "#F3F9F9",
         stock_cardsbg: "#2F3434",
-        dashboard_bg_light:'#EEF6F6',
+        dashboard_bg_light: "#EEF6F6",
       },
       boxShadow: {
         custom1: "0px 12px 16px -4px #10182814",
@@ -43,6 +44,8 @@ module.exports = {
       backgroundImage: {
         "dark-gradient": "linear-gradient(180deg, #261A09 0%, #061515 100%)",
         "light-gradient": "linear-gradient(180deg, #008080 0%, #23A6A6 100%) ",
+        ticker_gradient:
+          "linear-gradient(90deg, #D01313 0%, #8D1D0C 30.5%, #BE3206 56%, #A52222 100%)",
       },
       keyframes: {
         spinner: {
