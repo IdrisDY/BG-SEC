@@ -112,7 +112,7 @@ const Onboarding = () => {
           }
         } catch (error) {
           console.error(error);
-        } 
+        }
       } else {
         triggerNextStep({ value: { selectedOption }, trigger: "23" });
       }
@@ -297,6 +297,12 @@ const Onboarding = () => {
       hasLowerCase &&
       hasSpecialChar
     );
+  };
+
+  const isValidPassCode = (password) => {
+    const minLength = 4;
+
+    return password.length >= minLength;
   };
   const router = useRouter();
 
@@ -530,6 +536,13 @@ const Onboarding = () => {
       trigger: () => {
         return "27";
       },
+      validator: (value) => {
+        if (isValidPassCode(value)) {
+          return true;
+        } else {
+          return "Password must be at least 4 characters long.";
+        }
+      },
       end: true,
     },
   ];
@@ -570,7 +583,9 @@ const Onboarding = () => {
       stateOfOrigin,
       residentialAddress,
       account,
+      enrollmentBank,
       nationality,
+      bvn,
     } = steps.BVN.value;
     // const firstName = name[0]
     // const lastName = name[1]
@@ -585,10 +600,20 @@ const Onboarding = () => {
       mobile: phoneNo,
       dateOfBirth,
       gender,
-      state: stateOfOrigin,
-      address: residentialAddress,
-      account: account,
-      nationality,
+      state: stateOfOrigin || "Oyo",
+      address: residentialAddress || "Ikorodu,Lagos",
+      city: "Ikorodu",
+      nationality: "Nigerian",
+      profilePic: "/onboard/access.png",
+      title: "Mr.",
+      account: {
+        bankName: enrollmentBank || "Kuda",
+        accountNumber: "0000000000",
+        accountName: "Tester",
+        bvn: bvn,
+        bankCode: "011",
+      },
+      userType: "IND",
       securityPin: steps.securityPin.value,
     };
 
@@ -605,14 +630,14 @@ const Onboarding = () => {
       );
 
       if (response) {
-        setFinishOnboarding(true);
-        setTimeout(() => {
-          router.push("/dashboard");
-        }, 700);
       }
     } catch (error) {
       console.error(error);
-    } 
+    }
+    setFinishOnboarding(true);
+    setTimeout(() => {
+      // router.push("/dashboard");
+    }, 700);
 
     console.log(finalObj);
   }
