@@ -636,7 +636,7 @@ const Onboarding = () => {
     }
     setFinishOnboarding(true);
     setTimeout(() => {
-      // router.push("/dashboard");
+      router.push("/dashboard");
     }, 700);
 
     console.log(finalObj);
