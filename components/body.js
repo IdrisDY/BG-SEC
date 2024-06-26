@@ -27,22 +27,22 @@ const BodyWrapper = ({ children, className }) => {
   const isDashboardAndLightTheme =
     pathname.includes("/dashboard") && theme.mode === "light";
 
-  useEffect(() => {
-    socket.on("connect", () => {
-      console.log("Connected to server");
-    });
+  // useEffect(() => {
+  //   socket.on("connect", () => {
+  //     console.log("Connected to server");
+  //   });
 
-    socket.on("connect_error", (err) => {
-      console.error("Connection error:", err.message);
-    });
-    socket.on("bvn-consent", (msg) => {
-      console.log("Message from server:", msg);
-    });
+  //   socket.on("connect_error", (err) => {
+  //     console.error("Connection error:", err.message);
+  //   });
+  //   socket.on("bvn-consent", (msg) => {
+  //     console.log("Message from server:", msg);
+  //   });
 
-    return () => {
-      socket.disconnect();
-    };
-  }, [socket]);
+  //   return () => {
+  //     socket.disconnect();
+  //   };
+  // }, [socket]);
 
   useEffect(() => {
     document.body.style.background = isDashboardAndLightTheme
@@ -63,9 +63,11 @@ const BodyWrapper = ({ children, className }) => {
     <>
       <GlobalStyle isDashboardAndLightTheme={isDashboardAndLightTheme} />
       <Provider store={store}>
+      <ChakraProvider>
         <body className={`${pathWay.className} overflow-x-hidden `}>
-          <ChakraProvider>{children}</ChakraProvider>
+         {children}
         </body>
+        </ChakraProvider>
       </Provider>
     </>
   );
