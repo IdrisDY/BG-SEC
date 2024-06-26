@@ -5,6 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useTheme } from "styled-components";
+import NotificationDropdown from "./Notifications";
+import SupportPopUp from "./supportPopUp";
 const DashboardSidebar = () => {
   const listItems = [
     { title: "Dashboard", link: "" },
@@ -14,13 +16,12 @@ const DashboardSidebar = () => {
   const theme = useTheme();
   const darkMode = theme.mode === "dark";
   const [isMenuClicked, setIsMenuClicked] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
   const pathname = usePathname();
 
   function checkLinkOnSamePath(link) {
     console.log(link, pathname);
-    return(( `/dashboard${link}` === pathname )
-      
-     );
+    return `/dashboard${link}` === pathname;
   }
 
   const [listItemHovered, setItemListHovered] = useState({
@@ -48,11 +49,13 @@ const DashboardSidebar = () => {
       }`}
     >
       <div
-        className={`transition-all duration-[250ms] ${darkMode ? "bg-aside_onboard" : "bg-sidebar_light"} ${
+        className={`transition-all duration-[250ms] ${
+          darkMode ? "bg-aside_onboard" : "bg-sidebar_light"
+        } ${
           isMenuClicked
             ? "   w-[65%] sm:w-1/2  absolute right-0  animate-rollLeft h-full "
             : "max-w-[500px]  mt-[47px]  w-full"
-        } lg:absolute top:0 lg:left-0 flex mx-auto lg:max-w-full  lg:min-h-screen h-full  lg:w-full  lg:mt-0`}
+        } lg:absolute top:0 lg:left-0 flex mx-auto lg:max-w-full pb-6 lg:min-h-screen h-full  lg:w-full  lg:mt-0`}
       >
         <div
           className={`w-full h-full ${
@@ -108,41 +111,25 @@ const DashboardSidebar = () => {
                       >
                         <path
                           d="M10 2H2V10H10V2Z"
-                          stroke={
-                            iconWhite
-                              ? "white"
-                              : "#83796B"
-                          }
+                          stroke={iconWhite ? "white" : "#83796B"}
                           stroke-width="1.5"
                           stroke-linejoin="round"
                         />
                         <path
                           d="M22 2H14V10H22V2Z"
-                          stroke={
-                            iconWhite
-                              ? "white"
-                              : "#83796B"
-                          }
+                          stroke={iconWhite ? "white" : "#83796B"}
                           stroke-width="1.5"
                           stroke-linejoin="round"
                         />
                         <path
                           d="M10 14H2V22H10V14Z"
-                          stroke={
-                            iconWhite
-                              ? "white"
-                              : "#83796B"
-                          }
+                          stroke={iconWhite ? "white" : "#83796B"}
                           stroke-width="1.5"
                           stroke-linejoin="round"
                         />
                         <path
                           d="M22 14H14V22H22V14Z"
-                          stroke={
-                            iconWhite
-                              ? "white"
-                              : "#83796B"
-                          }
+                          stroke={iconWhite ? "white" : "#83796B"}
                           stroke-width="1.5"
                           stroke-linejoin="round"
                         />
@@ -158,31 +145,19 @@ const DashboardSidebar = () => {
                       >
                         <path
                           d="M2.5 12C2.5 7.52166 2.5 5.28249 3.89124 3.89124C5.28249 2.5 7.52166 2.5 12 2.5C16.4783 2.5 18.7175 2.5 20.1088 3.89124C21.5 5.28249 21.5 7.52166 21.5 12C21.5 16.4783 21.5 18.7175 20.1088 20.1088C18.7175 21.5 16.4783 21.5 12 21.5C7.52166 21.5 5.28249 21.5 3.89124 20.1088C2.5 18.7175 2.5 16.4783 2.5 12Z"
-                          stroke={
-                            iconWhite
-                              ? "white"
-                              : "#83796B"
-                          }
+                          stroke={iconWhite ? "white" : "#83796B"}
                           stroke-width="1.5"
                           stroke-linejoin="round"
                         />
                         <path
                           d="M2.5 14.5H3.03875C3.51106 14.5 3.74721 14.5 3.95256 14.4013C4.15791 14.3026 4.30544 14.1182 4.60049 13.7494L6 12L7.5 14.5L9 11L11.5 16L15 9L17 12.5L18.5 11L19.9453 13.168C20.1973 13.546 20.3233 13.735 20.5074 13.8494C20.544 13.8721 20.582 13.8925 20.6212 13.9103C20.8185 14 21.0457 14 21.5 14"
-                          stroke={
-                            iconWhite
-                              ? "white"
-                              : "#83796B"
-                          }
+                          stroke={iconWhite ? "white" : "#83796B"}
                           stroke-width="1.5"
                           stroke-linejoin="round"
                         />
                         <path
                           d="M15 2.5V5.5M15 21.5V13.5"
-                          stroke={
-                            iconWhite
-                              ? "white"
-                              : "#83796B"
-                          }
+                          stroke={iconWhite ? "white" : "#83796B"}
                           stroke-width="1.5"
                           stroke-linecap="round"
                           stroke-linejoin="round"
@@ -205,20 +180,12 @@ const DashboardSidebar = () => {
                       >
                         <path
                           d="M16 14C16 14.8284 16.6716 15.5 17.5 15.5C18.3284 15.5 19 14.8284 19 14C19 13.1716 18.3284 12.5 17.5 12.5C16.6716 12.5 16 13.1716 16 14Z"
-                          stroke={
-                            iconWhite
-                              ? "white"
-                              : "#83796B"
-                          }
+                          stroke={iconWhite ? "white" : "#83796B"}
                           stroke-width="1.5"
                         />
                         <path
                           d="M10 7H16C18.8284 7 20.2426 7 21.1213 7.87868C22 8.75736 22 10.1716 22 13V15C22 17.8284 22 19.2426 21.1213 20.1213C20.2426 21 18.8284 21 16 21H10C6.22876 21 4.34315 21 3.17157 19.8284C2 18.6569 2 16.7712 2 13V11C2 7.22876 2 5.34315 3.17157 4.17157C4.34315 3 6.22876 3 10 3H14C14.93 3 15.395 3 15.7765 3.10222C16.8117 3.37962 17.6204 4.18827 17.8978 5.22354C18 5.60504 18 6.07003 18 7"
-                          stroke={
-                            iconWhite
-                              ? "white"
-                              : "#83796B"
-                          }
+                          stroke={iconWhite ? "white" : "#83796B"}
                           stroke-width="1.5"
                           stroke-linecap="round"
                         />
@@ -233,8 +200,12 @@ const DashboardSidebar = () => {
             </ul>
 
             <footer>
+<>
+<SupportPopUp/>
+</>
+
               <ul>
-                {["Support", "Settings"].map((item) => {
+                {["Settings"].map((item) => {
                   return (
                     <li
                       className={`flex px-3 py-2 gap-3 text-default_steps hover:text-white rounded-[6px] cursor-pointer transition-all duration-[${transitionDuration}] hover:bg-btn_orange`}
@@ -242,50 +213,6 @@ const DashboardSidebar = () => {
                       onMouseOut={handleLeaveHoverOnListItem}
                       onMouseOver={() => handleSvgColorChange(item)}
                     >
-                      {item === "Support" && (
-                        <svg
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M22 11.5667C22 16.8499 17.5222 21.1334 12 21.1334C11.3507 21.1343 10.7032 21.0742 10.0654 20.9545C9.60633 20.8682 9.37678 20.8251 9.21653 20.8496C9.05627 20.8741 8.82918 20.9948 8.37499 21.2364C7.09014 21.9197 5.59195 22.161 4.15111 21.893C4.69874 21.2194 5.07275 20.4112 5.23778 19.5448C5.33778 19.0148 5.09 18.5 4.71889 18.1231C3.03333 16.4115 2 14.1051 2 11.5667C2 6.28357 6.47778 2 12 2C17.5222 2 22 6.28357 22 11.5667Z"
-                            stroke={
-                              listItemHovered.value &&
-                              listItemHovered.item === item
-                                ? "white"
-                                : "#83796B"
-                            }
-                            stroke-width="1.5"
-                            stroke-linejoin="round"
-                          />
-                          <path
-                            d="M10.5 10.0385C10.5 9.18879 11.1716 8.5 12 8.5C12.8284 8.5 13.5 9.18879 13.5 10.0385C13.5 10.3447 13.4127 10.6301 13.2623 10.8698C12.8141 11.5844 12 12.2657 12 13.1154V13.5"
-                            stroke={
-                              listItemHovered.value &&
-                              listItemHovered.item === item
-                                ? "white"
-                                : "#83796B"
-                            }
-                            stroke-width="1.5"
-                            stroke-linecap="round"
-                          />
-                          <path
-                            d="M12 15.5H12.009"
-                            stroke={
-                              listItemHovered.value &&
-                              listItemHovered.item === item
-                                ? "white"
-                                : "#83796B"
-                            }
-                            stroke-width="1.5"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-                      )}
                       {item === "Settings" && (
                         <svg
                           width="24"
@@ -343,7 +270,16 @@ const DashboardSidebar = () => {
                           />
                         </svg>
                       )}
-                      {item}
+                      {item === "Settings" ? (
+                        <Link
+                          className="w-full"
+                          href={`/dashboard/${item.toLowerCase()}`}
+                        >
+                          {item}
+                        </Link>
+                      ) : (
+                       null
+                      )}
                     </li>
                   );
                 })}
@@ -351,7 +287,6 @@ const DashboardSidebar = () => {
             </footer>
           </div>
         </div>
-
         <div
           className={`flex  ${
             isMenuClicked ? "hidden" : "flex"

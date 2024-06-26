@@ -24,7 +24,7 @@ const Onboarding = () => {
 
   const StepQuestions = ({ role, steps, triggerNextStep }) => {
     const [selectedOption, setSelectedOption] = useState(null);
-    const items = steps.BVN.value.account.data;
+    const items = steps.BVN?.value?.account?.data;
 
     const options = [
       {
@@ -98,7 +98,7 @@ const Onboarding = () => {
         try {
           const response = await axios.post(
             `${process.env.NEXT_PUBLIC_API_URL}/bvn`,
-            { bvn: steps.BVN.value.bvn, phone: steps.BVN.value.phoneNo },
+            { bvn: steps.BVN?.value?.bvn, phone: steps.BVN?.value?.phoneNo },
             {
               headers: {
                 "x-api-key": "BGL-AUTH",
@@ -196,12 +196,14 @@ const Onboarding = () => {
     const [iframeURL, setIframeURL] = useState("");
     const [disabled, setDisabled] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleChange = (event) => {
       setInputValue(event.target.value);
     };
 
     const handleSubmit = async () => {
+      setIsLoading(true);
       setDisabled(true);
       try {
         const response = await axios.get(
@@ -219,7 +221,6 @@ const Onboarding = () => {
       } catch (error) {
         console.error(error);
       } finally {
-        setDisabled(false);
       }
     };
 
@@ -237,19 +238,27 @@ const Onboarding = () => {
             },
           }
         );
-
+        if (response.data.message === "bvn not found") {
+          triggerNextStep({ trigger: "BVNError" });
+        }
         if (response) {
           setBvnInfo(response.data.data);
 
           setTimeout(() => {
+            setDisabled(false);
+            setIsLoading(false);
+
             triggerNextStep({ value: response?.data?.data, trigger: "8" });
           }, 2000);
         }
+        console.log(response);
       } catch (error) {
         console.error(error);
-        triggerNextStep({ trigger: "error" });
+
+        triggerNextStep({ trigger: "BVNError" });
       } finally {
         setDisabled(false);
+        setIsLoading(false);
       }
     }
 
@@ -266,7 +275,12 @@ const Onboarding = () => {
             onChange={handleChange}
           />
         </InputGroup>
-        <Button disabled={disabled} mt={2} onClick={handleSubmit}>
+        <Button
+          isLoading={isLoading}
+          disabled={disabled}
+          mt={2}
+          onClick={handleSubmit}
+        >
           Submit
         </Button>
         <IframeModal isOpen={isOpen} url={iframeURL} onClose={closeModal} />
@@ -280,7 +294,7 @@ const Onboarding = () => {
       <div className="border text-white w-full border-outline_orange rounded-lg p-6">
         {" "}
         {`${type}:`}{" "}
-        {type === "Email" ? steps.BVN.value.email : steps.BVN.value.phoneNo}{" "}
+        {type === "Email" ? steps.BVN?.value?.email : steps.BVN?.value?.phoneNo}{" "}
       </div>
     );
   };
@@ -408,6 +422,13 @@ const Onboarding = () => {
       component: <IframeWrapper />,
       waitAction: true,
     },
+    {
+      id: "BVNError",
+      message:
+        "There was an error validating your BVN.Please input your correct BVN and try again. ",
+      trigger: "BVN",
+    },
+
     {
       id: "8",
       message:
