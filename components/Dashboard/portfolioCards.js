@@ -19,7 +19,10 @@ const PortfolioCards = () => {
     <section
       className={`grid py-[14px] gap-4 text-font_black mt-[24px] lg:grid-cols-3`}
     >
-      {portfolioCards.map((item, i) => (
+      {portfolioCards.map((item, i) => {
+        const isItemInView = seeAmount.value && seeAmount.id === i
+        return(
+
         <div
           key={item.title}
           className={`border h-[135px] border-outline_orange rounded-lg p-4`}
@@ -28,17 +31,17 @@ const PortfolioCards = () => {
           <span>{item.title}</span>
           <div className={`flex items-center justify-between`}>
             <span className={`text-[1.8rem]`}>
-              {seeAmount ? item.value : "****"}
+              {isItemInView ? item.value : "****"}
             </span>
             <button
               onClick={() => toggleAmount(i)}
               className={`relative w-[20px] h-[20px]`}
             >
-              {seeAmount ? <FaEye /> : <IoMdEyeOff />}
+              { isItemInView? <FaEye /> : <IoMdEyeOff />}
             </button>
           </div>
         </div>
-      ))}
+      )})}
     </section>
   );
 };
