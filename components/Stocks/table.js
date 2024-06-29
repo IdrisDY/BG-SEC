@@ -1,8 +1,8 @@
 import React from "react";
 import { useTable } from "react-table";
-import Button from "../button";
 import Link from "next/link";
-
+import Button from "../button";
+import { TbHeartPlus } from "react-icons/tb";
 const StocksTableComponent = ({ columns, data }) => {
   const {
     getTableProps,
@@ -20,7 +20,7 @@ const StocksTableComponent = ({ columns, data }) => {
       className="border-separate text-[.7rem] border-spacing-x-2  lg:text-[1rem] lg:border-spacing-x-4 border-spacing-y-4 w-full"
       {...getTableProps()}
     >
-      <thead>
+      <thead className="text-[.8rem]">
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column) => (
@@ -31,6 +31,9 @@ const StocksTableComponent = ({ columns, data }) => {
                 {column.render("Header")}
               </th>
             ))}
+            <th className="text-left font-normal whitespace-nowrap ">
+              Add to favorites
+            </th>
             <th className="text-left font-normal ">Action</th>
           </tr>
         ))}
@@ -44,22 +47,38 @@ const StocksTableComponent = ({ columns, data }) => {
                 return (
                   <td
                     className={`${
-                      cell.column.id === "24h" ? "text-change_green" : ""
+                      cell.column.id === "24h"
+                        ? " mx-auto px-8 text-[.8rem] justify-center"
+                        : ""
                     }`}
-                    {...cell.getCellProps()}
+                    {...cell.getCellProps({
+                      style: { width: cell.column.width },
+                    })}
                   >
                     {cell.render("Cell")}
                   </td>
                 );
               })}
+
+              <td className="  h-full justify-center">
+                <button>
+                  <TbHeartPlus size={"30px"} color="#FD891C" />
+                </button>
+              </td>
+
               <td className="">
                 <button
                   onClick={() =>
                     console.log("Action clicked for row ID:", row.id)
                   }
-                  className=" px-[10px]  text-white text-center w-full min-w-[67px] py-[7px] rounded-lg bg-btn_orange"
+                  className="w-[100px] rounded-lg text-center bg-btn_orange h-[40px]"
                 >
-                  <Link href={`/dashboard/stocks/${row.id}`}>Buy</Link>
+                  <Link
+                    className=" flex  justify-center items-center w-full h-[40px] "
+                    href={`/dashboard/stocks/${row.id}`}
+                  >
+                    Buy
+                  </Link>
                 </button>
               </td>
             </tr>

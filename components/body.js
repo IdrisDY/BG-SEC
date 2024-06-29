@@ -16,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     background: ${({ theme, isDashboardAndLightTheme }) =>
       isDashboardAndLightTheme ? theme.dashboard_bg : theme.background};
-    color: ${({ theme }) => theme.color};
+    color: ${({ theme }) => `${theme.color} !important`};
     transition: all 0.25s linear;
   }
 `;

@@ -5,21 +5,37 @@ import {
   PopoverContent,
   PopoverArrow,
   PopoverCloseButton,
+  InputGroup,
+  Input,
+  InputRightElement,
+  InputLeftElement,
   PopoverHeader,
   PopoverBody,
   IconButton,
 } from "@chakra-ui/react";
-import { ChevronDownIcon, ChevronRightIcon } from "@chakra-ui/icons";
+import {
+  ChevronDownIcon,
+  ChevronRightIcon,
+  SearchIcon,
+} from "@chakra-ui/icons";
+import { LuSendHorizonal } from "react-icons/lu";
 import { useTheme } from "styled-components";
 import Image from "next/image";
 import Button from "../button";
 import { VscBell } from "react-icons/vsc";
 import { VscBellDot } from "react-icons/vsc";
 import { useState } from "react";
+import { CiCirclePlus } from "react-icons/ci";
+import { CiCircleMinus } from "react-icons/ci";
+
 const SupportPopup = () => {
   const dark = useTheme().mode === "dark";
   const [listItemHovered, setItemListHovered] = useState({
     value: false,
+  });
+  const [openQuestion, setOpenQuestion] = useState({
+    value: false,
+    no: 0,
   });
   const transitionDuration = "500ms";
   function handleSvgColorChange(item) {
@@ -32,9 +48,22 @@ const SupportPopup = () => {
       value: false,
     });
   }
+  function toggleOpenQuestion(index) {
+    setOpenQuestion((prevState) =>
+      prevState.no === index
+        ? { ...prevState, value: !prevState.value }
+        : { value: true, no: index }
+    );
+  }
+  const questions = [
+    "What is BGL Securities Ltd?",
+    "What markets can I trade on?",
+    "BGL Securites Ltd secure?",
+    "Do you offer educational services to trader?",
+  ];
 
   return (
-    <Popover>
+    <Popover placement="top-start">
       <PopoverTrigger>
         <button
           className={`w-full flex px-3 ${
@@ -87,40 +116,77 @@ const SupportPopup = () => {
           fontWeight={"700"}
           borderColor={dark ? "#6B7878 " : "#CBD1D1"}
           fontSize={"1.125rem"}
-          textAlign={"center"}
           borderBottomWidth={"1px"}
           color={dark ? "#DA8E23" : ""}
         >
           BGL Securities Limited
         </PopoverHeader>
-        <PopoverBody
-          paddingTop={"12px"}
-          paddingBottom={"32px"}
-          paddingInline={"0px"}
-        >
-          <div className="flex font-[800]  px-8 py-[18px] justify-between ">
-            <div className="flex items-center  gap-6 ">
-              <button>All</button>
-              <button>Unread</button>
-            </div>
-
-            <button>Mark all as read</button>
+        <PopoverBody paddingBlock={"32px 26px"} paddingInline={"15px"}>
+          <div className="flex flex-col font-[800] ">
+            <h2 className="text-[1.4rem]">Hi Gabriel! 👋</h2>{" "}
+            <p className="text-[1.6rem]">How can we help you ?</p>
           </div>
-
           <div
-            className={`flex px-8 border-t ${
-              dark ? "border-[#6B7878]" : "border-[#CBD1D1]"
-            }   flex-col gap-2 items-center py-10 `}
+            className={`flex ${
+              dark ? "" : ""
+            }   flex-col gap-2 items-center mt-8 `}
           >
-            <div className="relative w-[200px] h-[200px] ">
-              <Image
-                src="/Dashboard/nonotifs.png"
-                layout="fill"
-                alt="no notifications image"
+            <InputGroup
+              borderRadius={"12px"}
+              border={dark ? "none" : ""}
+              color={dark ? "white" : ""}
+              background={dark ? "#FD891C" : ""}
+              width={"100%"}
+            >
+              <InputRightElement pointerEvents="none">
+                <LuSendHorizonal />
+              </InputRightElement>
+              <Input
+                border={dark ? "none" : ""}
+                type="tel"
+                placeholder="Send us a message"
               />
-            </div>
+            </InputGroup>{" "}
+            <InputGroup
+              borderColor={dark ? "#FD891C" : ""}
+              className="mt-[56px]"
+              width={"100%"}
+            >
+              <InputLeftElement pointerEvents="none">
+                <SearchIcon />
+              </InputLeftElement>
+              <Input type="tel" placeholder="Search for help" />
+            </InputGroup>{" "}
+            <div className="flex mt-6 flex-col gap-6">
+              {questions.map((item, i) => {
+                const isOnItem = openQuestion.value && openQuestion.no === i;
+                return (
+                  <div>
+                    <div className="flex justify-between items-center">
+                      <span>{item}</span>
 
-            <span>Oops! no notification yet</span>
+                      <IconButton
+                        onClick={() => toggleOpenQuestion(i)}
+                        variant={"ghost"}
+                        icon={isOnItem ? <CiCircleMinus /> : <CiCirclePlus />}
+                      >
+                        {" "}
+                      </IconButton>
+                    </div>
+                    {isOnItem && (
+                      <p className="">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Proin sodales metus at odio viverra, ac porttitor lorem
+                        consectetur. Nullam tincidunt velit at libero feugiat, a
+                        ultricies nunc dictum. Nam bibendum, nunc et convallis
+                        lacinia, ex libero sagittis urna, in congue lorem lectus
+                        non risus. Suspendisse potenti.
+                      </p>
+                    )}{" "}
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </PopoverBody>
       </PopoverContent>
