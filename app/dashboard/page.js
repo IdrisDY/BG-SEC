@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Button from "@/components/button";
 import { ToggleThemeContext } from "@/utils/toggleTheme";
 import Image from "next/image";
@@ -36,6 +36,37 @@ export const TopDashboardBoxes = () => {
   function goToVerifyPage() {
     router.push("/dashboard/verify");
   }
+
+  const targetTime = new Date();
+  targetTime.setHours(23, 59, 59, 0);
+
+  const formatTime = (time) => String(time).padStart(2, "0");
+
+  const [timeRemaining, setTimeRemaining] = useState(
+    calculateTimeRemaining(targetTime)
+  );
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeRemaining(calculateTimeRemaining(targetTime));
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [targetTime]);
+
+  function calculateTimeRemaining(targetTime) {
+    const now = new Date();
+    const diff = targetTime - now;
+
+    if (diff <= 0) return { hours: 0, minutes: 0, seconds: 0 };
+
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    return { hours, minutes, seconds };
+  }
+
   return (
     <section className={`flex flex-col gap-4`}>
       {!isInVerifyPageInDashboard && (
@@ -66,12 +97,23 @@ export const TopDashboardBoxes = () => {
           dark ? "bg-dashboard_cards_bg " : "bg-white"
         }`}
       >
-        <div>
+        <div className="flex   gap-4 items-center ">
           <span
             className={`text-outline_orange  text-[.9rem] lg:text-[1rem] font-[700]`}
           >
             Market Closing Hours:{" "}
           </span>
+
+          <div className="flex items-center gap-5">
+            <span className=" p-3 p rounded-lg bg-outline_orange">
+              {formatTime(timeRemaining.hours)}
+            </span>{" "}
+            :
+            <span className=" p-3 rounded-lg bg-outline_orange">
+              {formatTime(timeRemaining.minutes)}
+            </span>
+            
+          </div>
         </div>
         <div className={`flex gap-2 items-center`}>
           <NotificationDropdown />
@@ -79,7 +121,7 @@ export const TopDashboardBoxes = () => {
           <IconButton
             onClick={toggleTheme}
             icon={theme.img}
-            variant={'ghost'}
+            variant={"ghost"}
             sx={{
               _hover: {
                 background: "transparent",

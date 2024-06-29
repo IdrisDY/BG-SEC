@@ -82,8 +82,8 @@ const Stocks = () => {
       Header: "Stocks",
       accessor: "name",
       Cell: ({ cell: { value } }) => (
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <Checkbox></Checkbox>
+        <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+          <Checkbox className="rounded-[15px]"></Checkbox>
           <img
             src={value.image}
             alt={value.title}
@@ -92,8 +92,10 @@ const Stocks = () => {
           <span className="text-left">{value.title}</span>
         </div>
       ),
+      width: 200,
     },
-    { Header: "Price", accessor: "price" },
+
+    { Header: "Price", accessor: "price", width: 100 },
     {
       Header: "Charts",
       accessor: "charts",
@@ -103,8 +105,17 @@ const Stocks = () => {
           <LineChart data={chartData} />
         </div>
       ),
+      width: 300,
     },
-    { Header: "24H change", accessor: "24h" },
+    {
+      Header: "",
+      accessor: "24h",
+      Cell: ({ cell: { value } }) => (
+        <div className="text-center w-fit  justify-center flex gap-1 bg-[#B5EFCC30] rounded-[30px] p-2 text-change_green">
+          <ChevronUpIcon color={"#12B76A"} /> 23%
+        </div>
+      ),
+    },
   ];
 
   const data = [
@@ -267,9 +278,7 @@ const Stocks = () => {
         {/* Stocks Cards */}
         <div className={`grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-4`}>
           {stocks.map((item, i) => {
-            return (
-              <ChartCard item={item} data={chartData}/>
-            );
+            return <ChartCard item={item} data={chartData} />;
           })}
         </div>
 

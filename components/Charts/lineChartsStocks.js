@@ -27,6 +27,7 @@ const LineChart = ({ data }) => {
       options: {
         backgroundColor: "#52FF00",
         responsive: true,
+        aspectRatio:false,
         plugins: {
           legend: {
             display: false,

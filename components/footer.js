@@ -1,7 +1,13 @@
 import Button from "./button";
 import { DMFont } from "./body";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 const Footer = () => {
+  const router = useRouter();
+  function goToOnboarding() {
+    router.push("/onboarding");
+  }
+
   return (
     <footer className=" bottom-0 w-full mt-[80px] bg-footer_bg px-6 lg:px-[112px] py-[64px] text-white  ">
       <section className="flex border-b pb-16 mb-16 border-btn_orange flex-col items-center text-center gap-4">
@@ -16,6 +22,8 @@ const Footer = () => {
         </h4>
 
         <Button
+          onClick={goToOnboarding}
+          variant="custom-yellow"
           customClassName=" mt-6 bg-white text-font_black lg:text-white lg:bg-btn_orange"
           text="Start Trading"
         />

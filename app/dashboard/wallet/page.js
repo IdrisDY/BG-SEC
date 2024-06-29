@@ -19,6 +19,8 @@ import {
   ChevronUpIcon,
 } from "@chakra-ui/icons";
 import Image from "next/image";
+import WithdrawPopup from "@/components/Dashboard/withdrawPopup";
+import DepositPopup from "@/components/Dashboard/depositPopup";
 
 const DashboardWallet = () => {
   const theme = useTheme();
@@ -28,12 +30,11 @@ const DashboardWallet = () => {
     <div>
       {/* Portfolio Cards Section */}
       <PortfolioCards />
-      <div className="flex gap-5 justify-end">
-        <Button customClassName="bg-btn_orange text-white" text="Deposit" />
-        <Button
-          customClassName="border border-outline_orange bg-transparent"
-          text="Withdraw"
-        />
+      <div className=" flex justify-end">
+        <div className="flex w-1/2 justify-end  gap-5 relative">
+          <DepositPopup />
+          <WithdrawPopup />
+        </div>
       </div>
 
       <section className="flex flex-col lg:flex-row mt-6  gap-6">

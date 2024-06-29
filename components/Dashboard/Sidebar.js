@@ -200,9 +200,9 @@ const DashboardSidebar = () => {
             </ul>
 
             <footer>
-<>
-<SupportPopUp/>
-</>
+              <>
+                <SupportPopUp />
+              </>
 
               <ul>
                 {["Settings"].map((item) => {
@@ -277,9 +277,7 @@ const DashboardSidebar = () => {
                         >
                           {item}
                         </Link>
-                      ) : (
-                       null
-                      )}
+                      ) : null}
                     </li>
                   );
                 })}

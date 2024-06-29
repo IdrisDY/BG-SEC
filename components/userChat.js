@@ -5,6 +5,9 @@ import { ThemeProvider } from "styled-components";
 import ChatBot from "react-simple-chatbot";
 import Image from "next/image";
 import WelcomeToDashboard from "./Onboarding/welcome";
+import { HiOutlineMicrophone } from "react-icons/hi2";
+import { BiMicrophoneOff } from "react-icons/bi";
+import { IconButton } from "@chakra-ui/react";
 const UserChatTemplate = ({
   bottomText,
   showVerifyStep,
@@ -18,6 +21,7 @@ const UserChatTemplate = ({
   showUpperProgressBars,
   stepCompleted,
   handleEnd,
+  updateRead,
   upperRightPageComponent,
 }) => {
   const [currentStep, setCurrentStep] = useState({ value: 1, finished: false });
@@ -33,6 +37,12 @@ const UserChatTemplate = ({
     userFontColor: "#4a4a4a",
   };
 
+  const [readMessage, setReadMessage] = useState(false);
+
+  function toggleReadMessage() {
+    updateRead()
+    setReadMessage(!readMessage);
+  }
   return (
     <div
       className={`bg-font_black min-h-screen text-[.9rem] md:items-center w-[95%] m-auto lg:w-full md:w-[60%] lg:items-stretch flex-col lg:flex-row flex text-white`}
@@ -150,6 +160,7 @@ const UserChatTemplate = ({
 
           {upperRightPageComponent}
         </div>
+
         <ThemeProvider theme={theme}>
           <ChatBot
             hideHeader
@@ -159,14 +170,16 @@ const UserChatTemplate = ({
             footerStyle={{
               background: "#131414",
             }}
+            speechSynthesis={{ enable: readMessage, lang: "en" }}
             handleEnd={handleEnd}
             inputStyle={{
               borderTopRadius: "10px",
               border: "1px solid #DA8E23",
             }}
+            recognitionEnable={false}
             bubbleStyle={{
               background: "#131414",
-              border: "1px solid #DA8E23",
+              border: "2px solid #DA8E23",
               borderRadius: "8px",
               width: "100%",
               maxWidth: "60%",

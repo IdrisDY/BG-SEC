@@ -8,8 +8,10 @@ import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { setShowModal } from "@/store/LandingPageSlice";
 import Marquee from "./marquee";
+import { RxHamburgerMenu } from "react-icons/rx";
 import { IconButton } from "@chakra-ui/react";
-
+import { IoMdClose } from "react-icons/io";
+import CustomIconButton from "./CustomIconButton";
 const Header = ({ showSignUpModal }) => {
   const theme = useTheme();
   const [isMenuClicked, setIsMenuClicked] = useState(false);
@@ -17,7 +19,7 @@ const Header = ({ showSignUpModal }) => {
   const { text, toggleTheme } = useContext(ToggleThemeContext);
 
   const dispatch = useDispatch();
-
+  const dark = useTheme().mode === "dark";
   function handleShowModal() {
     dispatch(setShowModal(true));
   }
@@ -45,6 +47,8 @@ const Header = ({ showSignUpModal }) => {
       { id: "contact-us", text: "Contact Us" },
     ];
 
+    console.log(dark);
+
     return (
       <ul
         className={`flex ${
@@ -60,7 +64,7 @@ const Header = ({ showSignUpModal }) => {
 
   const Buttons = () => {
     return (
-      <div className="lg:flex gap-6 items-center">
+      <div className="lg:flex-row flex flex-col gap-6 items-center">
         <IconButton
           onClick={toggleTheme}
           icon={theme.img}
@@ -72,7 +76,13 @@ const Header = ({ showSignUpModal }) => {
           }}
           aria-label="Theme icon change  "
         ></IconButton>
-        <Link href="/login"> Log In</Link>
+        <Link
+          className={`hover:${dark ? "text-outline_orange" : "text-[#56A173]"}`}
+          href="/login"
+        >
+          {" "}
+          Log In
+        </Link>
         <Button
           onClick={() => handleShowModal()}
           customClassName=" bg-btn_orange"
@@ -121,7 +131,6 @@ const Header = ({ showSignUpModal }) => {
             alt="logo"
           />
         </div>
-
         <div
           className={`hidden lg:flex h-full items-center ${
             !isLargeViewport && !isMenuClicked ? "hidden" : ""
@@ -129,16 +138,18 @@ const Header = ({ showSignUpModal }) => {
         >
           <NavLinks />
         </div>
-
-        <button
+        <IconButton
           onClick={() => setIsMenuClicked(true)}
-          className={`relative flex lg:hidden h-[20px] w-[21px] ${
-            isLargeViewport ? "hidden" : ""
-          }`}
-        >
-          <Image layout="fill" src="/align-justify.svg" alt="menu button" />
-        </button>
+          icon={<RxHamburgerMenu color={dark ? "white" : ""} />}
+          variant={"ghost"}
+          sx={{
+            _hover: {
+              background: dark ? "#FFFFFF1A" : "#E6F7FF",
+            },
 
+            display: isLargeViewport ? "none" : "flex",
+          }}
+        />
         {!isMenuClicked && isLargeViewport && <Buttons />}
       </nav>
 
@@ -155,12 +166,11 @@ const Header = ({ showSignUpModal }) => {
               isMenuClicked ? "translate-x-0" : "translate-x-full"
             }`}
           >
-            <button
+            <CustomIconButton
+            dark={dark}
               onClick={() => setIsMenuClicked(false)}
-              className="self-end mb-5"
-            >
-              <Image width={24} height={24} src="/x.svg" alt="close button" />
-            </button>
+              icon={<IoMdClose color={dark ? "white" : "black"} />}
+            />
             {isMenuClicked && <NavLinks />}
             {isMenuClicked && <Buttons />}
           </div>

@@ -65,7 +65,7 @@ button{
 }
 .rsc-content {
   overflow-y: auto !important;
-  border: 1px solid #da8e23;
+  border: 2px solid #da8e23;
   border-radius: 8px !important;
   background: #171b1b !important ;
   height: 100% !important;
@@ -102,6 +102,8 @@ button{
   width: fit-content;
   color: white;
   height: 100%;
+  width: 80%;
+  min-height: 50px !important;
 }
 .rsc-cs {
   background: #171b1b !important ;

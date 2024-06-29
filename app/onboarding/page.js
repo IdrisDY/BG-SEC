@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import UserChatTemplate from "@/components/userChat";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { socket } from "@/utils/socket";
+// import { socket } from "@/utils/socket";
 import {
   FormControl,
   FormLabel,
@@ -16,11 +16,19 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import IframeModal from "@/components/iframeModal/modal";
+import MessageComponent from "@/components/Onboarding/chatMsgBox";
+
 const Onboarding = () => {
   const [finishOnbarding, setFinishOnboarding] = useState(false);
   const [openIframe, setOpenIframe] = useState(false);
+  const [readMessage, setReadMessage] = useState(false);
+  const [read, setRead] = useState(false);
   const [iframeURL, setIframeURL] = useState("");
   const [bvnInfo, setBvnInfo] = useState({});
+
+  function updateRead() {
+    setRead(!read);
+  }
 
   const StepQuestions = ({ role, steps, triggerNextStep }) => {
     const [selectedOption, setSelectedOption] = useState(null);
@@ -94,11 +102,13 @@ const Onboarding = () => {
       console.log("wyling");
       // });
 
+      const phoneNo = steps?.update_number?.value || steps.BVN?.value?.phoneNo;
+
       if (role === "Account Retrieval") {
         try {
           const response = await axios.post(
             `${process.env.NEXT_PUBLIC_API_URL}/bvn`,
-            { bvn: steps.BVN?.value?.bvn, phone: steps.BVN?.value?.phoneNo },
+            { bvn: steps.BVN?.value?.bvn, phone: phoneNo },
             {
               headers: {
                 "x-api-key": "BGL-AUTH",
@@ -216,7 +226,7 @@ const Onboarding = () => {
             },
           }
         );
-        setIframeURL(response.data.data.url);
+        setIframeURL(response?.data?.data?.url);
         setIsOpen(true);
       } catch (error) {
         console.error(error);
@@ -224,6 +234,10 @@ const Onboarding = () => {
       }
     };
 
+    function resetState() {
+      setInputValue("");
+      setIframeURL("");
+    }
     async function closeModal() {
       setIsOpen(false);
 
@@ -238,11 +252,11 @@ const Onboarding = () => {
             },
           }
         );
-        if (response.data.message === "bvn not found") {
+        if (response?.data?.message === "bvn not found") {
           triggerNextStep({ trigger: "BVNError" });
         }
         if (response) {
-          setBvnInfo(response.data.data);
+          setBvnInfo(response?.data?.data);
 
           setTimeout(() => {
             setDisabled(false);
@@ -299,24 +313,16 @@ const Onboarding = () => {
     );
   };
 
-  console.log(socket);
+  // console.log(socket);
   const isValidPassword = (password) => {
     const minLength = 8;
-    const hasUpperCase = /[A-Z]/.test(password);
-    const hasLowerCase = /[a-z]/.test(password);
-    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-    return (
-      password.length >= minLength &&
-      hasUpperCase &&
-      hasLowerCase &&
-      hasSpecialChar
-    );
+    return password.length >= minLength;
   };
 
   const isValidPassCode = (password) => {
     const minLength = 4;
 
-    return password.length >= minLength;
+    return password.length === minLength;
   };
   const router = useRouter();
 
@@ -351,9 +357,9 @@ const Onboarding = () => {
   //   };
   // }, [socket]);
   async function validateBVN(info) {
-    console.log(socket);
-    socket.emit("join", info.value);
-    socket.emit("bvn-consent", { bvn: info.value });
+    // console.log(socket);
+    // socket.emit("join", info.value);
+    // socket.emit("bvn-consent", { bvn: info.value });
     setOpenIframe(true);
     // socket.on("bvn-consent", (msg) => {
     //   console.log(msg);
@@ -372,7 +378,7 @@ const Onboarding = () => {
           },
         }
       );
-      setIframeURL(response.data.data.url);
+      setIframeURL(response?.data?.data?.url);
       console.log(response);
     } catch (error) {
       console.log(error);
@@ -382,8 +388,10 @@ const Onboarding = () => {
   const steps = [
     {
       id: "1",
-      message:
-        "Hello👋Great to have you here. Don’t worry, your information is safe with us. We take your privacy seriously. Let’s begin with the basics, shall we?",
+      component: (
+        <MessageComponent msg="Hello👋Great to have you here. Don’t worry, your information is safe with us. We take your privacy seriously. Let’s begin with the basics, shall we?" />
+      ),
+      asMessage: true,
       trigger: "2",
     },
     {
@@ -395,26 +403,31 @@ const Onboarding = () => {
     },
     {
       id: "3",
-      message:
-        "Okay! First things first, what’s your full name ? (first name, then last name) ",
+      component: (
+        <MessageComponent msg="Okay! First things first, what’s your full name ? (first name, then last name)" />
+      ),
+      asMessage: true,
       trigger: "fullname",
     },
     {
       id: "fullname",
       user: true,
       trigger: (value) => {
-        return "5";
+        return "greet";
       },
     },
     {
-      id: "5",
-      message: "Great {previousValue}, nice to meet you!",
+      id: "greet",
+      component: <MessageComponent msg={`Great , nice to meet you!`} />,
+      asMessage: true,
       trigger: "6",
     },
     {
       id: "6",
-      message:
-        "To ensure the security of your account and verify your identity. We’ll need your bank verification number (BVN).",
+      component: (
+        <MessageComponent msg="To ensure the security of your account and verify your identity. We’ll need your bank verification number (BVN)." />
+      ),
+      asMessage: true,
       trigger: "BVN",
     },
     {
@@ -424,23 +437,28 @@ const Onboarding = () => {
     },
     {
       id: "BVNError",
-      message:
-        "There was an error validating your BVN.Please input your correct BVN and try again. ",
+      component: (
+        <MessageComponent msg="There was an error validating your BVN. Please input your correct BVN and try again." />
+      ),
+      asMessage: true,
       trigger: "BVN",
     },
-
     {
       id: "8",
-      message:
-        "Awesome! You provided the correct BVN and we are able to process your details, kindly confirm them below",
+      component: (
+        <MessageComponent msg="Awesome! You provided the correct BVN and we are able to process your details, kindly confirm them below" />
+      ),
+      asMessage: true,
       trigger: "9",
     },
     {
       id: "error",
-      message: "Something went wrong please try again",
+      component: (
+        <MessageComponent msg="Something went wrong please try again" />
+      ),
+      asMessage: true,
       trigger: "6",
     },
-
     {
       id: "9",
       component: <NumberEmail type="Email" />,
@@ -450,7 +468,7 @@ const Onboarding = () => {
       id: "10",
       options: [
         { value: 1, label: "Okay", trigger: "11" },
-        { value: 2, label: "Update", trigger: "11" },
+        { value: 2, label: "Update", trigger: "update_email" },
       ],
     },
     {
@@ -459,16 +477,28 @@ const Onboarding = () => {
       trigger: "12",
     },
     {
+      id: "update_email",
+      user: true,
+      trigger: "11",
+    },
+    {
       id: "12",
       options: [
         { value: 1, label: "Okay", trigger: "13" },
-        { value: 2, label: "Update", trigger: "1" },
+        { value: 2, label: "Update", trigger: "update_number" },
       ],
     },
     {
+      id: "update_number",
+      user: true,
+      trigger: "13",
+    },
+    {
       id: "13",
-      message:
-        "Fantastic👌! Now, set a robust password with at least 8 characters, including lowercase, uppercase, and special characters.",
+      component: (
+        <MessageComponent msg="Fantastic👌! Now, set a robust password with at least 8 characters, including lowercase, uppercase, and special characters." />
+      ),
+      asMessage: true,
       trigger: "password",
     },
     {
@@ -479,21 +509,24 @@ const Onboarding = () => {
         if (isValidPassword(value)) {
           return true;
         } else {
-          return "Password must be at least 8 characters long and include lowercase, uppercase, and special characters";
+          return "Password must be at least 8 characters long!";
         }
       },
     },
     {
       id: "15",
-      message:
-        "We’re almost there! Just a few more details to go, and you’ll be all set to dive into the world of stock trading with BGL😊.",
+      component: (
+        <MessageComponent msg="We’re almost there! Just a few more details to go, and you’ll be all set to dive into the world of stock trading with BGL😊." />
+      ),
+      asMessage: true,
       trigger: "16",
     },
     {
       id: "16",
-      message:
-        "Wow, some account numbers were retrieved with your BVN. For smooth transaction of your money, kindly choose your permanent account number you want to be using on the app. (Note that this can’t be changed).",
-
+      component: (
+        <MessageComponent msg="Wow, some account numbers were retrieved with your BVN. For smooth transaction of your money, kindly choose your permanent account number you want to be using on the app. (Note that this can’t be changed)." />
+      ),
+      asMessage: true,
       trigger: "17",
     },
     {
@@ -501,11 +534,12 @@ const Onboarding = () => {
       component: <StepQuestions role="Account Retrieval" />,
       waitAction: true,
     },
-
     {
       id: "18",
-      message:
-        "Great! We’ve sent a one-time password (OTP) to the mobile number associated with your BVN. Please check and respond below.",
+      component: (
+        <MessageComponent msg="Great! We’ve sent a one-time password (OTP) to the mobile number associated with your BVN. Please check and respond below." />
+      ),
+      asMessage: true,
       trigger: "19",
     },
     {
@@ -522,8 +556,10 @@ const Onboarding = () => {
     },
     {
       id: "21",
-      message:
-        "Great! Thank you for providing your BVN and OTP, Susan. We need a Security Question from you, pick your choice.",
+      component: (
+        <MessageComponent msg="Great! Thank you for providing your BVN and OTP, Susan. We need a Security Question from you, pick your choice." />
+      ),
+      asMessage: true,
       trigger: "securityQuestion",
     },
     {
@@ -531,17 +567,17 @@ const Onboarding = () => {
       component: <StepQuestions role="Security Question" />,
       waitAction: true,
     },
-
     {
       id: "23",
       user: true,
       trigger: "24",
     },
-
     {
       id: "24",
-      message:
-        "Awesome! Gabriel. Lastly, we recommend setting up an Alert PIN for withdrawal. NB: No BGL staff will request your alert pin or password.",
+      component: (
+        <MessageComponent msg="Awesome! Gabriel. Lastly, we recommend setting up an Alert PIN for withdrawal. NB: No BGL staff will request your alert pin or password." />
+      ),
+      asMessage: true,
       trigger: "25",
     },
     {
@@ -561,7 +597,7 @@ const Onboarding = () => {
         if (isValidPassCode(value)) {
           return true;
         } else {
-          return "Password must be at least 4 characters long.";
+          return "Password must be exactly 4 characters long.";
         }
       },
       end: true,
@@ -590,15 +626,27 @@ const Onboarding = () => {
   };
 
   async function handleEnd({ steps, value }) {
-    console.log(steps);
+    const nextOfKin = {
+      nextOfKin: {
+        fullName: "Lorem",
+        relationship: "brother",
+        email: "lorem@mailinatior.com",
+        mobile: "08011111111",
+        residentialAddress: "12, Amope Amoo Mafoluku",
+        cityOfResidence: "Oshodi",
+        gender: "Male",
+        stateOfResidence: "Lagos",
+      },
+    };
+
+    const updatedEmail = steps?.update_email?.value;
+    const updatedNumber = steps?.update_number?.value;
 
     const {
-      email,
       title,
       firstName,
       middleName,
       lastName,
-      phoneNo,
       dateOfBirth,
       gender,
       stateOfOrigin,
@@ -612,21 +660,21 @@ const Onboarding = () => {
     // const lastName = name[1]
 
     const finalObj = {
-      password: steps.password.value,
-      email,
+      password: steps?.password?.value,
+      email: updatedEmail || steps?.BVN?.value?.email,
       title,
       firstName,
       middleName,
       lastName,
-      mobile: phoneNo,
-      dateOfBirth,
+      mobile: updatedNumber || steps?.BVN?.value?.phoneNo,
+      dateOfBirth: "05/04/1994",
       gender,
       state: stateOfOrigin || "Oyo",
-      address: residentialAddress || "Ikorodu,Lagos",
+      address: residentialAddress || "Ikorodu",
       city: "Ikorodu",
       nationality: "Nigerian",
-      profilePic: "/onboard/access.png",
-      title: "Mr.",
+      profilePic: "http://localhost.jpg/onboard/access.png",
+      title: "Mr",
       account: {
         bankName: enrollmentBank || "Kuda",
         accountNumber: "0000000000",
@@ -635,7 +683,8 @@ const Onboarding = () => {
         bankCode: "011",
       },
       userType: "IND",
-      securityPin: steps.securityPin.value,
+      ...nextOfKin,
+      securityPin: steps?.securityPin?.value,
     };
 
     try {
@@ -676,6 +725,7 @@ const Onboarding = () => {
         listOfSteps={listOfSteps}
         numberOfSteps={4}
         topRightPageText={"Have an account?"}
+        updateRead={updateRead}
         handleEnd={handleEnd}
         upperRightPageComponent={
           <div className=" ml-auto flex">

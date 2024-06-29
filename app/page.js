@@ -11,18 +11,20 @@ import { useDispatch, useSelector } from "react-redux";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { setLoading } from "@/store/LandingPageSlice";
+import { useRouter } from "next/navigation";
 export default function Home() {
   const theme = useTheme();
   const dispatch = useDispatch();
   const { showModal, loading } = useSelector((state) => state.LandingPage);
   console.log(loading);
+  const router = useRouter();
+  function goToOnboarding() {
+    router.push("/onboarding");
+  }
   useEffect(() => {
     const timeout = setTimeout(() => {
       dispatch(setLoading(false));
     }, 1500);
-
-    
-
   }, []);
 
   if (loading) {
@@ -227,7 +229,7 @@ export default function Home() {
                       DMFont.className
                     } leading-[1.5rem] font-[700] lg:text-[3rem] text-[1.4rem]`}
                   >
-                    5+
+                    28+
                   </span>
                   <span className={`text-[.65rem] lg:text-[1rem]`}>
                     Of years of Experience
@@ -243,7 +245,7 @@ export default function Home() {
                       DMFont.className
                     } leading-[1.5rem] font-[700] lg:text-[3rem] text-[1.4rem]`}
                   >
-                    $2.5+
+                    ₦2.5T +
                   </span>
                   <span className={`text-[.65rem] lg:text-[1rem]`}>
                     Billions of transactions
@@ -259,7 +261,7 @@ export default function Home() {
                       DMFont.className
                     } leading-[1.5rem] font-[700] lg:text-[3rem] text-[1.4rem]`}
                   >
-                    2k+
+                    58k+
                   </span>
                   <span className={`text-[.65rem] lg:text-[1rem]`}>
                     Customers so far
@@ -404,8 +406,11 @@ export default function Home() {
                   information.
                 </p>
               </div>
-              <Button base={false}
+              <Button
+                variant="custom-yellow"
+                base={false}
                 text="Start Trading"
+                onClick={goToOnboarding}
                 customClassName=" hidden lg:block text-light_mainTxt  bg-btn_orange"
               />
             </div>
@@ -541,7 +546,8 @@ export default function Home() {
                   analysts, and traders
                 </p>
               </div>
-              <Button base
+              <Button
+                base
                 customClassName={` bg-light_mainTxt lg:bg-btn_orange`}
                 text="View all posts"
               />
@@ -689,7 +695,8 @@ export default function Home() {
                 Can’t find the answer you’re looking for? Please chat to our
                 friendly team.
               </p>
-              <Button base
+              <Button
+                base
                 customClassName={`bg-dark_green_90 lg:bg-btn_orange`}
                 text="Get in Touch"
               />
@@ -724,7 +731,11 @@ export default function Home() {
                       We care about your data in our privacy policy.
                     </span>
                   </div>
-                  <Button base customClassName=" bg-light_mainTxt md:bg-btn_orange" text="Subscribe" />
+                  <Button
+                    base
+                    customClassName=" bg-light_mainTxt md:bg-btn_orange"
+                    text="Subscribe"
+                  />
                 </div>
               </div>
               <div className="relative bg-[#E1F4F4] rounded-lg lg:w-1/2 h-[65vh] ">

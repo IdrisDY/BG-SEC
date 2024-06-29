@@ -17,6 +17,7 @@
     "@reduxjs/toolkit": "^2.2.5",
     "axios": "^1.7.2",
     "chart.js": "^4.4.3",
+    "crypto-js": "^4.2.0",
     "deps": "^1.0.0",
     "framer-motion": "^11.2.10",
     "next": "14.2.3",
