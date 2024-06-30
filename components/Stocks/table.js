@@ -1,8 +1,9 @@
-import React from "react";
+"use client";
 import { useTable } from "react-table";
 import Link from "next/link";
 import Button from "../button";
 import { TbHeartPlus } from "react-icons/tb";
+import { useTheme } from "styled-components";
 const StocksTableComponent = ({ columns, data }) => {
   const {
     getTableProps,
@@ -14,10 +15,13 @@ const StocksTableComponent = ({ columns, data }) => {
     columns,
     data,
   });
+  const dark = useTheme().mode === "dark";
 
   return (
     <table
-      className="border-separate text-[.7rem] border-spacing-x-2  lg:text-[1rem] lg:border-spacing-x-4 border-spacing-y-4 w-full"
+      className={`border-separate text-[.7rem] ${
+        dark ? "" : "text-light_gray_50"
+      }  border-spacing-x-2  lg:text-[1rem] lg:border-spacing-x-4 border-spacing-y-4 w-full`}
       {...getTableProps()}
     >
       <thead className="text-[.8rem]">
@@ -62,7 +66,10 @@ const StocksTableComponent = ({ columns, data }) => {
 
               <td className="  h-full justify-center">
                 <button>
-                  <TbHeartPlus size={"30px"} color="#FD891C" />
+                  <TbHeartPlus
+                    size={"30px"}
+                    color={dark ? "#FD891C" : "#3B4B4B"}
+                  />
                 </button>
               </td>
 
@@ -74,7 +81,7 @@ const StocksTableComponent = ({ columns, data }) => {
                   className="w-[100px] rounded-lg text-center bg-btn_orange h-[40px]"
                 >
                   <Link
-                    className=" flex  justify-center items-center w-full h-[40px] "
+                    className=" flex text-white  justify-center items-center w-full h-[40px] "
                     href={`/dashboard/stocks/${row.id}`}
                   >
                     Buy

@@ -1,9 +1,13 @@
 "use client";
 import { useTheme } from "styled-components";
 import LineChart from "../Charts/lineChartsStocks";
-import { ChevronUpIcon } from "@chakra-ui/icons";
+import {
+  ChevronUpIcon,
+  TriangleDownIcon,
+  TriangleUpIcon,
+} from "@chakra-ui/icons";
 
-const ChartCard = ({ data, item }) => {
+const ChartCard = ({ data, trend, item }) => {
   const theme = useTheme();
   const dark = theme.mode === "dark";
   return (
@@ -21,11 +25,20 @@ const ChartCard = ({ data, item }) => {
         <span className={`text-[1.3rem] font-[700]`}>{item.price}</span>
         {/* Chart Section */}
         <div className={`flex items-end h-[40px] justify-end w-3/5 lg:w-1/2`}>
-          <LineChart data={data} />
+          <LineChart trend={trend} data={data} />
         </div>
       </div>
-      <span className={`text-change_green`}>
-        <ChevronUpIcon color={"#52FF00"} /> {item.percentChange}
+      <span
+        className={` ${
+          trend === "up" ? "text-change_green" : "text-change_red"
+        }`}
+      >
+        {trend === "up" ? (
+          <TriangleUpIcon color={"#52FF00"} />
+        ) : (
+          <TriangleDownIcon color={"#FF0000"} />
+        )}{" "}
+        {item.percentChange}{" "}
       </span>
     </div>
   );
