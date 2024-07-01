@@ -21,11 +21,15 @@ import {
 import LineChart from "@/components/Charts/lineChartsStocks";
 import StocksTableComponent from "@/components/Stocks/table";
 import ChartCard from "@/components/Dashboard/chartCard";
+import { useRouter } from "next/navigation";
+import { TriangleDownIcon, TriangleUpIcon } from "@chakra-ui/icons";
+import FilterMenu from "@/components/Dashboard/customFilter";
+import StockOfWeekChart from "@/components/Charts/chartOfTheWeek";
 
 const Stocks = () => {
   const theme = useTheme();
   const dark = theme.mode === "dark";
-  console.log(dark);
+  const router = useRouter();
   const chartData = [
     { date: "2023-01-01", price: 99 },
     { date: "2023-01-02", price: 105 },
@@ -278,6 +282,10 @@ const Stocks = () => {
     },
   ];
 
+  function goToAllStocksPage() {
+    router.push("/dashboard/stocks/all");
+  }
+
   return (
     <div className="py-8">
       <div
@@ -301,10 +309,157 @@ const Stocks = () => {
           <Button
             variant="custom-yellow"
             customClassName={`text-white bg-btn_orange`}
+            onClick={goToAllStocksPage}
             text="Start Trading"
           />
         </div>
       </div>
+
+      <section className="bg-[#504A41]  mt-11 py-3 rounded-xl text-white ">
+        <h1 className="px-5 text-xl  font-[500]"> Stock of the week </h1>
+        <div className="flex px-5 mt-5  justify-between">
+          <div className="flex items-center gap-2">
+            <img
+              className="w-[40px] h-[40px]"
+              src="/onboard/accessbank.png"
+              alt="logo"
+            />
+            <span>
+              {" "}
+              UBA <span> Apple Store</span>{" "}
+            </span>
+          </div>
+
+          <span className=" p-2 rounded-md border border-[#FFFFFF80] bg-[#FFFFFF4D]">
+            NGN 60,320
+          </span>
+        </div>
+
+        <div className="mt-5 ">
+          <StockOfWeekChart data={chartData} />
+        </div>
+      </section>
+
+      <section className="flex  gap-4 ">
+        {/* Watchlists */}
+
+        <div
+          className={`border-2 lg:w-1/2 flex flex-col gap-5 ${
+            dark ? "bg-dashboard_cards_bg" : "bg-white"
+          } px-2 py-4 lg:p-6 rounded-lg border-outline_orange`}
+        >
+          <div className="flex justify-between">
+            <h2 className="font-[500] text-outline_orange">Watchlists</h2>
+
+            <button className="text-dashboard_green_80">Show More</button>
+          </div>
+          <div className="flex  flex-col gap-4">
+            {stocks
+              .filter((item, i) => i < 2)
+              .map((item) => {
+                return (
+                  <div
+                    className={` ${
+                      dark ? "bg-stock_cardsbg" : "bg-white"
+                    }  gap-3 px-6 flex justify-between  items-center py-6  rounded-[8.5px]`}
+                    key={item}
+                  >
+                    <div className={`flex items-center gap-[4px]`}>
+                      <img
+                        className="w-[30px] rounded-lg"
+                        src={item.img}
+                        alt="item logo"
+                      />
+                      <span className={`text-[.95rem]`}>{item.title}</span>
+                    </div>
+                    {/* Chart Section */}
+                    <div
+                      className={`flex items-end h-[40px] justify-end w-3/5 lg:w-1/3`}
+                    >
+                      <LineChart trend={item.trend} data={item.data} />
+                    </div>
+
+                    <div
+                      className={`flex text-[.85rem] flex-col justify-between`}
+                    >
+                      <span className={` font-[700]`}>{item.price}</span>
+                      <span
+                        className={` ${
+                          item.trend === "up"
+                            ? "text-change_green"
+                            : "text-change_red"
+                        }`}
+                      >
+                        {item.trend === "up" ? (
+                          <TriangleUpIcon color={"#52FF00"} />
+                        ) : (
+                          <TriangleDownIcon color={"#FF0000"} />
+                        )}{" "}
+                        {item.percentChange}{" "}
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
+        </div>
+        <div
+          className={`border-2 lg:w-1/2 flex flex-col gap-5 ${
+            dark ? "bg-dashboard_cards_bg" : "bg-white"
+          } px-2 py-4 lg:p-6 rounded-lg border-outline_orange`}
+        >
+          <h2 className="font-[500] text-outline_orange">Stock Holdings</h2>
+          <div className="flex  flex-col gap-4">
+            {stocks
+              .filter((item, i) => i < 2)
+              .map((item) => {
+                return (
+                  <div
+                    className={` ${
+                      dark ? "bg-stock_cardsbg" : "bg-white"
+                    }  gap-3 px-6 flex justify-between  items-center py-6  rounded-[8.5px]`}
+                    key={item}
+                  >
+                    <div className={`flex items-center gap-[4px]`}>
+                      <img
+                        className="w-[30px] rounded-lg"
+                        src={item.img}
+                        alt="item logo"
+                      />
+                      <span className={`text-[.95rem]`}>{item.title}</span>
+                    </div>
+                    {/* Chart Section */}
+                    <div
+                      className={`flex items-end h-[40px] justify-end w-3/5 lg:w-1/3`}
+                    >
+                      <LineChart trend={item.trend} data={item.data} />
+                    </div>
+
+                    <div
+                      className={`flex text-[.85rem] flex-col justify-between`}
+                    >
+                      <span className={` font-[700]`}>{item.price}</span>
+                      <span
+                        className={` ${
+                          item.trend === "up"
+                            ? "text-change_green"
+                            : "text-change_red"
+                        }`}
+                      >
+                        {item.trend === "up" ? (
+                          <TriangleUpIcon color={"#52FF00"} />
+                        ) : (
+                          <TriangleDownIcon color={"#FF0000"} />
+                        )}{" "}
+                        {item.percentChange}{" "}
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
+        </div>
+      </section>
 
       <section className="">
         {/* Most Traded Stocks , left,right arrows */}
@@ -382,17 +537,7 @@ const Stocks = () => {
                   </InputGroup>
                 </div>
                 <div className={`w-1/5`}>
-                  <InputGroup>
-                    <InputLeftElement
-                      pointerEvents="none"
-                      color="gray.300"
-                    ></InputLeftElement>
-                    <Select border={"2px solid #FD891C"} placeholder="Filter">
-                      <option value="option1">Volume</option>
-                      <option value="option2">Price</option>
-                      <option value="option3">List </option>
-                    </Select>
-                  </InputGroup>
+                  <FilterMenu options={["Volume", "Price", "List"]} />
                 </div>
               </div>
             </div>

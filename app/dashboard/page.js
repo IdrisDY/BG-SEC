@@ -25,6 +25,9 @@ import PortfolioCards from "@/components/Dashboard/portfolioCards";
 import { usePathname, useRouter } from "next/navigation";
 import ProfileDropdown from "@/components/Dashboard/Profile";
 import NotificationDropdown from "@/components/Dashboard/Notifications";
+import FilterMenu from "@/components/Dashboard/customFilter";
+import LineChart from "@/components/Charts/lineChartsStocks";
+import { TriangleDownIcon, TriangleUpIcon } from "@chakra-ui/icons";
 
 export const TopDashboardBoxes = () => {
   const { theme, toggleTheme } = useContext(ToggleThemeContext);
@@ -150,9 +153,75 @@ const Dashboard = () => {
   const { theme, toggleTheme } = useContext(ToggleThemeContext);
   const dark = theme.mode === "dark";
   const router = useRouter();
-  function goToStocksPage() {
-    router.push("/dashboard/stocks");
+  function goToAllStocksPage() {
+    router.push("/dashboard/stocks/all");
   }
+  const chartData = [
+    { date: "2023-01-01", price: 99 },
+    { date: "2023-01-02", price: 105 },
+    { date: "2023-01-03", price: 102 },
+    { date: "2023-01-04", price: 108 },
+    { date: "2023-01-05", price: 107 },
+    { date: "2023-01-06", price: 112 },
+    { date: "2023-01-07", price: 106 },
+    { date: "2023-01-08", price: 114 },
+    { date: "2023-01-09", price: 109 },
+    { date: "2023-01-10", price: 115 },
+    { date: "2023-01-11", price: 111 },
+    { date: "2023-01-12", price: 82 },
+    { date: "2023-01-13", price: 80 },
+    { date: "2023-01-14", price: 85 },
+    { date: "2023-01-15", price: 90 },
+    { date: "2023-01-16", price: 95 },
+    { date: "2023-01-17", price: 124 },
+    { date: "2023-01-18", price: 130 },
+    { date: "2023-01-19", price: 125 },
+    { date: "2023-01-20", price: 125 },
+    { date: "2023-01-21", price: 120 },
+    { date: "2023-01-22", price: 120 },
+    { date: "2023-01-23", price: 132 },
+    { date: "2023-01-24", price: 137 },
+    { date: "2023-01-25", price: 135 },
+    { date: "2023-01-26", price: 138 },
+    { date: "2023-01-27", price: 132 },
+    { date: "2023-01-28", price: 135 },
+    { date: "2023-01-29", price: 150 },
+    { date: "2023-01-30", price: 147 },
+    { date: "2023-01-31", price: 205 },
+  ];
+  const chartData2 = [
+    { date: "2023-01-01", price: 130 },
+    { date: "2023-01-02", price: 132 },
+    { date: "2023-01-03", price: 129 },
+    { date: "2023-01-04", price: 135 },
+    { date: "2023-01-05", price: 131 },
+    { date: "2023-01-06", price: 128 },
+    { date: "2023-01-07", price: 130 },
+    { date: "2023-01-08", price: 127 },
+    { date: "2023-01-09", price: 133 },
+    { date: "2023-01-10", price: 128 },
+    { date: "2023-01-11", price: 126 },
+    { date: "2023-01-12", price: 124 },
+    { date: "2023-01-13", price: 129 },
+    { date: "2023-01-14", price: 125 },
+    { date: "2023-01-15", price: 123 },
+    { date: "2023-01-16", price: 127 },
+    { date: "2023-01-17", price: 122 },
+    { date: "2023-01-18", price: 120 },
+    { date: "2023-01-19", price: 124 },
+    { date: "2023-01-20", price: 119 },
+    { date: "2023-01-21", price: 117 },
+    { date: "2023-01-22", price: 121 },
+    { date: "2023-01-23", price: 116 },
+    { date: "2023-01-24", price: 114 },
+    { date: "2023-01-25", price: 119 },
+    { date: "2023-01-26", price: 113 },
+    { date: "2023-01-27", price: 111 },
+    { date: "2023-01-28", price: 115 },
+    { date: "2023-01-29", price: 110 },
+    { date: "2023-01-30", price: 108 },
+    { date: "2023-01-31", price: 105 },
+  ];
 
   const columns = [
     {
@@ -171,6 +240,24 @@ const Dashboard = () => {
     },
     { Header: "Price", accessor: "price" },
     { Header: "24H change", accessor: "24h" },
+  ];
+  const stocks = [
+    {
+      title: "Dangote Cement",
+      img: "/Dashboard/Dangote_Group_Logo.png",
+      price: "₦60,000",
+      percentChange: "25%",
+      trend: "up",
+      data: chartData,
+    },
+    {
+      title: "GT Bank",
+      img: "/Dashboard/GTBank.jpg",
+      price: "₦50,000",
+      percentChange: "30%",
+      data: chartData2,
+      trend: "down",
+    },
   ];
 
   const data = [
@@ -269,6 +356,63 @@ const Dashboard = () => {
 
       <section className={`flex flex-col lg:flex-row gap-[22px] mt-[24px]`}>
         <div className={`flex flex-col gap-6 lg:w-[52%]`}>
+          {/* Watchlists */}
+
+          <div
+            className={`border-2 flex flex-col gap-5 ${
+              dark ? "bg-dashboard_cards_bg" : "bg-white"
+            } px-2 py-4 lg:p-6 rounded-lg border-outline_orange`}
+          >
+            <h2 className="font-[500] text-outline_orange">Watchlists</h2>
+            <div className="flex  flex-col gap-4">
+              {stocks.map((item) => {
+                return (
+                  <div
+                    className={` ${
+                      dark ? "bg-stock_cardsbg" : "bg-white"
+                    }  gap-3 px-6 flex justify-between  items-center py-6  rounded-[8.5px]`}
+                    key={item}
+                  >
+                    <div className={`flex items-center gap-[4px]`}>
+                      <img
+                        className="w-[30px] rounded-lg"
+                        src={item.img}
+                        alt="item logo"
+                      />
+                      <span className={`text-[.95rem]`}>{item.title}</span>
+                    </div>
+                    {/* Chart Section */}
+                    <div
+                      className={`flex items-end h-[40px] justify-end w-3/5 lg:w-1/3`}
+                    >
+                      <LineChart trend={item.trend} data={item.data} />
+                    </div>
+
+                    <div
+                      className={`flex text-[.85rem] flex-col justify-between`}
+                    >
+                      <span className={` font-[700]`}>{item.price}</span>
+                      <span
+                        className={` ${
+                          item.trend === "up"
+                            ? "text-change_green"
+                            : "text-change_red"
+                        }`}
+                      >
+                        {item.trend === "up" ? (
+                          <TriangleUpIcon color={"#52FF00"} />
+                        ) : (
+                          <TriangleDownIcon color={"#FF0000"} />
+                        )}{" "}
+                        {item.percentChange}{" "}
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
           {/*  Top Gainers Table*/}
           <div
             className={`border-2 flex flex-col gap-5 ${
@@ -280,7 +424,7 @@ const Dashboard = () => {
             >
               <span className={`text-outline_orange`}>Top Gainers</span>
               <button
-                onClick={goToStocksPage}
+                onClick={goToAllStocksPage}
                 className={`text-dashboard_green_80`}
               >
                 View All Stocks
@@ -288,26 +432,21 @@ const Dashboard = () => {
             </div>
 
             <div className={`flex  px-2 lg:px-0 gap-4`}>
-              <div className={`w-4/5`}>
+              <div className={`  w-4/5`}>
                 <InputGroup size="md">
                   <InputLeftElement pointerEvents="none">
                     <SearchIcon color="gray.300" />
                   </InputLeftElement>
-                  <Input type="tel" placeholder="Search for anything" />
+                  <Input
+                    borderWidth={"2px"}
+                    borderColor={"#FD891C"}
+                    type="tel"
+                    placeholder="Search for anything"
+                  />
                 </InputGroup>
               </div>
               <div className={`w-1/5`}>
-                <InputGroup>
-                  <InputLeftElement
-                    pointerEvents="none"
-                    color="gray.300"
-                  ></InputLeftElement>
-                  <Select placeholder="Filter">
-                    <option value="option1">Option 1</option>
-                    <option value="option2">Option 2</option>
-                    <option value="option3">Option 3</option>
-                  </Select>
-                </InputGroup>
+                <FilterMenu options={["Volume", "Price", "List"]} />
               </div>
             </div>
 

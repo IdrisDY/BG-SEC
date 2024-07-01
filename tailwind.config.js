@@ -32,6 +32,7 @@ module.exports = {
         dashboard_cards_bg: "#232626",
         dashboard_green_80: "#11BC74",
         change_green: "#52FF00",
+        filter_dark_bg:'#202424',
         change_red: "#FF0000",
         sidebar_light: "#DFE6E6",
         dashboard_cards_light: "#F3F9F9",

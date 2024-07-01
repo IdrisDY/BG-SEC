@@ -817,6 +817,10 @@ const Stock = () => {
                 text="Buy"
                 variant="custom-yellow"
               />
+              <Button
+                customClassName="border mt-2 border-outline_orange w-full"
+                text="Sell"
+              />
             </div>
           </div>
 

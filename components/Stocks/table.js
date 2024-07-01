@@ -94,6 +94,7 @@ const StocksTableComponent = ({
                 <Button
                   onClick={() => handleButtonAction(row)}
                   variant="custom-yellow"
+                  customClassName="w-full"
                 >
                   {buttonAction === "compare" ? "Compare" : "Buy"}{" "}
                 </Button>
