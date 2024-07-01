@@ -184,8 +184,16 @@ const Dashboard = () => {
     },
     {
       name: {
-        title: "Access Bank",
-        image: "/onboard/accessbank.png",
+        title: "Dangote Sugar",
+        image: "/Dashboard/Dangote_Group_Logo.png",
+      },
+      price: "₦28000",
+      "24h": "+23%",
+    },
+    {
+      name: {
+        title: "GT Bank",
+        image: "/Dashboard/GTBank.jpg",
       },
       price: "₦28000",
       "24h": "+23%",
@@ -200,8 +208,8 @@ const Dashboard = () => {
     },
     {
       name: {
-        title: "Access Bank",
-        image: "/onboard/accessbank.png",
+        title: "GT Bank",
+        image: "/Dashboard/GTBank.jpg",
       },
       price: "₦28000",
       "24h": "+23%",
@@ -216,16 +224,8 @@ const Dashboard = () => {
     },
     {
       name: {
-        title: "Access Bank",
-        image: "/onboard/accessbank.png",
-      },
-      price: "₦28000",
-      "24h": "+23%",
-    },
-    {
-      name: {
-        title: "Access Bank",
-        image: "/onboard/accessbank.png",
+        title: "Dangote Sugar",
+        image: "/Dashboard/Dangote_Group_Logo.png",
       },
       price: "₦28000",
       "24h": "+23%",

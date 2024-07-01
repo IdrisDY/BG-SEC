@@ -17,8 +17,8 @@ const ChartCard = ({ data, trend, item }) => {
       } border-2 gap-3 pl-[12px] pr-2 flex flex-col py-[14px] border-outline_orange rounded-[12.5px]`}
       key={item}
     >
-      <div className={`flex items-center gap-[2px]`}>
-        <img src={item.img} alt="item logo" />
+      <div className={`flex items-center gap-[4px]`}>
+        <img className="w-[30px] rounded-lg" src={item.img} alt="item logo" />
         <span className={`text-[.8rem]`}>{item.title}</span>
       </div>
       <div className={`flex justify-between`}>

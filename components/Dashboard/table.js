@@ -1,6 +1,7 @@
 import React from "react";
 import { useTable } from "react-table";
 import Button from "../button";
+import { useRouter } from "next/navigation";
 
 const TableComponent = ({ columns, data }) => {
   const {
@@ -13,6 +14,10 @@ const TableComponent = ({ columns, data }) => {
     columns,
     data,
   });
+  const router = useRouter();
+  function handleButtonAction(id) {
+    router.push(`/dashboard/stocks/${id}`);
+  }
 
   return (
     <table
@@ -48,15 +53,14 @@ const TableComponent = ({ columns, data }) => {
                   </td>
                 );
               })}
-              <td className="" >
-                <button
-                  onClick={() =>
-                    console.log("Action clicked for row ID:", row.id)
-                  }
+              <td className="">
+                <Button
+                  onClick={() => handleButtonAction(row.id)}
+                  variant="custom-yellow"
                   className=" px-[10px]  text-white text-center w-full min-w-[67px] py-[7px] rounded-lg bg-btn_orange"
                 >
                   Buy
-                </button>
+                </Button>
               </td>
             </tr>
           );

@@ -4,7 +4,13 @@ import Link from "next/link";
 import Button from "../button";
 import { TbHeartPlus } from "react-icons/tb";
 import { useTheme } from "styled-components";
-const StocksTableComponent = ({ columns, data }) => {
+import { useRouter } from "next/navigation";
+const StocksTableComponent = ({
+  columns,
+  data,
+  buttonAction,
+  buttonClicked,
+}) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -16,7 +22,18 @@ const StocksTableComponent = ({ columns, data }) => {
     data,
   });
   const dark = useTheme().mode === "dark";
+  const router = useRouter();
+  function handleButtonAction(row) {
+    if (buttonAction === "compare") {
+      console.log(row);
+    }
 
+    if (buttonAction === "buy") {
+      console.log(row.values);
+      router.push(`/dashboard/stocks/${row.id}`);
+    }
+    buttonClicked(row.values);
+  }
   return (
     <table
       className={`border-separate text-[.7rem] ${
@@ -74,19 +91,12 @@ const StocksTableComponent = ({ columns, data }) => {
               </td>
 
               <td className="">
-                <button
-                  onClick={() =>
-                    console.log("Action clicked for row ID:", row.id)
-                  }
-                  className="w-[100px] rounded-lg text-center bg-btn_orange h-[40px]"
+                <Button
+                  onClick={() => handleButtonAction(row)}
+                  variant="custom-yellow"
                 >
-                  <Link
-                    className=" flex text-white  justify-center items-center w-full h-[40px] "
-                    href={`/dashboard/stocks/${row.id}`}
-                  >
-                    Buy
-                  </Link>
-                </button>
+                  {buttonAction === "compare" ? "Compare" : "Buy"}{" "}
+                </Button>
               </td>
             </tr>
           );

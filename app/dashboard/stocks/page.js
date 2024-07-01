@@ -95,16 +95,16 @@ const Stocks = () => {
 
   const stocks = [
     {
-      img: "/onboard/accessbank.png",
-      title: "Access Bank",
+      title: "Dangote Cement",
+      img: "/Dashboard/Dangote_Group_Logo.png",
       price: "₦60,000",
       percentChange: "25%",
       trend: "up",
       data: chartData,
     },
     {
-      img: "/onboard/accessbank.png",
-      title: "Access Bank",
+      title: "GT Bank",
+      img: "/Dashboard/GTBank.jpg",
       price: "₦50,000",
       percentChange: "30%",
       data: chartData2,
@@ -119,8 +119,8 @@ const Stocks = () => {
       trend: "up",
     },
     {
-      img: "/onboard/accessbank.png",
-      title: "Access Bank",
+      title: "GT Bank",
+      img: "/Dashboard/GTBank.jpg",
       price: "₦50,000",
       percentChange: "30%",
       data: chartData2,
@@ -185,8 +185,8 @@ const Stocks = () => {
   const data = [
     {
       name: {
-        title: "Access Bank",
-        image: "/onboard/accessbank.png",
+        title: "GT Bank",
+        image: "/Dashboard/GTBank.jpg",
       },
       price: "₦28000",
       "24h": { trend: "up", change: "+23%" },
@@ -203,8 +203,8 @@ const Stocks = () => {
     },
     {
       name: {
-        title: "Access Bank",
-        image: "/onboard/accessbank.png",
+        title: "Dangote Cement",
+        image: "/Dashboard/Dangote_Group_Logo.png",
       },
       price: "₦28000",
       "24h": { trend: "up", change: "+23%" },
@@ -221,8 +221,8 @@ const Stocks = () => {
     },
     {
       name: {
-        title: "Access Bank",
-        image: "/onboard/accessbank.png",
+        title: "GT Bank",
+        image: "/Dashboard/GTBank.jpg",
       },
       price: "₦28000",
       "24h": { trend: "up", change: "+23%" },
@@ -239,8 +239,8 @@ const Stocks = () => {
     },
     {
       name: {
-        title: "Access Bank",
-        image: "/onboard/accessbank.png",
+        title: "Dangote Sugar",
+        image: "/Dashboard/Dangote_Group_Logo.png",
       },
       price: "₦28000",
       "24h": { trend: "down", change: "+23%" },
@@ -397,7 +397,11 @@ const Stocks = () => {
               </div>
             </div>
 
-            <StocksTableComponent columns={columns} data={data} />
+            <StocksTableComponent
+              buttonAction={"buy"}
+              columns={columns}
+              data={data}
+            />
           </div>
         </section>
 
