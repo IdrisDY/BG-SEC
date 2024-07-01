@@ -12,7 +12,7 @@ import {
   InputLeftElement,
   Checkbox,
 } from "@chakra-ui/react";
-import { SearchIcon } from "@chakra-ui/icons";
+import { ChevronDownIcon, SearchIcon } from "@chakra-ui/icons";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
@@ -26,57 +26,108 @@ const Stocks = () => {
   const theme = useTheme();
   const dark = theme.mode === "dark";
   console.log(dark);
-  const stocks = [
-    {
-      img: "/onboard/accessbank.png",
-      title: "Access Bank",
-      price: "$60,000",
-      percentChange: "25%",
-    },
-    {
-      img: "/onboard/accessbank.png",
-      title: "Access Bank",
-      price: "$60,000",
-      percentChange: "25%",
-    },
-    {
-      img: "/onboard/accessbank.png",
-      title: "Access Bank",
-      price: "$60,000",
-      percentChange: "25%",
-    },
-    {
-      img: "/onboard/accessbank.png",
-      title: "Access Bank",
-      price: "$60,000",
-      percentChange: "25%",
-    },
-  ];
   const chartData = [
-    { date: "2023-01-01", price: 100 },
+    { date: "2023-01-01", price: 99 },
     { date: "2023-01-02", price: 105 },
     { date: "2023-01-03", price: 102 },
-    { date: "2023-01-04", price: 104 },
-    { date: "2023-01-05", price: 108 },
-    { date: "2023-01-06", price: 107 },
-    { date: "2023-01-07", price: 110 },
-    { date: "2023-01-08", price: 112 },
-    { date: "2023-01-09", price: 115 },
-    { date: "2023-01-10", price: 113 },
-    { date: "2023-01-11", price: 117 },
-    { date: "2023-01-12", price: 116 },
-    { date: "2023-01-13", price: 100 },
-    { date: "2023-01-14", price: 121 },
-    { date: "2023-01-15", price: 120 },
-    { date: "2023-01-16", price: 123 },
-    { date: "2023-01-17", price: 125 },
-    { date: "2023-01-18", price: 122 },
-    { date: "2023-01-19", price: 126 },
-    { date: "2023-01-20", price: 124 },
-    { date: "2023-01-21", price: 127 },
-    { date: "2023-01-22", price: 129 },
-    { date: "2023-01-23", price: 99 },
+    { date: "2023-01-04", price: 108 },
+    { date: "2023-01-05", price: 107 },
+    { date: "2023-01-06", price: 112 },
+    { date: "2023-01-07", price: 106 },
+    { date: "2023-01-08", price: 114 },
+    { date: "2023-01-09", price: 109 },
+    { date: "2023-01-10", price: 115 },
+    { date: "2023-01-11", price: 111 },
+    { date: "2023-01-12", price: 82 },
+    { date: "2023-01-13", price: 80 },
+    { date: "2023-01-14", price: 85 },
+    { date: "2023-01-15", price: 90 },
+    { date: "2023-01-16", price: 95 },
+    { date: "2023-01-17", price: 124 },
+    { date: "2023-01-18", price: 130 },
+    { date: "2023-01-19", price: 125 },
+    { date: "2023-01-20", price: 125 },
+    { date: "2023-01-21", price: 120 },
+    { date: "2023-01-22", price: 120 },
+    { date: "2023-01-23", price: 132 },
+    { date: "2023-01-24", price: 137 },
+    { date: "2023-01-25", price: 135 },
+    { date: "2023-01-26", price: 138 },
+    { date: "2023-01-27", price: 132 },
+    { date: "2023-01-28", price: 135 },
+    { date: "2023-01-29", price: 150 },
+    { date: "2023-01-30", price: 147 },
+    { date: "2023-01-31", price: 205 },
   ];
+  const chartData2 = [
+    { date: "2023-01-01", price: 130 },
+    { date: "2023-01-02", price: 132 },
+    { date: "2023-01-03", price: 129 },
+    { date: "2023-01-04", price: 135 },
+    { date: "2023-01-05", price: 131 },
+    { date: "2023-01-06", price: 128 },
+    { date: "2023-01-07", price: 130 },
+    { date: "2023-01-08", price: 127 },
+    { date: "2023-01-09", price: 133 },
+    { date: "2023-01-10", price: 128 },
+    { date: "2023-01-11", price: 126 },
+    { date: "2023-01-12", price: 124 },
+    { date: "2023-01-13", price: 129 },
+    { date: "2023-01-14", price: 125 },
+    { date: "2023-01-15", price: 123 },
+    { date: "2023-01-16", price: 127 },
+    { date: "2023-01-17", price: 122 },
+    { date: "2023-01-18", price: 120 },
+    { date: "2023-01-19", price: 124 },
+    { date: "2023-01-20", price: 119 },
+    { date: "2023-01-21", price: 117 },
+    { date: "2023-01-22", price: 121 },
+    { date: "2023-01-23", price: 116 },
+    { date: "2023-01-24", price: 114 },
+    { date: "2023-01-25", price: 119 },
+    { date: "2023-01-26", price: 113 },
+    { date: "2023-01-27", price: 111 },
+    { date: "2023-01-28", price: 115 },
+    { date: "2023-01-29", price: 110 },
+    { date: "2023-01-30", price: 108 },
+    { date: "2023-01-31", price: 105 },
+  ];
+
+  const stocks = [
+    {
+      title: "Dangote Cement",
+      img: "/Dashboard/Dangote_Group_Logo.png",
+      price: "₦60,000",
+      percentChange: "25%",
+      trend: "up",
+      data: chartData,
+    },
+    {
+      title: "GT Bank",
+      img: "/Dashboard/GTBank.jpg",
+      price: "₦50,000",
+      percentChange: "30%",
+      data: chartData2,
+      trend: "down",
+    },
+    {
+      img: "/onboard/accessbank.png",
+      title: "Access Bank",
+      price: "₦50,000",
+      percentChange: "25%",
+      data: chartData,
+      trend: "up",
+    },
+    {
+      title: "GT Bank",
+      img: "/Dashboard/GTBank.jpg",
+      price: "₦50,000",
+      percentChange: "30%",
+      data: chartData2,
+      trend: "down",
+    },
+  ];
+
   const columns = [
     {
       Header: "Stocks",
@@ -102,7 +153,7 @@ const Stocks = () => {
       Cell: ({ cell: { value } }) => (
         <div className="h-[40px]">
           {" "}
-          <LineChart data={chartData} />
+          <LineChart trend={value.trend} data={value.chart} />
         </div>
       ),
       width: 300,
@@ -111,8 +162,21 @@ const Stocks = () => {
       Header: "",
       accessor: "24h",
       Cell: ({ cell: { value } }) => (
-        <div className="text-center w-fit  justify-center flex gap-1 bg-[#B5EFCC30] rounded-[30px] p-2 text-change_green">
-          <ChevronUpIcon color={"#12B76A"} /> 23%
+        <div
+          className={`text-center w-fit items-center font-[500]  justify-center flex gap-1  ${
+            value.trend === "up"
+              ? "bg-[#B5EFCC30] text-change_green  "
+              : dark
+              ? "bg-[#FFA19A3D] text-[#B42318]"
+              : "bg-[#FEF3F2] text-[#B42318]"
+          } rounded-[30px] p-2 `}
+        >
+          {value.trend === "up" ? (
+            <ChevronUpIcon color={"#12B76A"} />
+          ) : (
+            <ChevronDownIcon color={"red"} />
+          )}{" "}
+          {value.change}
         </div>
       ),
     },
@@ -121,59 +185,66 @@ const Stocks = () => {
   const data = [
     {
       name: {
-        title: "Access Bank",
-        image: "/onboard/accessbank.png",
+        title: "GT Bank",
+        image: "/Dashboard/GTBank.jpg",
       },
-      price: "$28000",
-      "24h": "+23%",
+      price: "₦28000",
+      "24h": { trend: "up", change: "+23%" },
+      charts: { chart: chartData, trend: "up" },
     },
     {
       name: {
         title: "Access Bank",
         image: "/onboard/accessbank.png",
       },
-      price: "$28000",
-      "24h": "+23%",
+      price: "₦28000",
+      "24h": { trend: "down", change: "+23%" },
+      charts: { chart: chartData2, trend: "down" },
+    },
+    {
+      name: {
+        title: "Dangote Cement",
+        image: "/Dashboard/Dangote_Group_Logo.png",
+      },
+      price: "₦28000",
+      "24h": { trend: "up", change: "+23%" },
+      charts: { chart: chartData, trend: "up" },
     },
     {
       name: {
         title: "Access Bank",
         image: "/onboard/accessbank.png",
       },
-      price: "$28000",
-      "24h": "+23%",
+      price: "₦28000",
+      "24h": { trend: "down", change: "+23%" },
+      charts: { chart: chartData2, trend: "down" },
+    },
+    {
+      name: {
+        title: "GT Bank",
+        image: "/Dashboard/GTBank.jpg",
+      },
+      price: "₦28000",
+      "24h": { trend: "up", change: "+23%" },
+      charts: { chart: chartData, trend: "up" },
     },
     {
       name: {
         title: "Access Bank",
         image: "/onboard/accessbank.png",
       },
-      price: "$28000",
-      "24h": "+23%",
+      price: "₦28000",
+      "24h": { trend: "up", change: "+23%" },
+      charts: { chart: chartData, trend: "up" },
     },
     {
       name: {
-        title: "Access Bank",
-        image: "/onboard/accessbank.png",
+        title: "Dangote Sugar",
+        image: "/Dashboard/Dangote_Group_Logo.png",
       },
-      price: "$28000",
-      "24h": "+23%",
-    },
-    {
-      name: {
-        title: "Access Bank",
-        image: "/onboard/accessbank.png",
-      },
-      price: "$28000",
-      "24h": "+23%",
-    },
-    {
-      name: {
-        title: "Access Bank",
-        image: "/onboard/accessbank.png",
-      },
-      price: "$28000",
-      "24h": "+23%",
+      price: "₦28000",
+      "24h": { trend: "down", change: "+23%" },
+      charts: { chart: chartData2, trend: "down" },
     },
   ];
   const marketNews = [
@@ -228,6 +299,7 @@ const Stocks = () => {
             embark on an exciting journey into the world of trading{" "}
           </span>
           <Button
+            variant="custom-yellow"
             customClassName={`text-white bg-btn_orange`}
             text="Start Trading"
           />
@@ -278,7 +350,9 @@ const Stocks = () => {
         {/* Stocks Cards */}
         <div className={`grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-4`}>
           {stocks.map((item, i) => {
-            return <ChartCard item={item} data={chartData} />;
+            return (
+              <ChartCard item={item} trend={item.trend} data={item.data} />
+            );
           })}
         </div>
 
@@ -314,16 +388,20 @@ const Stocks = () => {
                       color="gray.300"
                     ></InputLeftElement>
                     <Select border={"2px solid #FD891C"} placeholder="Filter">
-                      <option value="option1">Option 1</option>
-                      <option value="option2">Option 2</option>
-                      <option value="option3">Option 3</option>
+                      <option value="option1">Volume</option>
+                      <option value="option2">Price</option>
+                      <option value="option3">List </option>
                     </Select>
                   </InputGroup>
                 </div>
               </div>
             </div>
 
-            <StocksTableComponent columns={columns} data={data} />
+            <StocksTableComponent
+              buttonAction={"buy"}
+              columns={columns}
+              data={data}
+            />
           </div>
         </section>
 

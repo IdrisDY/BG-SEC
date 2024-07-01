@@ -1,9 +1,16 @@
-import React from "react";
+"use client";
 import { useTable } from "react-table";
 import Link from "next/link";
 import Button from "../button";
 import { TbHeartPlus } from "react-icons/tb";
-const StocksTableComponent = ({ columns, data }) => {
+import { useTheme } from "styled-components";
+import { useRouter } from "next/navigation";
+const StocksTableComponent = ({
+  columns,
+  data,
+  buttonAction,
+  buttonClicked,
+}) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -14,10 +21,24 @@ const StocksTableComponent = ({ columns, data }) => {
     columns,
     data,
   });
+  const dark = useTheme().mode === "dark";
+  const router = useRouter();
+  function handleButtonAction(row) {
+    if (buttonAction === "compare") {
+      console.log(row);
+    }
 
+    if (buttonAction === "buy") {
+      console.log(row.values);
+      router.push(`/dashboard/stocks/${row.id}`);
+    }
+    buttonClicked(row.values);
+  }
   return (
     <table
-      className="border-separate text-[.7rem] border-spacing-x-2  lg:text-[1rem] lg:border-spacing-x-4 border-spacing-y-4 w-full"
+      className={`border-separate text-[.7rem] ${
+        dark ? "" : "text-light_gray_50"
+      }  border-spacing-x-2  lg:text-[1rem] lg:border-spacing-x-4 border-spacing-y-4 w-full`}
       {...getTableProps()}
     >
       <thead className="text-[.8rem]">
@@ -62,24 +83,20 @@ const StocksTableComponent = ({ columns, data }) => {
 
               <td className="  h-full justify-center">
                 <button>
-                  <TbHeartPlus size={"30px"} color="#FD891C" />
+                  <TbHeartPlus
+                    size={"30px"}
+                    color={dark ? "#FD891C" : "#3B4B4B"}
+                  />
                 </button>
               </td>
 
               <td className="">
-                <button
-                  onClick={() =>
-                    console.log("Action clicked for row ID:", row.id)
-                  }
-                  className="w-[100px] rounded-lg text-center bg-btn_orange h-[40px]"
+                <Button
+                  onClick={() => handleButtonAction(row)}
+                  variant="custom-yellow"
                 >
-                  <Link
-                    className=" flex  justify-center items-center w-full h-[40px] "
-                    href={`/dashboard/stocks/${row.id}`}
-                  >
-                    Buy
-                  </Link>
-                </button>
+                  {buttonAction === "compare" ? "Compare" : "Buy"}{" "}
+                </Button>
               </td>
             </tr>
           );

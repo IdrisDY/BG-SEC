@@ -248,7 +248,7 @@ export default function Home() {
                     ₦2.5T +
                   </span>
                   <span className={`text-[.65rem] lg:text-[1rem]`}>
-                    Billions of transactions
+                    Trillions of transactions
                   </span>
                 </div>
                 <div className={`flex flex-col gap-2 lg:gap-8`}>

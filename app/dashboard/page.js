@@ -112,7 +112,6 @@ export const TopDashboardBoxes = () => {
             <span className=" p-3 rounded-lg bg-outline_orange">
               {formatTime(timeRemaining.minutes)}
             </span>
-            
           </div>
         </div>
         <div className={`flex gap-2 items-center`}>
@@ -151,6 +150,9 @@ const Dashboard = () => {
   const { theme, toggleTheme } = useContext(ToggleThemeContext);
   const dark = theme.mode === "dark";
   const router = useRouter();
+  function goToStocksPage() {
+    router.push("/dashboard/stocks");
+  }
 
   const columns = [
     {
@@ -177,7 +179,23 @@ const Dashboard = () => {
         title: "Access Bank",
         image: "/onboard/accessbank.png",
       },
-      price: "$28000",
+      price: "₦28000",
+      "24h": "+23%",
+    },
+    {
+      name: {
+        title: "Dangote Sugar",
+        image: "/Dashboard/Dangote_Group_Logo.png",
+      },
+      price: "₦28000",
+      "24h": "+23%",
+    },
+    {
+      name: {
+        title: "GT Bank",
+        image: "/Dashboard/GTBank.jpg",
+      },
+      price: "₦28000",
       "24h": "+23%",
     },
     {
@@ -185,7 +203,15 @@ const Dashboard = () => {
         title: "Access Bank",
         image: "/onboard/accessbank.png",
       },
-      price: "$28000",
+      price: "₦28000",
+      "24h": "+23%",
+    },
+    {
+      name: {
+        title: "GT Bank",
+        image: "/Dashboard/GTBank.jpg",
+      },
+      price: "₦28000",
       "24h": "+23%",
     },
     {
@@ -193,39 +219,15 @@ const Dashboard = () => {
         title: "Access Bank",
         image: "/onboard/accessbank.png",
       },
-      price: "$28000",
+      price: "₦28000",
       "24h": "+23%",
     },
     {
       name: {
-        title: "Access Bank",
-        image: "/onboard/accessbank.png",
+        title: "Dangote Sugar",
+        image: "/Dashboard/Dangote_Group_Logo.png",
       },
-      price: "$28000",
-      "24h": "+23%",
-    },
-    {
-      name: {
-        title: "Access Bank",
-        image: "/onboard/accessbank.png",
-      },
-      price: "$28000",
-      "24h": "+23%",
-    },
-    {
-      name: {
-        title: "Access Bank",
-        image: "/onboard/accessbank.png",
-      },
-      price: "$28000",
-      "24h": "+23%",
-    },
-    {
-      name: {
-        title: "Access Bank",
-        image: "/onboard/accessbank.png",
-      },
-      price: "$28000",
+      price: "₦28000",
       "24h": "+23%",
     },
   ];
@@ -277,7 +279,10 @@ const Dashboard = () => {
               className={`flex px-2  text-[.9rem] lg:text-[1rem] lg:px-0 w-full justify-between`}
             >
               <span className={`text-outline_orange`}>Top Gainers</span>
-              <button className={`text-dashboard_green_80`}>
+              <button
+                onClick={goToStocksPage}
+                className={`text-dashboard_green_80`}
+              >
                 View All Stocks
               </button>
             </div>
